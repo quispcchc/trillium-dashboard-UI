@@ -1,0 +1,26 @@
+<div class="login-container">
+    <div class="login-header">
+        <img src="assets/images/cchc.png" alt="Carlington Community Health Centre Icon" />
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="input-group">
+            <label for="username">Username:</label>
+            <input id="username" formControlName="username" type="text" placeholder="Enter your Username" />
+            <div *ngIf="username && username.invalid && (username.dirty || username.touched)" class="error-message">
+                <div *ngIf="username.errors?.['required']">Username is required.</div>
+                <div *ngIf="username.errors?.['minlength']">Username must be at least 3 characters long.</div>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="password">Password:</label>
+            <input id="password" formControlName="password" type="password" placeholder="Enter your Password" />
+            <div *ngIf="password && password.invalid && (password.dirty || password.touched)" class="error-message">
+                <div *ngIf="password.errors?.['required']">Password is required.</div>
+                <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</div>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+</div>

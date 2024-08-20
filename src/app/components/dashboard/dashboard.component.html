@@ -1,0 +1,9 @@
+<div class="dashboard-container">
+  <iframe *ngIf="embedUrl && embedToken"
+    [src]="getSafeUrl(embedUrl)"
+    width="800"
+    height="600"
+    frameborder="0"
+    allowFullScreen="true">
+  </iframe>
+</div>
