@@ -10,17 +10,18 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class DashboardComponent implements OnInit {
   embedUrl: string | null = null;
   embedToken: string | null = null;
+  isMenuOpen: boolean = false;
 
   constructor(private authService: AuthService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
-    this.authService.getPowerBIReport().subscribe(data => {
-      this.embedUrl = data.embedUrl;
-      this.embedToken = data.embedToken;
-    });
+    // this.authService.getPowerBIReport().subscribe(data => {
+    //   this.embedUrl = data.embedUrl;
+    //   this.embedToken = data.embedToken;
+    // });
   }
 
-  getSafeUrl(url: string): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  }
+  // getSafeUrl(url: string): SafeResourceUrl {
+  //   return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  // }
 }

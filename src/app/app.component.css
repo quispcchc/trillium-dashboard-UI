@@ -1,0 +1,30 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Flexbox layout for the entire application */
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  /* Main content area (flex-grow to fill remaining space) */
+  .main-content {
+    flex: 1;
+    display: flex;
+  }
+  
+  /* Sidebar specific styles */
+  app-sidebar {
+    flex: 0 0 250px; /* Adjust sidebar width */
+  }
+  
+  /* Footer style */
+  app-footer {
+    flex-shrink: 0; /* Prevent shrinking */
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+  }

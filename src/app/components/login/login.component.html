@@ -1,6 +1,6 @@
 <div class="login-container">
     <div class="login-header">
-        <img src="assets/images/cchc.png" alt="Carlington Community Health Centre Icon" />
+        <img src="Carlington-icon.png" alt="Carlington Community Health Centre Icon" />
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="input-group">
@@ -21,6 +21,13 @@
             </div>
         </div>
 
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+
         <button type="submit" [disabled]="loginForm.invalid">Login</button>
+        <p class="forgot-password">
+            <a (click)="resetPassword()">Forgot your password?</a>
+        </p>
     </form>
 </div>
