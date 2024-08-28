@@ -5,15 +5,34 @@ html, body {
   overflow: hidden; /* Prevents scrolling */
 }
 
+body {
+  font-family: Arial, sans-serif; /* Optional: for better font consistency */
+}
+
 .login-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column; /* Stack the image and form vertically */
+  justify-content: center; /* Center vertically within the right side */
+  align-items: flex-end; /* Align items to the right side */
   height: 100vh; /* Full viewport height */
-  background-color: #f9f9f9;
-  box-sizing: border-box; /* Ensures padding/margins don't affect overall height */
-  overflow: hidden;
+  background-image: url('public/carlington-background.jpg');
+  background-size: cover; /* Ensures the background image covers the whole screen */
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.login-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login-header img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  transform: translateX(-50px);
 }
 
 form {
@@ -22,12 +41,14 @@ form {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: white;
-  box-sizing: border-box; /* Ensures padding is included in the width/height */
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque white for a softer look */
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+  transform: translateX(-50px);
 }
 
 .input-group {
-  margin-bottom: 15px; /* Space between input fields */
+  margin-bottom: 15px;
 }
 
 label {
@@ -41,17 +62,7 @@ input {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  box-sizing: border-box; /* Ensures padding is included in the width */
-}
-
-.login-header {
-  margin-bottom: 20px;
-}
-
-.login-header img {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
+  box-sizing: border-box;
 }
 
 button {
@@ -71,14 +82,18 @@ button:disabled {
 }
 
 .error-message {
-  color: red;
-  font-size: 14px;
+  color: #e74c3c;
+  font-size: 0.875em;
   margin-top: 5px;
+}
+
+.error-message div {
+  margin-bottom: 5px;
 }
 
 .forgot-password {
   margin-top: 15px;
-  text-align: right; 
+  text-align: right;
 }
 
 .forgot-password a {
@@ -89,14 +104,4 @@ button:disabled {
 
 .forgot-password a:hover {
   text-decoration: underline;
-}
-
-.error-message {
-  color: #e74c3c;
-  font-size: 0.875em;
-  margin-top: 5px;
-}
-
-.error-message div {
-  margin-bottom: 5px;
 }

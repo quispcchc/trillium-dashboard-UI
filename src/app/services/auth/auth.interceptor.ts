@@ -2,9 +2,14 @@ import { HttpEvent, HttpHandlerFn, HttpRequest, HttpInterceptorFn } from '@angul
 import { Observable } from 'rxjs';
 
 export const authInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> => {
-  // Modify the request here if needed
+  // Retrieve the token from localStorage
+  const token = localStorage.getItem('authToken') || '';
+
+  // Clone the request and add the Authorization header if the token exists
   const clonedRequest = req.clone({
-    headers: req.headers.set('Authorization', 'Bearer your-token-here')
+    setHeaders: {
+      Authorization: token ? `Bearer ${token}` : ''
+    }
   });
 
   // Pass the modified request to the next handler

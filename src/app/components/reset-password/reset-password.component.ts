@@ -1,42 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
-    selector: 'app-reset-password',
-    templateUrl: './reset-password.component.html',
-    styleUrls: ['./reset-password.component.css']
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
-    resetForm!: FormGroup;
-    successMessage: string | null = null;
-    errorMessage: string | null = null;
+  resetPasswordForm!: FormGroup;
+  token: string | null = null;
+  message: string | null = null;
 
-    constructor(private fb: FormBuilder, private authService: AuthService) { }
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private authService: AuthService
+  ) {}
 
-    ngOnInit(): void {
-        this.resetForm = this.fb.group({
-            email: ['', [Validators.required, Validators.email]]
-        });
+  ngOnInit(): void {
+    this.resetPasswordForm = this.fb.group({
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+
+    this.route.paramMap.subscribe(params => {
+      this.token = params.get('token');
+    });
+  }
+
+  get password() {
+    return this.resetPasswordForm.get('password');
+  }
+
+  onSubmit() {
+    if (this.resetPasswordForm.valid && this.token) {
+      this.authService.resetPasswordWithToken(this.token, this.resetPasswordForm.value.password).subscribe(response => {
+        this.message = response.message;
+      });
     }
-
-    get email() {
-        return this.resetForm.get('email');
-    }
-
-    onReset() {
-        if (this.resetForm.valid) {
-            const email = this.resetForm.value.email;
-
-            this.authService.requestPasswordReset(email).subscribe(response => {
-                if (response.success) {
-                    this.successMessage = 'Reset link sent to your email.';
-                    this.errorMessage = null;
-                } else {
-                    this.errorMessage = 'Failed to send reset link.';
-                    this.successMessage = null;
-                }
-            });
-        }
-    }
+  }
 }
