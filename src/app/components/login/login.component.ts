@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
             username: ['', [Validators.required, Validators.minLength(3)]],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
+        this.loginForm.reset();
     }
 
     get username() {
@@ -38,8 +39,10 @@ export class LoginComponent implements OnInit {
             this.authService.login(username, password).subscribe(success => {
                 if (success) {
                     this.router.navigate(['/dashboard']);
+                    this.loginForm.reset();
                 } else {
                     this.errorMessage = 'Invalid username or password';
+                    this.loginForm.reset();
                 }
             });
         }

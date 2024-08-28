@@ -29,26 +29,9 @@ app-footer {
   flex: 1; /* Allows content to expand to fill available space */
 }
 
-app-sidebar {
-  flex: 0 0 250px; /* Fixed width for sidebar */
-  background-color: #f4f4f4;
-  height: calc(100vh - 60px); /* Full height minus header height */
-  overflow-y: auto; /* Allows scrolling if content exceeds height */
-}
-
 .content {
   flex: 1;
   padding: 20px;
   background-color: #ffffff;
   overflow: auto; /* Allows scrolling if content exceeds height */
-}
-
-@media (max-width: 768px) {
-  app-sidebar {
-    display: none; /* Hide sidebar on smaller screens */
-  }
-
-  .content {
-    padding: 10px; /* Adjust padding for smaller screens */
-  }
 }

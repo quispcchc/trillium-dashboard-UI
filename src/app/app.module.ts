@@ -13,7 +13,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { authInterceptorFn } from './services/auth/auth.interceptor';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
@@ -25,7 +24,6 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     DashboardComponent,
     ResetPasswordComponent,
     HeaderComponent,
-    SidebarComponent,
     ForgotPasswordComponent
   ],
   imports: [

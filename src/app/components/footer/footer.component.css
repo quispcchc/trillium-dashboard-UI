@@ -1,17 +1,6 @@
-/* .app-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #f1f1f1;
-    color: #333;
-    text-align: center;
-    padding: 10px 0;
-    border-top: 1px solid #ccc;
-} */
-
 .footer {
     text-align: center;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #05589B;
     color: white;
-  }
+}

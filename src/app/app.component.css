@@ -16,11 +16,6 @@ html, body {
     display: flex;
   }
   
-  /* Sidebar specific styles */
-  app-sidebar {
-    flex: 0 0 250px; /* Adjust sidebar width */
-  }
-  
   /* Footer style */
   app-footer {
     flex-shrink: 0; /* Prevent shrinking */
