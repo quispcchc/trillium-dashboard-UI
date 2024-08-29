@@ -10,6 +10,7 @@ import { AuthService } from '../../services/auth/auth.service';
 export class ForgotPasswordComponent implements OnInit {
   resetPasswordForm!: FormGroup; 
   message: string | null = null;
+  router: any;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {}
 
@@ -29,5 +30,9 @@ export class ForgotPasswordComponent implements OnInit {
         this.message = response.success ? 'Reset link sent to your email!' : 'Failed to send reset link.';
       });
     }
+  }
+
+  goToLogin() {
+    this.router.navigate(['/login']); // Adjust the path as needed
   }
 }
