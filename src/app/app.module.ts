@@ -35,8 +35,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
   ],
   providers: [
     provideHttpClient(
-      withFetch(), // Enable fetch API
-      withInterceptors([authInterceptorFn]) // Use functional interceptor
+      withFetch(),
+      withInterceptors([authInterceptorFn])
     )
   ],
   bootstrap: [AppComponent]

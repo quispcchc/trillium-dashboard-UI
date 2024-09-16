@@ -1,25 +1,25 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #05589B;
-    color: white;
-  }
-  
-  .menu-icon {
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .header-title {
-    font-size: 20px;
-  }
-  
-  .logout-button {
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #05589B;
+  color: white;
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.header-title {
+  font-size: 20px;
+}
+
+.logout-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}

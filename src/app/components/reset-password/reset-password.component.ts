@@ -12,12 +12,13 @@ export class ResetPasswordComponent implements OnInit {
   resetPasswordForm!: FormGroup;
   token: string | null = null;
   message: string | null = null;
+  isSuccess: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.resetPasswordForm = this.fb.group({
@@ -37,6 +38,7 @@ export class ResetPasswordComponent implements OnInit {
     if (this.resetPasswordForm.valid && this.token) {
       this.authService.resetPasswordWithToken(this.token, this.resetPasswordForm.value.password).subscribe(response => {
         this.message = response.message;
+        this.isSuccess = (this.message == 'Password has been reset');
       });
     }
   }

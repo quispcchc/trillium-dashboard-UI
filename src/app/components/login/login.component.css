@@ -1,34 +1,52 @@
-/* login.component.css */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; /* Prevents scrolling */
+  overflow: hidden;
   font-family: Arial, sans-serif;
 }
 
 body {
-  font-family: Arial, sans-serif; /* Optional: for better font consistency */
+  font-family: Arial, sans-serif;
 }
 
 .login-page {
   display: flex;
-  justify-content: flex-end; /* Aligns the container to the right */
-  align-items: center; /* Vertically centers the container */
-  height: 100vh; /* Full viewport height */
+  justify-content: flex-end;
+  align-items: center;
+  height: 100vh;
   background-image: url('public/carlington-background.jpg');
-  background-size: cover; /* Ensures the background image covers the entire screen */
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.login-footer {
+  display: flex;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.login-footer p {
+  margin: 0;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.login-footer img {
+  vertical-align: middle;
+  max-width: 250px;
+  height: auto;
 }
 
 .login-container {
   width: 100%;
   max-width: 400px;
-  background-color: white; /* White background for the form area */
+  background-color: white;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   height: 100vh;
   align-items: center;
@@ -50,9 +68,9 @@ form {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque white for a softer look */
+  background-color: rgba(255, 255, 255, 0.9);
   box-sizing: border-box;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .input-group {

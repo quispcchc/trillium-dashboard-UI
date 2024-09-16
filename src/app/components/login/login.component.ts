@@ -21,7 +21,14 @@ export class LoginComponent implements OnInit {
             username: ['', [Validators.required, Validators.minLength(3)]],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
-        this.loginForm.reset();
+
+        this.loginForm.get('username')?.valueChanges.subscribe(() => {
+            this.clearError();
+        });
+
+        this.loginForm.get('password')?.valueChanges.subscribe(() => {
+            this.clearError();
+        });
     }
 
     get username() {
@@ -42,14 +49,17 @@ export class LoginComponent implements OnInit {
                     this.loginForm.reset();
                 } else {
                     this.errorMessage = 'Invalid username or password';
-                    this.loginForm.reset();
                 }
             });
         }
     }
 
+    clearError() {
+        this.errorMessage = null;
+    }
+
     resetPassword() {
-        // Navigate to the password reset page
+        // Navigate to the forgot password page
         this.router.navigate(['/forgot-password']);
     }
 }

@@ -11,9 +11,9 @@ export class AuthService {
   private loginUrl = 'http://localhost:3000/login';  // Backend login endpoint
   private reportUrl = 'http://localhost:3000/report';  // Backend report endpoint
   private resetPasswordUrl = 'http://localhost:3000/reset-password';  // Backend password reset request endpoint
-  private resetPasswordWithTokenUrl = 'http://localhost:3000/reset-password'; 
+  private resetPasswordWithTokenUrl = 'http://localhost:3000/reset-password';
 
-  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) { }
 
   login(username: string, password: string): Observable<boolean> {
     return this.http.post<{ token: string }>(this.loginUrl, { username, password })
@@ -49,19 +49,19 @@ export class AuthService {
     });
   }
 
-    // Request password reset link
-    requestPasswordReset(email: string): Observable<{ success: boolean }> {
-      return this.http.post<{ success: boolean }>(this.resetPasswordUrl, { email })
-        .pipe(
-          catchError(() => of({ success: false }))
-        );
-    }
-  
-    // Reset password with the provided token
-    resetPasswordWithToken(token: string, newPassword: string): Observable<{ message: string }> {
-      return this.http.post<{ message: string }>(`${this.resetPasswordWithTokenUrl}/${token}`, { password: newPassword })
-        .pipe(
-          catchError(() => of({ message: 'Failed to reset password' }))
-        );
-    }
+  // Request password reset link
+  requestPasswordReset(email: string): Observable<{ success: boolean }> {
+    return this.http.post<{ success: boolean }>(this.resetPasswordUrl, { email })
+      .pipe(
+        catchError(() => of({ success: false }))
+      );
+  }
+
+  // Reset password with the provided token
+  resetPasswordWithToken(token: string, newPassword: string): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`${this.resetPasswordWithTokenUrl}/${token}`, { password: newPassword })
+      .pipe(
+        catchError(() => of({ message: 'Failed to reset password' }))
+      );
+  }
 }
