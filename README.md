@@ -1,10 +1,19 @@
-# TrilliumDashboard
+# Trillium Dashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4.
+## Overview
 
-## Development server
+## Getting Started
+To run the appkication locally, follow below steps:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Clone this repository from git to your local machine.
+2. Navigate to the project directory in your terminal.
+3. Install dependencies by running `npm install`.
+4. Start the local development sever with `ng serve --open`.
+5. In your browser `http://localhost:4200/` to view the application.
+
+## Features
+
+## Technologies used
 
 ## Code scaffolding
 
