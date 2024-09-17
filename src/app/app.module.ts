@@ -14,6 +14,7 @@ import { authInterceptorFn } from './services/auth/auth.interceptor';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { TabsComponent } from './components/tabs/tabs.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     DashboardComponent,
     ResetPasswordComponent,
     HeaderComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    TabsComponent
   ],
   imports: [
     BrowserModule,

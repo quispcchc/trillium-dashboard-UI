@@ -1,0 +1,58 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.tabs-container {
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+    width: 100vw;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+    height: 50px;
+    align-items: center;
+}
+
+.tabs button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 14px;
+    text-align: center;
+    margin: 2px;
+    transition: color 0.3s, border-bottom-color 0.3s;
+    border-bottom: 2px solid transparent;
+}
+
+.tabs button:hover {
+    color: #05589B;
+    border-bottom-color: #05589B;
+}
+
+.tabs button.active {
+    color: #05589B;
+    font-weight: bold;
+    border-bottom-color: #05589B;
+}
+
+.tab-content {
+    flex: 1;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
