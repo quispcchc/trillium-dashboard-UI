@@ -1,24 +1,24 @@
 <div class="tabs-container">
-    <div class="tabs">
-      <button [class.active]="selectedTab === 'board'" (click)="selectTab('board')">Board</button>
-      <button [class.active]="selectedTab === 'management'" (click)="selectTab('management')">Management</button>
-      <button [class.active]="selectedTab === 'admin'" (click)="selectTab('admin')">Admin</button>
-    </div>
-    
-    <div class="tab-content">
-      <ng-container *ngIf="selectedTab === 'board'">
-        <iframe title="12 date table" width="100%" height="100%"
-          src="https://app.powerbi.com/view?r=eyJrIjoiMzkzZjI3Y2EtOGRlYy00N2YwLTlhZDYtNTVlZjZkNjc2N2NhIiwidCI6IjRlN2M3ZjFiLTIyMTItNGM0NC1hMjIxLTI3MjQ0NzQ4NzIwNSJ9"
-          frameborder="0" allowFullScreen="true"></iframe>
-      </ng-container>
-      <ng-container *ngIf="selectedTab === 'management'">
-        <!-- Content for Management Tab -->
-        <p>Management content goes here.</p>
-      </ng-container>
-      <ng-container *ngIf="selectedTab === 'admin'">
-        <!-- Content for Admin Tab -->
-        <p>Admin content goes here.</p>
-      </ng-container>
-    </div>
+  <div class="tabs">
+    <button [class.active]="selectedTab === 'board'" (click)="selectTab('board')">Board</button>
+    <button [class.active]="selectedTab === 'management'" (click)="selectTab('management')">Management</button>
+    <button [class.active]="selectedTab === 'admin'" (click)="selectTab('admin')">Admin</button>
   </div>
-  
+
+  <div class="tab-content">
+    <ng-container *ngIf="selectedTab === 'board'">
+      <iframe title="12 date table" width="100%" height="100%"
+        src="https://app.powerbi.com/view?r=eyJrIjoiMzkzZjI3Y2EtOGRlYy00N2YwLTlhZDYtNTVlZjZkNjc2N2NhIiwidCI6IjRlN2M3ZjFiLTIyMTItNGM0NC1hMjIxLTI3MjQ0NzQ4NzIwNSJ9"
+        frameborder="0" allowFullScreen="true"></iframe>
+    </ng-container>
+    <ng-container *ngIf="selectedTab === 'management'">
+      <!-- Content for Management Tab -->
+      <p>Management content goes here.</p>
+    </ng-container>
+    <ng-container *ngIf="selectedTab === 'admin'">
+      <iframe
+        src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUN1pWMUNBVEg3UFVZMllDVkpMOE9DRDhBNC4u"
+        width="100%" height="100%" frameborder="0" marginwidth="0" marginheight="0" scrolling="auto"></iframe>
+    </ng-container>
+  </div>
+</div>
