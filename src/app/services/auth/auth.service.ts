@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
+import { FormControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -64,4 +65,20 @@ export class AuthService {
         catchError(() => of({ message: 'Failed to reset password' }))
       );
   }
+
+  // Validate password
+  passwordValidator(control: FormControl) {
+    const patterns = [/[$@$!%*#?&]/, /[A-Z]/, /[0-9]/, /[a-z]/];
+    const input = control?.value;
+
+    if (input?.length >= 6) {
+      for (let pattern of patterns) {
+        if (!pattern.test(control.value)) {
+            return {pattern: true}
+        }
+      }
+    }
+    return null
+  }
+
 }

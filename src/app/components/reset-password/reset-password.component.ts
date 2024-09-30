@@ -22,7 +22,9 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetPasswordForm = this.fb.group({
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6),
+        this.authService.passwordValidator.bind(this)
+      ]]
     });
 
     this.route.paramMap.subscribe(params => {
