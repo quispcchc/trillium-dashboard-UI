@@ -26,7 +26,7 @@ export class UserService {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
-    return this.http.post<any>(`${this.apiUrl}/users`, userData, { headers });
+    return this.http.post<any>(`${this.apiUrl}/create-user`, userData, { headers });
   }
 
   // Delete a user

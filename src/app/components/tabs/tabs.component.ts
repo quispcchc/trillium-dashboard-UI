@@ -13,17 +13,25 @@ export class TabsComponent {
   loading: boolean = false;
   isModalOpen: boolean = false;
   currentAdminAction: string = 'manageUsers';
-  newUser = { firstName: '', lastName: '', email: '' };
+  currentFormAction: string = 'accreditation';
+  newUser = { firstName: '', lastName: '', email: '', department: '', jobTitle: '', password: '' };
   searchTerm: string = '';
   sortDirection: 'asc' | 'desc' = 'asc';
 
   constructor(private userService: UserService) {}
+
+  setCurrentForm(action: string): void {
+    this.currentFormAction = action;
+  }
 
   selectTab(tab: string): void {
     this.selectedTab = tab;
     if (tab === 'admin') {
       this.currentAdminAction = 'manageUsers';
       this.manageUsers();
+    }
+    if (tab === 'dataentry') {
+      this.currentFormAction = 'accreditation';
     }
   }
 
@@ -63,6 +71,10 @@ export class TabsComponent {
         return direction * nameA.localeCompare(nameB);
       } else if (column === 'email') {
         return direction * a.mail.localeCompare(b.mail);
+      } else if (column === 'department') {
+        return direction * a.department.localeCompare(b.department);
+      } else if (column === 'title') {
+        return direction * a.job_title.localeCompare(b.job_title);
       }
       return 0;
     });
@@ -71,7 +83,7 @@ export class TabsComponent {
 
   openModal() {
     this.isModalOpen = true;
-    this.newUser = { firstName: '', lastName: '', email: '' };
+    this.newUser = { firstName: '', lastName: '', email: '', department: '', jobTitle: '', password: '' };
   }
 
   closeModal() {
@@ -82,14 +94,18 @@ export class TabsComponent {
     const userData = {
       first_name: this.newUser.firstName,
       last_name: this.newUser.lastName,
-      mail: this.newUser.email
+      mail: this.newUser.email,
+      department: this.newUser.department,
+      job_title: this.newUser.jobTitle,
+      password: this.newUser.password
     };
 
     this.userService.createUser(userData).subscribe({
       next: (data) => {
         this.users.push(data); // Add new user to the list
         this.filteredUsers.push(data); // Add to filtered list as well
-        this.newUser = { firstName: '', lastName: '', email: '' }; // Reset form
+        this.newUser = { firstName: '', lastName: '', email: '', department: '', jobTitle: '', password: '' };
+        this.closeModal();
       },
       error: (err) => {
         console.error('Error creating user:', err);
@@ -128,7 +144,10 @@ export class TabsComponent {
   isUserFormValid(): boolean {
     return this.newUser.firstName.trim() !== '' &&
            this.newUser.lastName.trim() !== '' &&
-           this.newUser.email.trim() !== '';
+           this.newUser.email.trim() !== '' &&
+           this.newUser.department.trim() !== '' &&
+           this.newUser.jobTitle.trim() !== '' &&
+           this.newUser.password.trim() !== '';
   }
   
 }

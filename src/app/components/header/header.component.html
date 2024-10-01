@@ -3,7 +3,7 @@
   
   <div class="user-info">
     <img class="avatar" src="user-icon.png" alt="{{ userName }}'s Avatar" />
-    <span class="welcome-message">Welcome, {{ userName }}</span>
+    <span class="welcome-message">Welcome, {{ userName | uppercase }}</span>
     <button class="logout-icon" (click)="logout()">
       <img src="logout-icon.png" alt="Logout" />
     </button>

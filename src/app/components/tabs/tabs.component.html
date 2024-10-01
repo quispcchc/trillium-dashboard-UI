@@ -24,11 +24,37 @@
     </ng-container>
     <!-- Data Entry Tab Content -->
     <ng-container *ngIf="selectedTab === 'dataentry'">
-      <iframe
-        src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUN1pWMUNBVEg3UFVZMllDVkpMOE9DRDhBNC4u"
-        width="100%" height="100%" frameborder="0" marginwidth="0" marginheight="0" scrolling="auto"></iframe>
+      <div class="admin-container">
+        <nav class="admin-sidebar">
+          <ul>
+            <li [class.active]="currentFormAction === 'accreditation'" (click)="setCurrentForm('accreditation')">Accreditation Form</li>
+            <li [class.active]="currentFormAction === 'form2'" (click)="setCurrentForm('form2')">Form2</li>
+            <li [class.active]="currentFormAction === 'form3'" (click)="setCurrentForm('form3')">Form3</li>
+            <li [class.active]="currentFormAction === 'form4'" (click)="setCurrentForm('form4')">Form4</li>
+            <li [class.active]="currentFormAction === 'form5'" (click)="setCurrentForm('form5')">Form5</li>
+          </ul>
+        </nav>
+        <div class="admin-content">
+          <div *ngIf="currentFormAction === 'accreditation'">
+              <iframe
+              src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUN1pWMUNBVEg3UFVZMllDVkpMOE9DRDhBNC4u"
+              width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
+          </div>
+          <div *ngIf="currentFormAction === 'form2'">
+            <p>form2 content goes here.</p>
+          </div>
+          <div *ngIf="currentFormAction === 'form3'">
+            <p>form3 content goes here.</p>
+          </div>
+          <div *ngIf="currentFormAction === 'form4'">
+            <p>form4 content goes here.</p>
+          </div>
+          <div *ngIf="currentFormAction === 'form5'">
+            <p>form5 content goes here.</p>
+          </div>
+        </div>
+      </div>
     </ng-container>
-    <!-- Admin Tab Content -->
     <!-- Admin Tab Content -->
     <ng-container *ngIf="selectedTab === 'admin'">
       <div class="admin-container">
@@ -55,7 +81,9 @@
                       <th>ID</th>
                       <th (click)="sort('name')">Name</th>
                       <th (click)="sort('email')">Email</th>
-                      <th style="width:100px;">Actions</th>
+                      <th (click)="sort('department')">Department</th>
+                      <th (click)="sort('title')">Job Title</th>
+                      <th></th>
                     </tr>
                   </thead>
                 </table>
@@ -67,13 +95,15 @@
                       <td>{{ user.user_id }}</td>
                       <td>{{ user.first_name }} {{ user.last_name }}</td>
                       <td>{{ user.mail }}</td>
+                      <td>{{ user.department }}</td>
+                      <td>{{ user.job_title }}</td>
                       <td>
                         <span (click)="updateUser(user)" title="Update User"
                           style="cursor: pointer; margin-right: 10px;">
-                          <img src="edit-icon.png" alt="Update" style="width:25px;" />
+                          <img src="edit-icon.png" alt="Update" style="width:20px;" />
                         </span>
                         <span (click)="deleteUser(user.user_id)" title="Delete User" style="cursor: pointer;">
-                          <img src="delete-icon.png" alt="Delete" style="width:35px;" />
+                          <img src="delete-icon.png" alt="Delete" style="width:25px;" />
                         </span>
                       </td>
                     </tr>
@@ -107,6 +137,18 @@
                   <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" [(ngModel)]="newUser.email" (ngModelChange)="isUserFormValid()" name="email" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="department">Department</label>
+                    <input type="text" id="department" [(ngModel)]="newUser.department" (ngModelChange)="isUserFormValid()" name="department" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="department">Job Title</label>
+                    <input type="text" id="title" [(ngModel)]="newUser.jobTitle" (ngModelChange)="isUserFormValid()" name="jobTitle" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" id="password" [(ngModel)]="newUser.password" (ngModelChange)="isUserFormValid()" name="password" required />
                   </div>
                 </form>
               </div>
