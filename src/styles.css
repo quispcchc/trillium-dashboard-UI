@@ -2,13 +2,15 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden; /* Prevents scrollbars on the body */
+    overflow: hidden;
+    font-family:'Roboto', Arial, sans-serif;
   }
   
   body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family:'Roboto', Arial, sans-serif;
   }
   
   main {
@@ -18,25 +20,25 @@ html, body {
   }
   
   app-header {
-    flex-shrink: 0; /* Prevents the header from shrinking */
+    flex-shrink: 0;
   }
   
   app-footer {
-    flex-shrink: 0; /* Prevents the footer from shrinking */
+    flex-shrink: 0;
   }
   
   .main-container {
     display: flex;
     min-height: 85vh;
     flex: 1;
-    overflow: hidden; /* Prevents scrollbars */
+    overflow: hidden;
   } 
   
   .main-content {
     flex: 1;
     padding: 20px;
     background-color: #ffffff;
-    margin-left: 0; /* Default margin */
-    transition: margin-left 0.3s ease; /* Smooth transition for content shift */
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
   }
   

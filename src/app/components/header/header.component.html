@@ -1,4 +1,11 @@
 <div class="header">
   <img class="header-icon" src="cchc.png" alt="Carlington Community Health Centre Icon" />
-  <button class="logout-button" (click)="logout()">Logout</button>
+  
+  <div class="user-info">
+    <img class="avatar" src="user-icon.png" alt="{{ userName }}'s Avatar" />
+    <span class="welcome-message">Welcome, {{ userName }}</span>
+    <button class="logout-icon" (click)="logout()">
+      <img src="logout-icon.png" alt="Logout" />
+    </button>
+  </div>
 </div>

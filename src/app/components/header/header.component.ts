@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,17 +6,20 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  userName: string | null | undefined;
+
   constructor(
     private router: Router,
   ) { }
 
-  // Method to handle user logout
-  logout(): void {
-    // Clear authentication data or token
-    localStorage.removeItem('authToken'); // Adjust if your token storage differs
+  ngOnInit(): void {
+     this.userName = localStorage.getItem('first_name');
+  }
 
-    // Navigate to the login page
+  logout(): void {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('first_name');
     this.router.navigate(['/login']);
   }
 }
