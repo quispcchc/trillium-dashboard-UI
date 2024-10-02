@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-tabs',
@@ -17,8 +18,10 @@ export class TabsComponent {
   newUser = { firstName: '', lastName: '', email: '', department: '', jobTitle: '', password: '' };
   searchTerm: string = '';
   sortDirection: 'asc' | 'desc' = 'asc';
+  isDeleteModalOpen: boolean = false;
+  userIdToDelete: number | null = null;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, public notificationService: NotificationService) { }
 
   setCurrentForm(action: string): void {
     this.currentFormAction = action;
@@ -106,27 +109,41 @@ export class TabsComponent {
         this.filteredUsers.push(data); // Add to filtered list as well
         this.newUser = { firstName: '', lastName: '', email: '', department: '', jobTitle: '', password: '' };
         this.closeModal();
+        this.notificationService.show('User created successfully!');
       },
       error: (err) => {
         console.error('Error creating user:', err);
-        alert('Failed to create user. Please try again later.');
+        this.notificationService.show('Failed to create user. Please try again later.');
       }
     });
   }
 
-  deleteUser(userId: number) {
-    if (confirm('Are you sure you want to delete this user?')) {
-      this.userService.deleteUser(userId).subscribe({
-        next: () => {
-          this.users = this.users.filter(user => user.user_id !== userId);
-          this.filteredUsers = this.filteredUsers.filter(user => user.user_id !== userId);
-        },
-        error: (err) => {
-          console.error('Error deleting user:', err);
-          alert('Failed to delete user. Please try again later.');
-        }
-      });
+  confirmDelete(userId: number) {
+    this.isDeleteModalOpen = true;
+    this.userIdToDelete = userId;
+  }
+
+  onDeleteConfirmed(confirmed: boolean) {
+    this.isDeleteModalOpen = false;
+    if (confirmed && this.userIdToDelete !== null) {
+      this.deleteUser(this.userIdToDelete);
+      this.userIdToDelete = null; // Reset the ID after deletion
     }
+  }
+
+
+  deleteUser(userId: number) {
+    this.userService.deleteUser(userId).subscribe({
+      next: () => {
+        this.users = this.users.filter(user => user.user_id !== userId);
+        this.filteredUsers = this.filteredUsers.filter(user => user.user_id !== userId);
+        this.notificationService.show('User deleted successfully!');
+      },
+      error: (err) => {
+        console.error('Error deleting user:', err);
+        this.notificationService.show('Failed to delete user. Please try again later.');
+      }
+    });
   }
 
   updateUser(user: any) {
@@ -143,11 +160,11 @@ export class TabsComponent {
 
   isUserFormValid(): boolean {
     return this.newUser.firstName.trim() !== '' &&
-           this.newUser.lastName.trim() !== '' &&
-           this.newUser.email.trim() !== '' &&
-           this.newUser.department.trim() !== '' &&
-           this.newUser.jobTitle.trim() !== '' &&
-           this.newUser.password.trim() !== '';
+      this.newUser.lastName.trim() !== '' &&
+      this.newUser.email.trim() !== '' &&
+      this.newUser.department.trim() !== '' &&
+      this.newUser.jobTitle.trim() !== '' &&
+      this.newUser.password.trim() !== '';
   }
-  
+
 }

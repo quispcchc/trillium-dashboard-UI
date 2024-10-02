@@ -27,7 +27,8 @@
       <div class="admin-container">
         <nav class="admin-sidebar">
           <ul>
-            <li [class.active]="currentFormAction === 'accreditation'" (click)="setCurrentForm('accreditation')">Accreditation Form</li>
+            <li [class.active]="currentFormAction === 'accreditation'" (click)="setCurrentForm('accreditation')">
+              Accreditation Form</li>
             <li [class.active]="currentFormAction === 'form2'" (click)="setCurrentForm('form2')">Form2</li>
             <li [class.active]="currentFormAction === 'form3'" (click)="setCurrentForm('form3')">Form3</li>
             <li [class.active]="currentFormAction === 'form4'" (click)="setCurrentForm('form4')">Form4</li>
@@ -36,7 +37,7 @@
         </nav>
         <div class="admin-content">
           <div *ngIf="currentFormAction === 'accreditation'">
-              <iframe
+            <iframe
               src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUN1pWMUNBVEg3UFVZMllDVkpMOE9DRDhBNC4u"
               width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
           </div>
@@ -57,6 +58,10 @@
     </ng-container>
     <!-- Admin Tab Content -->
     <ng-container *ngIf="selectedTab === 'admin'">
+      <app-confirmation-modal *ngIf="isDeleteModalOpen" [message]="'Are you sure you want to delete this user?'"
+        (confirmed)="onDeleteConfirmed($event)">
+      </app-confirmation-modal>
+
       <div class="admin-container">
         <nav class="admin-sidebar">
           <ul>
@@ -70,7 +75,8 @@
           <div *ngIf="currentAdminAction === 'manageUsers'">
             <button class="create-user-button" (click)="openModal()">Create User</button>
             <div class="search-container">
-              <input type="text" placeholder="Search Users by Name or Email" [(ngModel)]="searchTerm" (input)="filterUsers()" />
+              <input type="text" placeholder="Search Users by Name or Email" [(ngModel)]="searchTerm"
+                (input)="filterUsers()" />
               <span class="search-icon"><i class="fas fa-search"></i></span>
             </div>
             <div class="table-container" *ngIf="!loading && filteredUsers.length > 0">
@@ -102,9 +108,10 @@
                           style="cursor: pointer; margin-right: 10px;">
                           <img src="edit-icon.png" alt="Update" style="width:20px;" />
                         </span>
-                        <span (click)="deleteUser(user.user_id)" title="Delete User" style="cursor: pointer;">
+                        <span (click)="confirmDelete(user.user_id)" title="Delete User" style="cursor: pointer;">
                           <img src="delete-icon.png" alt="Delete" style="width:25px;" />
                         </span>
+                        
                       </td>
                     </tr>
                   </tbody>
@@ -128,31 +135,37 @@
                 <form (ngSubmit)="createUser()">
                   <div class="form-group">
                     <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" [(ngModel)]="newUser.firstName" (ngModelChange)="isUserFormValid()" name="firstName" required />
+                    <input type="text" id="firstName" [(ngModel)]="newUser.firstName"
+                      (ngModelChange)="isUserFormValid()" name="firstName" required />
                   </div>
                   <div class="form-group">
                     <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" [(ngModel)]="newUser.lastName" (ngModelChange)="isUserFormValid()" name="lastName" required />
+                    <input type="text" id="lastName" [(ngModel)]="newUser.lastName" (ngModelChange)="isUserFormValid()"
+                      name="lastName" required />
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" [(ngModel)]="newUser.email" (ngModelChange)="isUserFormValid()" name="email" required />
+                    <input type="email" id="email" [(ngModel)]="newUser.email" (ngModelChange)="isUserFormValid()"
+                      name="email" required />
                   </div>
                   <div class="form-group">
                     <label for="department">Department</label>
-                    <input type="text" id="department" [(ngModel)]="newUser.department" (ngModelChange)="isUserFormValid()" name="department" required />
+                    <input type="text" id="department" [(ngModel)]="newUser.department"
+                      (ngModelChange)="isUserFormValid()" name="department" required />
                   </div>
                   <div class="form-group">
                     <label for="department">Job Title</label>
-                    <input type="text" id="title" [(ngModel)]="newUser.jobTitle" (ngModelChange)="isUserFormValid()" name="jobTitle" required />
+                    <input type="text" id="title" [(ngModel)]="newUser.jobTitle" (ngModelChange)="isUserFormValid()"
+                      name="jobTitle" required />
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="text" id="password" [(ngModel)]="newUser.password" (ngModelChange)="isUserFormValid()" name="password" required />
+                    <input type="text" id="password" [(ngModel)]="newUser.password" (ngModelChange)="isUserFormValid()"
+                      name="password" required />
                   </div>
                 </form>
               </div>
-                           
+
               <div class="modal-footer">
                 <button class="create-button" (click)="createUser()" [disabled]="!isUserFormValid()">Create</button>
                 <button class="cancel-button" (click)="closeModal()">Cancel</button>
@@ -160,6 +173,9 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="notification" *ngIf="notificationService.getMessage()">
+        {{ notificationService.getMessage() }}
       </div>
     </ng-container>
   </div>

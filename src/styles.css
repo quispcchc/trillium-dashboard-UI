@@ -1,44 +1,58 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-    font-family:'Roboto', Arial, sans-serif;
-  }
-  
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-family:'Roboto', Arial, sans-serif;
-  }
-  
-  main {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-  
-  app-header {
-    flex-shrink: 0;
-  }
-  
-  app-footer {
-    flex-shrink: 0;
-  }
-  
-  .main-container {
-    display: flex;
-    min-height: 85vh;
-    flex: 1;
-    overflow: hidden;
-  } 
-  
-  .main-content {
-    flex: 1;
-    padding: 20px;
-    background-color: #ffffff;
-    margin-left: 0;
-    transition: margin-left 0.3s ease;
-  }
-  
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+app-header {
+  flex-shrink: 0;
+}
+
+app-footer {
+  flex-shrink: 0;
+}
+
+.main-container {
+  display: flex;
+  min-height: 85vh;
+  flex: 1;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+.primary-button {
+  background-color: #05589B;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  padding: 8px 12px;
+}
+
+.primary-button:hover {
+  background-color: #044b8b;
+}

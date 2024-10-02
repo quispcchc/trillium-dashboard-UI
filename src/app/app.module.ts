@@ -16,6 +16,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { HeaderComponent } from './components/header/header.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { TabsComponent } from './components/tabs/tabs.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { TabsComponent } from './components/tabs/tabs.component';
     ResetPasswordComponent,
     HeaderComponent,
     ForgotPasswordComponent,
-    TabsComponent
+    TabsComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
