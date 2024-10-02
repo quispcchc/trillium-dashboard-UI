@@ -69,16 +69,16 @@ export class AuthService {
   // Validate password
   passwordValidator(control: FormControl) {
     const patterns = [/[$@$!%*#?&]/, /[A-Z]/, /[0-9]/, /[a-z]/];
-    const input = control?.value;
+    const passwordInput = control?.value;
 
-    if (input?.length >= 6) {
+    if (passwordInput?.length >= 6) {
       for (let pattern of patterns) {
-        if (!pattern.test(control.value)) {
-            return {pattern: true}
+        if (!pattern.test(passwordInput)) {
+            return { pattern: true };
         }
       }
     }
-    return null
+    return null;
   }
 
 }
