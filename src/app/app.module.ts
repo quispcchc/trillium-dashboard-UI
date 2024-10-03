@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; 
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -15,6 +16,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { HeaderComponent } from './components/header/header.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { TabsComponent } from './components/tabs/tabs.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 
 @NgModule({
@@ -26,10 +28,12 @@ import { TabsComponent } from './components/tabs/tabs.component';
     ResetPasswordComponent,
     HeaderComponent,
     ForgotPasswordComponent,
-    TabsComponent
+    TabsComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     RouterModule,
