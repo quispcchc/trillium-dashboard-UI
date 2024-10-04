@@ -5,20 +5,20 @@
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="input-group">
-                <label for="username">Username:</label>
-                <input id="username" formControlName="username" type="text" placeholder="Enter your Username"
-                    autocomplete="off" />
-                <div *ngIf="username && username.invalid && (username.dirty || username.touched)" class="error-message">
-                    <div *ngIf="username.errors?.['required']">Username is required.</div>
-                    <div *ngIf="username.errors?.['minlength']">Username must be at least 3 characters long.</div>
+                <label for="email">Email:</label>
+                <input id="email" formControlName="email" type="text" placeholder="Enter your Email"
+                    autocomplete="off"  [ngClass]="email && email.value !== '' && email.invalid ? 'error-border' : ''"/>
+                <div *ngIf="email && email?.value !== '' && email.invalid && (email.dirty || email.touched)" class="error-message">
+                    <div *ngIf="email.errors?.['required']">Email is required.</div>
+                    <div *ngIf="email?.errors?.['email']">Invalid email address.</div>
                 </div>
             </div>
 
             <div class="input-group">
                 <label for="password">Password:</label>
                 <input id="password" formControlName="password" type="password" placeholder="Enter your Password"
-                    autocomplete="off" />
-                <div *ngIf="password && password.invalid && (password.dirty || password.touched)" class="error-message">
+                    autocomplete="off" [ngClass]="password && password.value !== '' && password.invalid ? 'error-border' : ''"/>
+                <div *ngIf="password && password.value !== '' && password.invalid && (password.dirty || password.touched)" class="error-message">
                     <div *ngIf="password.errors?.['required']">Password is required.</div>
                     <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</div>
                     <div *ngIf="password?.errors?.['pattern']">Password must contain at least one special character, one uppercase letter, one lowercase letter, and one number.</div>
@@ -36,7 +36,7 @@
         </form>
         <div class="login-footer">
             <p style="font-size: 12px;">Funded by:</p>
-            <img src="OTF-icon.png" alt="Ontario Trillium Foundation Icon" />
+            <img class="otf-icon" src="OTF-icon.png" alt="Ontario Trillium Foundation Icon" />
         </div>
     </div>
 </div>
