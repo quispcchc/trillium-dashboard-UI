@@ -69,18 +69,51 @@ export class AuthService {
 
   // Validate password
   passwordValidator(control: FormControl) {
-    const patterns = [/[$@$!%*#?&]/, /[A-Z]/, /[0-9]/, /[a-z]/];
     const passwordInput = control?.value;
+    const errorObj = { 
+      pattern: { 
+        invalid: false,
+        special: false,
+        uppercase: false,
+        lowercase: false,
+        number: false 
+      }
+    };
 
     if (passwordInput?.length >= 6) {
-      for (let pattern of patterns) {
-        if (!pattern.test(passwordInput)) {
-            return { pattern: true };
-        }
-      }
+
+      let pattern = /[$@$!%*#?&]/;
+
+      if (!pattern.test(passwordInput)) {
+        errorObj.pattern.invalid = true;
+        errorObj.pattern.special = true;
+      };
+
+      pattern = /[A-Z]/;
+
+      if (!pattern.test(passwordInput)) {
+        errorObj.pattern.invalid = true;
+        errorObj.pattern.uppercase = true;
+      };
+
+      pattern = /[a-z]/;
+
+      if (!pattern.test(passwordInput)) {
+        errorObj.pattern.invalid = true;
+        errorObj.pattern.lowercase = true;
+      };
+
+      pattern = /[0-9]/;
+
+      if (!pattern.test(passwordInput)) {
+        errorObj.pattern.invalid = true;
+        errorObj.pattern.number = true;
+      };
+
     }
-    return null;
+
+    if (errorObj.pattern.invalid === false) return null;
+    return errorObj;
   }
 
 }
-
