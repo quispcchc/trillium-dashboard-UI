@@ -162,9 +162,9 @@ tbody tr:hover {
   background-color: #e0e0e0;
 }
 
-/* td:last-child {
-  text-align: center;
-} */
+td:last-child {
+  padding: 5px;
+}
 
 .admin-content>div {
   margin-top: 30px;
@@ -332,7 +332,6 @@ button:disabled {
 
 .notification {
   background-color: #4caf50;
-  /* Green */
   color: white;
   padding: 15px;
   position: fixed;
@@ -341,4 +340,34 @@ button:disabled {
   z-index: 1000;
   border-radius: 5px;
   transition: opacity 0.5s ease;
+}
+
+.no-users{
+  text-align: center;
+  font-size: xx-large;
+  margin-top: 15%;
+}
+
+.form-group select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  appearance: auto;
+  transition: border-color 0.3s;
+}
+
+.form-group select:focus {
+  border-color: #0056b3;
+  outline: none;
+}
+
+.form-group select:hover {
+  border-color: #0056b3;
+}
+
+.form-group select option {
+  padding: 10px;
 }

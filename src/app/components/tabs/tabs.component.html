@@ -87,6 +87,7 @@
                       <th>ID</th>
                       <th (click)="sort('name')">Name</th>
                       <th (click)="sort('email')">Email</th>
+                      <th (click)="sort('role')">Role</th>
                       <th (click)="sort('department')">Department</th>
                       <th (click)="sort('title')">Job Title</th>
                       <th></th>
@@ -101,30 +102,31 @@
                       <td>{{ user.user_id }}</td>
                       <td>{{ user.first_name }} {{ user.last_name }}</td>
                       <td>{{ user.mail }}</td>
+                      <td>{{ user.role }}</td>
                       <td>{{ user.department }}</td>
                       <td>{{ user.job_title }}</td>
                       <td>
                         <span (click)="updateUser(user)" title="Update User"
                           style="cursor: pointer; margin-right: 10px;">
-                          <img src="edit-icon.png" alt="Update" style="width:20px;" />
+                          <img src="edit-icon.png" alt="Update" style="width:18px;" />
                         </span>
                         <span (click)="confirmDelete(user.user_id)" title="Delete User" style="cursor: pointer;">
-                          <img src="delete-icon.png" alt="Delete" style="width:25px;" />
+                          <img src="delete-icon.png" alt="Delete" style="width:24px;" />
                         </span>
-                        
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-            <div *ngIf="!loading && filteredUsers.length === 0">No users found.</div>
+            <div class="no-users" *ngIf="!loading && filteredUsers.length === 0">No users found.</div>
           </div>
 
           <div *ngIf="currentAdminAction === 'auditLogs'">
             <p>Audit logs content goes here.</p>
           </div>
 
+          <!-- Create User Modal -->
           <div class="modal" *ngIf="isModalOpen">
             <div class="modal-content">
               <span class="close" (click)="closeModal()">&times;</span>
@@ -147,6 +149,16 @@
                     <label for="email">Email</label>
                     <input type="email" id="email" [(ngModel)]="newUser.email" (ngModelChange)="isUserFormValid()"
                       name="email" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="role">Role</label>
+                    <select id="role" [(ngModel)]="newUser.role" 
+                            (ngModelChange)="isUserFormValid()" name="role" required>
+                      <option value="" disabled>Select role</option>
+                      <option value="Admin">Admin</option>
+                      <option value="Board">Board</option>
+                      <option value="Management">Management</option>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label for="department">Department</label>
@@ -172,6 +184,60 @@
               </div>
             </div>
           </div>
+
+          <!-- Edit User Modal -->
+          <div class="modal" *ngIf="isEditModalOpen">
+            <div class="modal-content">
+              <span class="close" (click)="closeEditModal()">&times;</span>
+              <div class="modal-header">
+                <h2>Edit User</h2>
+              </div>
+              <div class="modal-body">
+                <form (ngSubmit)="updateUserData()">
+                  <div class="form-group">
+                    <label for="editFirstName">First Name</label>
+                    <input type="text" id="editFirstName" [(ngModel)]="selectedUser.first_name" name="firstName"
+                      disabled />
+                  </div>
+                  <div class="form-group">
+                    <label for="editLastName">Last Name</label>
+                    <input type="text" id="editLastName" [(ngModel)]="selectedUser.last_name" name="lastName"
+                      disabled />
+                  </div>
+                  <div class="form-group">
+                    <label for="editEmail">Email</label>
+                    <input type="email" id="editEmail" [(ngModel)]="selectedUser.mail" name="email" disabled />
+                  </div>
+                  <div class="form-group">
+                    <label for="editRole">Role</label>
+                    <select id="role" [(ngModel)]="selectedUser.role" 
+                            (ngModelChange)="isUserFormValid()" name="role" required>
+                      <option value="" disabled>Select role</option>
+                      <option value="Admin">Admin</option>
+                      <option value="Board">Board</option>
+                      <option value="Management">Management</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="editDepartment">Department</label>
+                    <input type="text" id="editDepartment" [(ngModel)]="selectedUser.department" name="department"
+                      required />
+                  </div>
+                  <div class="form-group">
+                    <label for="editJobTitle">Job Title</label>
+                    <input type="text" id="editJobTitle" [(ngModel)]="selectedUser.job_title" name="jobTitle"
+                      required />
+                  </div>
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <button class="create-button" (click)="updateUserData()" [disabled]="!isEditFormValid()">Update</button>
+                <button class="cancel-button" (click)="closeEditModal()">Cancel</button>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
       <div class="notification" *ngIf="notificationService.getMessage()">

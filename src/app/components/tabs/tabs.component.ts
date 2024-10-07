@@ -15,11 +15,13 @@ export class TabsComponent {
   isModalOpen: boolean = false;
   currentAdminAction: string = 'manageUsers';
   currentFormAction: string = 'accreditation';
-  newUser = { firstName: '', lastName: '', email: '', department: '', jobTitle: '', password: '' };
+  newUser = { firstName: '', lastName: '', email: '', role: '', department: '', jobTitle: '', password: '' };
   searchTerm: string = '';
   sortDirection: 'asc' | 'desc' = 'asc';
   isDeleteModalOpen: boolean = false;
   userIdToDelete: number | null = null;
+  isEditModalOpen: boolean = false;
+  selectedUser: any = null;
 
   constructor(private userService: UserService, public notificationService: NotificationService) { }
 
@@ -50,7 +52,7 @@ export class TabsComponent {
       error: (err) => {
         console.error('Error fetching users:', err);
         this.loading = false;
-        alert('Failed to load users. Please try again later.');
+        this.notificationService.show('Failed to load users. Please try again later.');
       }
     });
   }
@@ -78,6 +80,8 @@ export class TabsComponent {
         return direction * a.department.localeCompare(b.department);
       } else if (column === 'title') {
         return direction * a.job_title.localeCompare(b.job_title);
+      } else if (column === 'role') {
+        return direction * a.role.localeCompare(b.role);
       }
       return 0;
     });
@@ -86,7 +90,7 @@ export class TabsComponent {
 
   openModal() {
     this.isModalOpen = true;
-    this.newUser = { firstName: '', lastName: '', email: '', department: '', jobTitle: '', password: '' };
+    this.newUser = { firstName: '', lastName: '', email: '', role: '', department: '', jobTitle: '', password: '' };
   }
 
   closeModal() {
@@ -98,6 +102,7 @@ export class TabsComponent {
       first_name: this.newUser.firstName,
       last_name: this.newUser.lastName,
       mail: this.newUser.email,
+      role: this.newUser.role,
       department: this.newUser.department,
       job_title: this.newUser.jobTitle,
       password: this.newUser.password
@@ -105,9 +110,9 @@ export class TabsComponent {
 
     this.userService.createUser(userData).subscribe({
       next: (data) => {
-        this.users.push(data); // Add new user to the list
-        this.filteredUsers.push(data); // Add to filtered list as well
-        this.newUser = { firstName: '', lastName: '', email: '', department: '', jobTitle: '', password: '' };
+        this.users.push(data);
+        this.filteredUsers.push(data);
+        this.newUser = { firstName: '', lastName: '', email: '', role: '', department: '', jobTitle: '', password: '' };
         this.closeModal();
         this.notificationService.show('User created successfully!');
       },
@@ -127,7 +132,7 @@ export class TabsComponent {
     this.isDeleteModalOpen = false;
     if (confirmed && this.userIdToDelete !== null) {
       this.deleteUser(this.userIdToDelete);
-      this.userIdToDelete = null; // Reset the ID after deletion
+      this.userIdToDelete = null;
     }
   }
 
@@ -147,9 +152,42 @@ export class TabsComponent {
   }
 
   updateUser(user: any) {
-    // Logic for updating user
-    console.log('Update user:', user);
-    //implement a modal or form for updating the user
+    this.selectedUser = { ...user };
+    this.isEditModalOpen = true;
+  }
+
+  closeEditModal() {
+    this.isEditModalOpen = false;
+    this.selectedUser = null;
+  }
+
+  updateUserData() {
+    const updatedUserData = {
+      user_id: this.selectedUser.user_id,
+      role: this.selectedUser.role,
+      department: this.selectedUser.department,
+      job_title: this.selectedUser.job_title
+    };
+  
+    this.userService.updateUser(updatedUserData).subscribe({
+      next: (data) => {
+        const index = this.users.findIndex(user => user.user_id === this.selectedUser.user_id);
+        if (index !== -1) {
+          this.users[index] = { ...this.users[index], ...updatedUserData };
+          this.filteredUsers[index] = { ...this.filteredUsers[index], ...updatedUserData };
+        }
+        this.closeEditModal();
+        this.notificationService.show('User updated successfully!');
+      },
+      error: (err) => {
+        console.error('Error updating user:', err);
+        this.notificationService.show('Failed to update user. Please try again later.');
+      }
+    });
+  }
+
+  isEditFormValid(): boolean {
+    return this.selectedUser && this.selectedUser.department.trim() !== '' && this.selectedUser.job_title.trim() !== '';
   }
 
   auditLogs() {
