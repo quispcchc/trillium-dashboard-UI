@@ -306,3 +306,18 @@ button:disabled {
 .form-group select option {
     padding: 10px;
 }
+  
+.loading-logs {
+    text-align: center;
+    color: #007bff;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon-container span {
+    cursor: pointer;
+    margin-right: 10px;
+}

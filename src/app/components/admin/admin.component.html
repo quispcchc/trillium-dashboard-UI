@@ -50,13 +50,15 @@
                 <td>{{ user.department }}</td>
                 <td>{{ user.job_title }}</td>
                 <td>
-                  <span (click)="updateUser(user)" title="Update User" style="cursor: pointer; margin-right: 10px;">
-                    <img src="edit-icon.png" alt="Update" style="width:18px;" />
-                  </span>
-                  <span (click)="confirmDelete(user.user_id)" title="Delete User" style="cursor: pointer;">
-                    <img src="delete-icon.png" alt="Delete" style="width:24px;" />
-                  </span>
-                </td>
+                  <div class="icon-container">
+                    <span (click)="updateUser(user)" title="Update User">
+                      <img src="edit-icon.png" alt="Update" style="width:18px;" />
+                    </span>
+                    <span (click)="confirmDelete(user)" title="Delete User">
+                      <img src="delete-icon.png" alt="Delete" style="width:24px;" />
+                    </span>
+                  </div>
+                </td>                
               </tr>
             </tbody>
           </table>
@@ -66,9 +68,36 @@
     </div>
 
     <div *ngIf="currentAdminAction === 'auditLogs'">
-      <p>Audit logs content goes here.</p>
+      <h2>Audit Logs</h2>
+      <div *ngIf="loadingLogs">Loading logs...</div>
+      <div *ngIf="!loadingLogs && logs.length === 0">No audit logs found.</div>
+      <div class="table-container" *ngIf="!loadingLogs && logs.length > 0">
+        <div class="table-header">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:2%;">ID</th>
+                <th style="width:10%;">Performed By</th>
+                <th style="width:70%;">Details</th>
+                <th style="width:18%;">Date</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="table-body">
+          <table>
+            <tbody>
+              <tr *ngFor="let log of logs">
+                <td style="width:2%;">{{ log.id }}</td>
+                <td style="width:10%;">{{ log.performed_by }}</td>
+                <td style="width:70%;">{{ log.details }}</td>
+                <td style="width:18%;">{{ log.created_date | date:'medium' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </div>
 
   <!-- Create User Modal -->
   <div class="modal" *ngIf="isModalOpen">

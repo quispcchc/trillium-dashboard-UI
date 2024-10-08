@@ -22,11 +22,15 @@ export class AdminComponent implements OnInit  {
   userIdToDelete: number | null = null;
   isEditModalOpen: boolean = false;
   selectedUser: any = null;
+  loadingLogs: boolean = false;
+  logs: any[] = [];
+  userName: string | null | undefined;
 
   constructor(private userService: UserService, public notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.manageUsers();
+    this.userName = localStorage.getItem('first_name');
   }
 
   filterUsers() {
@@ -63,7 +67,8 @@ export class AdminComponent implements OnInit  {
       role: this.newUser.role,
       department: this.newUser.department,
       job_title: this.newUser.jobTitle,
-      password: this.newUser.password
+      password: this.newUser.password,
+      created_by: this.userName
     };
 
     this.userService.createUser(userData).subscribe({
@@ -95,6 +100,7 @@ export class AdminComponent implements OnInit  {
   }
 
   deleteUser(userId: number) {
+    
     this.userService.deleteUser(userId).subscribe({
       next: () => {
         this.users = this.users.filter(user => user.user_id !== userId);
@@ -123,7 +129,8 @@ export class AdminComponent implements OnInit  {
       user_id: this.selectedUser.user_id,
       role: this.selectedUser.role,
       department: this.selectedUser.department,
-      job_title: this.selectedUser.job_title
+      job_title: this.selectedUser.job_title,
+      updated_by: this.userName
     };
 
     this.userService.updateUser(updatedUserData).subscribe({
@@ -145,6 +152,18 @@ export class AdminComponent implements OnInit  {
 
   auditLogs() {
     this.currentAdminAction = 'auditLogs';
+    this.loadingLogs = true;
+    this.userService.getAuditLogs().subscribe({
+      next: (data) => {
+        this.logs = data;
+        this.loadingLogs = false;
+      },
+      error: (err) => {
+        console.error('Error fetching Audit Logs:', err);
+        this.loadingLogs = false;
+        this.notificationService.show('Failed to load Audit Logs. Please try again later.');
+      }
+    });
   }
 
   sort(column: string) {

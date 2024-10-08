@@ -19,6 +19,15 @@ export class UserService {
     return this.http.get(`${this.apiUrl}/users`, { headers });
   }
 
+  //Fetching all Audit Logs
+  getAuditLogs(): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.apiUrl}/audit-logs`, { headers });
+  }
+
    // Create a new user
    createUser(userData: any): Observable<any> {
     const token = localStorage.getItem('authToken');
