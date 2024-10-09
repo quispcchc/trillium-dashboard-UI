@@ -17,6 +17,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { BoardComponent } from './components/board/board.component';
+import { QcaComponent } from './components/qca/qca.component';
+import { ManagementComponent } from './components/management/management.component';
+import { DataEntryComponent } from './components/data-entry/data-entry.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 @NgModule({
@@ -29,7 +34,12 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
     HeaderComponent,
     ForgotPasswordComponent,
     TabsComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    BoardComponent,
+    QcaComponent,
+    ManagementComponent,
+    DataEntryComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
