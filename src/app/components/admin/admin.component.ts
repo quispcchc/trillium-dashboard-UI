@@ -19,7 +19,7 @@ export class AdminComponent implements OnInit  {
   searchTerm: string = '';
   sortDirection: 'asc' | 'desc' = 'asc';
   isDeleteModalOpen: boolean = false;
-  userIdToDelete: number | null = null;
+  userToDelete: null = null;
   isEditModalOpen: boolean = false;
   selectedUser: any = null;
   loadingLogs: boolean = false;
@@ -86,25 +86,26 @@ export class AdminComponent implements OnInit  {
     });
   }
 
-  confirmDelete(userId: number) {
+  confirmDelete(user: any) {
     this.isDeleteModalOpen = true;
-    this.userIdToDelete = userId;
+    this.userToDelete = user;
   }
 
   onDeleteConfirmed(confirmed: boolean) {
     this.isDeleteModalOpen = false;
-    if (confirmed && this.userIdToDelete !== null) {
-      this.deleteUser(this.userIdToDelete);
-      this.userIdToDelete = null;
+    if (confirmed && this.userToDelete !== null) {
+      this.deleteUser(this.userToDelete);
+      this.userToDelete = null;
     }
   }
 
-  deleteUser(userId: number) {
-    
-    this.userService.deleteUser(userId).subscribe({
+  deleteUser(user: any) {
+
+    user.updated_by =  this.userName;
+    this.userService.deleteUser(user).subscribe({
       next: () => {
-        this.users = this.users.filter(user => user.user_id !== userId);
-        this.filteredUsers = this.filteredUsers.filter(user => user.user_id !== userId);
+        this.users = this.users.filter(usr => usr.user_id !== user.user_id);
+        this.filteredUsers = this.filteredUsers.filter(usr => usr.user_id !== user.user_id);
         this.notificationService.show('User deleted successfully!');
       },
       error: (err) => {

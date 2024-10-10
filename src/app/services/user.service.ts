@@ -39,12 +39,13 @@ export class UserService {
   }
 
   // Delete a user
-  deleteUser(userId: number): Observable<any> {
+  deleteUser(user: any): Observable<any> {
     const token = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.delete<any>(`${this.apiUrl}/users/${userId}`, { headers });
+    const body = user;
+    return this.http.delete<any>(`${this.apiUrl}/users/${user.user_id}`, { headers, body });
   }
 
   // Update user

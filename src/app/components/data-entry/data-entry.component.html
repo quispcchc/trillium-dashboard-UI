@@ -2,11 +2,17 @@
     <nav class="data-sidebar">
         <ul>
             <li [class.active]="currentFormAction === 'accreditation'" (click)="setCurrentForm('accreditation')">
-                Accreditation Form</li>
-            <li [class.active]="currentFormAction === 'form2'" (click)="setCurrentForm('form2')">Form2</li>
-            <li [class.active]="currentFormAction === 'form3'" (click)="setCurrentForm('form3')">Form3</li>
-            <li [class.active]="currentFormAction === 'form4'" (click)="setCurrentForm('form4')">Form4</li>
-            <li [class.active]="currentFormAction === 'form5'" (click)="setCurrentForm('form5')">Form5</li>
+                Accreditation</li>
+            <li [class.active]="currentFormAction === 'css'" (click)="setCurrentForm('css')">Comprehensive Support System</li>
+            <li [class.active]="currentFormAction === 'msaa'" (click)="setCurrentForm('msaa')">MSAA</li>
+            <li [class.active]="currentFormAction === 'sftpos'" (click)="setCurrentForm('sftpos')">Subcontracting for the Provision of Services - MSAA</li>
+            <li [class.active]="currentFormAction === 'qi'" (click)="setCurrentForm('qi')">Quality Improvement</li>
+            <li [class.active]="currentFormAction === 'faa'" (click)="setCurrentForm('faa')">Finance & Administration</li>
+            <li [class.active]="currentFormAction === 'hpac'" (click)="setCurrentForm('hpac')">Healthy parenting and childhood</li>
+            <li [class.active]="currentFormAction === 'atphc'" (click)="setCurrentForm('atphc')">Access to Primary Health Care</li>
+            <li [class.active]="currentFormAction === 'yeae'" (click)="setCurrentForm('yeae')">Youth Education & Empowerment</li>
+            <li [class.active]="currentFormAction === 'cc'" (click)="setCurrentForm('cc')">Cross-Cutting</li>
+            <li [class.active]="currentFormAction === 'dcr'" (click)="setCurrentForm('dcr')">Department/Category Restructure</li>
         </ul>
     </nav>
     <div class="data-content">
@@ -15,17 +21,55 @@
                 src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUN1pWMUNBVEg3UFVZMllDVkpMOE9DRDhBNC4u"
                 width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
         </ng-container>
-        <ng-container *ngIf="currentFormAction === 'form2'">
-            <p>form2 content goes here.</p>
+        <ng-container *ngIf="currentFormAction === 'css'">
+            <iframe
+                src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUOTg0VENLTTdTNzdVUjExQldCVldVN1ZOTy4u"
+                width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
         </ng-container>
-        <ng-container *ngIf="currentFormAction === 'form3'">
-            <p>form3 content goes here.</p>
+        <ng-container *ngIf="currentFormAction === 'msaa'">
+            <iframe
+                src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUQkRSM0hYQVdZQjVUNkpEUkNURE1PMjA3US4u"
+                width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
         </ng-container>
-        <ng-container *ngIf="currentFormAction === 'form4'">
-            <p>form4 content goes here.</p>
+        <ng-container *ngIf="currentFormAction === 'sftpos'">
+            <iframe
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUQzYxUTdaSjEzRE9XTk9YN0Q4NDdYS05QWC4u"
+            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
         </ng-container>
-        <ng-container *ngIf="currentFormAction === 'form5'">
-            <p>form5 content goes here.</p>
+        <ng-container *ngIf="currentFormAction === 'qi'">
+            <iframe
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUNVU0MFM0NkdMUk9QRkU0WFVaSDFMSE9MUy4u"
+            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
+        </ng-container>
+        <ng-container *ngIf="currentFormAction === 'faa'">
+            <iframe
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUNU9JSzNQN1hUSjRIRE1MTzRFMVZKVUdFSi4u"
+            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
+        </ng-container>
+        <ng-container *ngIf="currentFormAction === 'hpac'">
+            <iframe
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUQjdNUlU1VEo3MDBBTEFMRlo5WFpSMENHVC4u"
+            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
+        </ng-container>
+        <ng-container *ngIf="currentFormAction === 'atphc'">
+            <iframe
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUMFo5SEdVVzJZOE1ZTFEwSDlRMFVaOFdQQi4u"
+            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
+        </ng-container>
+        <ng-container *ngIf="currentFormAction === 'yeae'">
+            <iframe
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUMlFUU1lUMEVXSFBEM1I2RVNaODBZRjlPQy4u"
+            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
+        </ng-container>
+        <ng-container *ngIf="currentFormAction === 'cc'">
+            <iframe
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUQ1ZPSUhBTkJBMDBXMjNLQVM2STExU0pVNC4u"
+            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
+        </ng-container>
+        <ng-container *ngIf="currentFormAction === 'dcr'">
+            <iframe
+            src="https://forms.office.com/Pages/ResponsePage.aspx?id=G398ThIiREyiISckR0hyBaHnWO33bJxJoFfw7dIgHARUMlhXVVRENEdVWUNFMlFMUkdQOTFHVEdTUS4u"
+            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
         </ng-container>
     </div>
 </div>
