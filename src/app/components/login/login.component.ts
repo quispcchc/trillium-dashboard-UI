@@ -18,11 +18,13 @@ export class LoginComponent implements OnInit {
 
     ngOnInit(): void {
         this.loginForm = this.fb.group({
-            username: ['', [Validators.required, Validators.minLength(3)]],
-            password: ['', [Validators.required, Validators.minLength(6)]]
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(6),
+                this.authService.passwordValidator.bind(this)
+            ]]
         });
 
-        this.loginForm.get('username')?.valueChanges.subscribe(() => {
+        this.loginForm.get('email')?.valueChanges.subscribe(() => {
             this.clearError();
         });
 
@@ -31,8 +33,8 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    get username() {
-        return this.loginForm.get('username');
+    get email() {
+        return this.loginForm.get('email');
     }
 
     get password() {
@@ -41,14 +43,14 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
         if (this.loginForm.valid) {
-            const { username, password } = this.loginForm.value;
+            const { email, password } = this.loginForm.value;
 
-            this.authService.login(username, password).subscribe(success => {
+            this.authService.login(email, password).subscribe(success => {
                 if (success) {
                     this.router.navigate(['/dashboard']);
                     this.loginForm.reset();
                 } else {
-                    this.errorMessage = 'Invalid username or password';
+                    this.errorMessage = 'Invalid email or password';
                 }
             });
         }

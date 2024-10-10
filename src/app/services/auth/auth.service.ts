@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
+import { FormControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -66,4 +67,54 @@ export class AuthService {
         catchError(() => of({ message: 'Failed to reset password' }))
       );
   }
+
+  // Validate password
+  passwordValidator(control: FormControl) {
+    const passwordInput = control?.value;
+    const errorObj = { 
+      pattern: { 
+        invalid: false,
+        special: false,
+        uppercase: false,
+        lowercase: false,
+        number: false 
+      }
+    };
+
+    if (passwordInput?.length >= 6) {
+
+      let pattern = /[$@$!%*#?&]/;
+
+      if (!pattern.test(passwordInput)) {
+        errorObj.pattern.invalid = true;
+        errorObj.pattern.special = true;
+      };
+
+      pattern = /[A-Z]/;
+
+      if (!pattern.test(passwordInput)) {
+        errorObj.pattern.invalid = true;
+        errorObj.pattern.uppercase = true;
+      };
+
+      pattern = /[a-z]/;
+
+      if (!pattern.test(passwordInput)) {
+        errorObj.pattern.invalid = true;
+        errorObj.pattern.lowercase = true;
+      };
+
+      pattern = /[0-9]/;
+
+      if (!pattern.test(passwordInput)) {
+        errorObj.pattern.invalid = true;
+        errorObj.pattern.number = true;
+      };
+
+    }
+
+    if (errorObj.pattern.invalid === false) return null;
+    return errorObj;
+  }
+
 }
