@@ -44,14 +44,6 @@ export class AuthService {
     return false;
   }
 
-  getPowerBIReport(): Observable<{ embedUrl: string, embedToken: string }> {
-    return this.http.get<{ embedUrl: string, embedToken: string }>(this.reportUrl, {
-      headers: {
-        Authorization: `Bearer ${isPlatformBrowser(this.platformId) ? localStorage.getItem('authToken') : ''}`
-      }
-    });
-  }
-
   // Request password reset link
   requestPasswordReset(email: string): Observable<{ success: boolean }> {
     return this.http.post<{ success: boolean }>(this.resetPasswordUrl, { email })
