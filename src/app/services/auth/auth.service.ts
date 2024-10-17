@@ -4,15 +4,17 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
 import { FormControl } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loginUrl = 'http://localhost:3000/login';  // Backend login endpoint
-  private reportUrl = 'http://localhost:3000/report';  // Backend report endpoint
-  private resetPasswordUrl = 'http://localhost:3000/reset-password';  // Backend password reset request endpoint
-  private resetPasswordWithTokenUrl = 'http://localhost:3000/reset-password';
+  private API_URL = environment.apiUrl;
+
+  private loginUrl = `${this.API_URL}/login`;  // Backend login endpoint
+  private resetPasswordUrl = `${this.API_URL}/reset-password`;  // Backend password reset request endpoint
+  private resetPasswordWithTokenUrl = `${this.API_URL}/reset-password`;
 
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) { }
 
