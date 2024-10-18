@@ -1,14 +1,13 @@
 <div class="data-container">
-    <nav class="data-sidebar">
+    <nav class="data-sidebar" [class.collapsed]="isSidebarCollapsed">
         <ul>
-            <li [class.active]="currentFormAction === 'accreditation'" (click)="setCurrentForm('accreditation')">
-                Accreditation</li>
+            <li [class.active]="currentFormAction === 'accreditation'" (click)="setCurrentForm('accreditation')">Accreditation</li>
             <li [class.active]="currentFormAction === 'css'" (click)="setCurrentForm('css')">Comprehensive Support System</li>
             <li [class.active]="currentFormAction === 'msaa'" (click)="setCurrentForm('msaa')">MSAA</li>
             <li [class.active]="currentFormAction === 'sftpos'" (click)="setCurrentForm('sftpos')">Subcontracting for the Provision of Services - MSAA</li>
             <li [class.active]="currentFormAction === 'qi'" (click)="setCurrentForm('qi')">Quality Improvement</li>
             <li [class.active]="currentFormAction === 'faa'" (click)="setCurrentForm('faa')">Finance & Administration</li>
-            <li [class.active]="currentFormAction === 'hpac'" (click)="setCurrentForm('hpac')">Healthy parenting and childhood</li>
+            <li [class.active]="currentFormAction === 'hpac'" (click)="setCurrentForm('hpac')">Healthy Parenting and Childhood</li>
             <li [class.active]="currentFormAction === 'atphc'" (click)="setCurrentForm('atphc')">Access to Primary Health Care</li>
             <li [class.active]="currentFormAction === 'yeae'" (click)="setCurrentForm('yeae')">Youth Education & Empowerment</li>
             <li [class.active]="currentFormAction === 'cc'" (click)="setCurrentForm('cc')">Cross-Cutting</li>

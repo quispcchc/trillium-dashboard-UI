@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class DataEntryComponent {
   currentFormAction: string = 'accreditation';
+  isSidebarCollapsed: boolean = false;
 
   setCurrentForm(action: string): void {
     this.currentFormAction = action;

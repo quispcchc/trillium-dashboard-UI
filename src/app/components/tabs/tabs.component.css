@@ -48,3 +48,15 @@ body {
   padding: 0;
   overflow: hidden;
 }
+
+@media (max-width: 600px) {
+  .tabs {
+    flex-direction: column; 
+    height: auto; 
+  }
+  .tabs button {
+    padding: 15px; 
+    width: 100%; 
+    margin: 5px 0; 
+  }
+}

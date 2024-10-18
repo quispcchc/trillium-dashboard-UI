@@ -3,9 +3,18 @@
     padding: 10px;
     background-color: #05589B;
     color: white;
+    width: 100%;
+    position: relative;
+    bottom: 0;
 }
 
 .footer-text {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .footer {
+        font-size: 12px;
+
+    }
 }

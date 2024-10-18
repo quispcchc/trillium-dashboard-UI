@@ -6,11 +6,12 @@
 
 .admin-sidebar {
     width: 250px;
-    height: 80vh;
+    height: calc(100vh - 60px);
     background: #f1f1f1;
     border-right: 1px solid #ccc;
     padding: 10px;
     transition: width 0.3s;
+    overflow-y: auto;
 }
 
 .admin-sidebar ul {
@@ -32,7 +33,10 @@
     flex-grow: 1;
     padding: 20px;
     background: #ffffff;
+    overflow-y: auto;
+    height: calc(100vh - 60px);
 }
+
 
 @media (max-width: 768px) {
     .admin-container {
@@ -43,10 +47,12 @@
         width: 100%;
         border-right: none;
         border-bottom: 1px solid #ccc;
+        height: auto;
     }
 
     .admin-content {
         padding: 10px;
+        height: calc(100vh - 60px);
     }
 }
 

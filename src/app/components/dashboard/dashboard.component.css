@@ -11,10 +11,11 @@ body {
   min-height: 100vh;
 }
 
-main {
+.main-container {
   display: flex;
   flex-direction: column;
   flex: 1;
+  overflow: auto;
 }
 
 app-header {
@@ -25,14 +26,8 @@ app-footer {
   flex-shrink: 0;
 }
 
-.main-content {
-  display: flex;
-  flex: 1;
-}
-
-.content {
-  flex: 1;
-  padding: 20px;
-  background-color: #ffffff;
-  overflow: auto;
+@media (max-width: 600px) {
+  body {
+    flex-direction: column;
+  }
 }

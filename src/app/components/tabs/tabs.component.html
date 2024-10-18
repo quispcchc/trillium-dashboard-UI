@@ -3,7 +3,7 @@
     <button [class.active]="selectedTab === 'board'" (click)="selectTab('board')">Board</button>
     <button [class.active]="selectedTab === 'qca'" (click)="selectTab('qca')">QCA</button>
     <button [class.active]="selectedTab === 'management'" (click)="selectTab('management')">Management</button>
-    <button [class.active]="selectedTab === 'dataentry'" (click)="selectTab('dataentry')">Data entry</button>
+    <button [class.active]="selectedTab === 'dataentry'" (click)="selectTab('dataentry')">Data Entry</button>
     <button *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'admin'" (click)="selectTab('admin')">Admin</button>
   </div>
 

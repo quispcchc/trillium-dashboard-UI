@@ -7,7 +7,7 @@
             <div class="input-group">
                 <label for="email">Email:</label>
                 <input id="email" formControlName="email" type="text" placeholder="Enter your Email"
-                    autocomplete="off"  [ngClass]="email && email.value !== '' && email.invalid ? 'error-border' : ''"/>
+                    autocomplete="off" [ngClass]="email && email.value !== '' && email.invalid ? 'error-border' : ''"/>
                 <div *ngIf="email && email?.value !== '' && email.invalid && (email.dirty || email.touched)" class="error-message">
                     <div *ngIf="email.errors?.['required']">Email is required.</div>
                     <div *ngIf="email?.errors?.['email']">Invalid email address.</div>
@@ -35,7 +35,7 @@
             </p>
         </form>
         <div class="login-footer">
-            <p style="font-size: 12px;">Funded by:</p>
+            <p>Funded by:</p>
             <img class="otf-icon" src="OTF-icon.png" alt="Ontario Trillium Foundation Icon" />
         </div>
     </div>
