@@ -73,6 +73,7 @@
 .profile__reset-password {
   background-color: transparent;
   border: 1px solid #0B448E;
+  color: #0A050A;
 }
 
 @keyframes fade-in {
