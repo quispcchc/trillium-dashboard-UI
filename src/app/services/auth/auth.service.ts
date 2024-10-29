@@ -19,13 +19,14 @@ export class AuthService {
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) { }
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post<{ token: string, userName: string, userRole: string }>(this.loginUrl, { username, password })
+    return this.http.post<{ token: string, userName: string, userRole: string, userEmail: string }>(this.loginUrl, { username, password })
       .pipe(
         map(response => {
           if (isPlatformBrowser(this.platformId)) {
             localStorage.setItem('authToken', response.token);
             localStorage.setItem('first_name', response.userName);
             localStorage.setItem('role', response.userRole);
+            localStorage.setItem('email', response.userEmail);
           }
           return true;
         }),
