@@ -1,11 +1,76 @@
 <div class="header">
-  <img class="header-icon" src="cchc.png" alt="Carlington Community Health Centre Icon" />
-  
-  <div class="user-info">
-    <img class="avatar" src="user-icon.png" alt="{{ userName }}'s Avatar" />
-    <span class="welcome-message">Welcome, {{ userName | uppercase }}</span>
-    <button class="logout-icon" (click)="logout()">
-      <img src="logout-icon.png" alt="Logout" />
+
+  <div class="mobile-menu-container">
+    <button class="mobile-menu-btn">
+      <img src="menu.svg" class="" alt="mobile menu" (click)="setMenu(true)"/>
     </button>
+
+    <div class="mobile-menu" *ngIf="menuOpen" [ngClass]="fadeOut ?  'close' : ''">
+      <div class="mobile-menu__close">
+        <img src="close-icon.svg" class="" alt="mobile menu close btn" (click)="setMenu(false)"/>
+      </div>
+      <div class="mobile-menu__nav" [class.active]="selectedTab === 'board'" (click)="switchTab('board', true)">
+        <button>Board of Directors</button>
+      </div>
+      <div class="mobile-menu__nav" [class.active]="selectedTab === 'qca'" (click)="switchTab('qca', true)">
+        <button>QCA</button>
+      </div>
+      <div class="mobile-menu__nav" [class.active]="selectedTab === 'management'" (click)="switchTab('management', true)">
+        <button>Management</button>
+      </div>
+      <div class="mobile-menu__nav" [class.active]="selectedTab === 'dataentry'" (click)="switchTab('dataentry', true)">
+        <button>Data Entry</button>
+      </div>
+    
+      <div class="mobile-menu__nav" [class.active]="selectedTab === 'admin'" *ngIf="userRole === 'Admin'" (click)="switchTab('admin', true)">
+        <button>Admin</button>
+      </div>
+    </div>
   </div>
+
+  <div class="header__logo-container">
+
+    <div class="header__logo">
+      <img src="logo-white.svg" class="" alt="app logo"/>
+    </div>
+    <div class="header__logo-text">
+      <img src="logo-text.svg" class="" alt="app text logo"/>
+    </div>
+
+  </div>
+
+  <div class="header__tabs">
+
+    <button class="header__btn" [class.active]="selectedTab === 'board'" (click)="switchTab('board')">
+      <img src="board-icon.svg" class="" alt="Board Tab Icon"/>
+      <span>Board of Directors</span>
+    </button>
+
+    <button class="header__btn" [class.active]="selectedTab === 'qca'" (click)="switchTab('qca')">
+      <img src="qca-icon.svg" class="" alt="QCA Tab Icon"/>
+      <span>QCA</span>
+    </button>
+
+    <button class="header__btn" [class.active]="selectedTab === 'management'" (click)="switchTab('management')">
+      <img src="management-icon.svg" class="" alt="Management Tab Icon"/>
+      <span>Management</span>
+    </button>
+    <button class="header__btn" [class.active]="selectedTab === 'dataentry'" (click)="switchTab('dataentry')">
+      <img src="data-entry-icon.svg" class="" alt="Data Entry Tab Icon"/>
+      <span>Data Entry</span>
+    </button>
+    <button class="header__btn" *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'admin'" (click)="switchTab('admin')">
+      <img src="admin-icon.svg" class="" alt="Admin Tab Icon"/>
+      <span>Admin</span>
+    </button>
+
+  </div>
+
+  <div class="header__user">
+    <button (click)="showProfile = true"><img src="user-icon.svg" class="" alt="user icon"/></button>
+    <app-profile *ngIf="showProfile" (close)="showProfile = false" (logoutUser)="logout()"
+    [name]="userName" [email]="userEmail" [role]="userRole">
+    </app-profile>
+  </div>
+
 </div>

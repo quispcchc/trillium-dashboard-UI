@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,20 +6,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  userName: string | null | undefined;
+  @Input() selectedTab!: string;
+  @Output() changeTab = new EventEmitter<string>();
+  @Output() logoutUser = new EventEmitter<void>();
 
-  constructor(
-    private router: Router,
-  ) { }
+  userName: string | null | undefined;
+  userRole: string | null | undefined;
+  userEmail: string | null | undefined;
+
+  menuOpen: boolean = false;
+  fadeOut: boolean = false;
+  showProfile: boolean = false;
 
   ngOnInit(): void {
-     this.userName = localStorage.getItem('first_name');
+    this.userName = localStorage.getItem('first_name');
+    this.userRole = localStorage.getItem('role');
+    this.userEmail = localStorage.getItem('email');
   }
 
   logout(): void {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('first_name');
-    localStorage.removeItem('role');
-    this.router.navigate(['/login']);
+    this.logoutUser.emit();
   }
+
+  switchTab(name: string, mobile:boolean = false): void {
+    this.changeTab.emit(name);
+
+    if (mobile) {
+      this.menuOpen = false;
+    }
+  }
+
+  setMenu(state: boolean) {
+
+    if (!state) {
+      this.fadeOut = true;
+      setTimeout(() => {
+        this.fadeOut = false;
+        this.menuOpen = state;
+      }, 500);
+    } else {
+        this.menuOpen = state;
+    }
+    
+  }
+
 }
