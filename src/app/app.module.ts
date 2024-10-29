@@ -22,6 +22,7 @@ import { QcaComponent } from './components/qca/qca.component';
 import { ManagementComponent } from './components/management/management.component';
 import { DataEntryComponent } from './components/data-entry/data-entry.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { AdminComponent } from './components/admin/admin.component';
     QcaComponent,
     ManagementComponent,
     DataEntryComponent,
-    AdminComponent
+    AdminComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

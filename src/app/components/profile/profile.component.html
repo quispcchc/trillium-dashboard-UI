@@ -1,0 +1,17 @@
+<div class="profile" (click)="onOverlayClick($event)">
+  <div class="profile__content">
+    <div class="profile__details">
+      <div>
+        <p class="profile__name">{{name}}</p>
+        <p class="profile__email">{{email}}</p>
+      </div>
+      <div class="profile__admin-tag" *ngIf="role === 'Admin'">
+        Admin
+      </div>
+    </div>
+    <div class="profile__actions">
+      <button class="profile__logout" (click)="logout()">Logout</button>
+      <button class="profile__reset-password" (click)="resetPassword()">Reset Password</button>
+    </div>
+  </div>
+</div>
