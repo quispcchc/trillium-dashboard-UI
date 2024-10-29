@@ -1,4 +1,4 @@
-.footer {
+/* .footer {
     text-align: center;
     padding: 10px;
     background-color: #05589B;
@@ -16,5 +16,130 @@
     .footer {
         font-size: 12px;
 
+    }
+} */
+
+.footer {
+    background-color: #F2F2F2;
+    padding: 2rem 1rem 1rem 1rem;
+    color: #1E1E1E;
+    font-size: 0.9rem;
+}
+
+.footer__bold {
+    font-weight: bold;
+}
+
+.footer__logo {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.footer__logo-text {
+    margin-top: 0.4rem;
+}
+
+.footer__socials {
+    margin: 1.5rem 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.footer__end {
+    margin: 5rem 0 2rem 0;
+}
+
+.footer__end > p {
+    margin-top: 1rem;
+}
+
+
+.footer__nav > div {
+    /* margin: 2rem 0; */
+    /* border: 1px solid green; */
+    width: fit-content;
+}
+
+.footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    column-gap: 8rem;
+    margin-top: 4rem;
+}
+
+.footer__nav-heading {
+    margin-bottom: 2rem;
+}
+
+.footer__nav button {
+    display: block;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 1rem 0;
+    color: #1E1E1E;
+    font-size: 0.9rem;
+}
+
+.footer__nav a {
+    text-decoration: none;
+    display: block;
+    color: #1E1E1E;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+}
+
+@media screen and (min-width: 768px) {
+    .footer__details {
+        display: flex;
+        gap: 5rem;
+    }
+/* 
+    .footer__details > div {
+        border: 1px solid green;
+    } */
+
+    .footer__nav {
+        gap: 5rem;
+        margin-top: 0;
+    }
+
+
+    .footer__nav > div {
+        margin: 0;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .footer {
+        padding:  2rem 2rem 1rem 2rem;
+    }
+
+    .footer__nav {
+        display: flex;
+        gap: 8rem;
+    }
+
+}
+
+@media screen and (min-width: 1400px) {
+    .footer__details {
+        gap: 8rem;
+    }
+
+    .footer__nav {
+        gap: 12rem;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .footer__details {
+        gap: 12rem;
+    }
+
+    .footer__nav {
+        gap: 16rem;
     }
 }
