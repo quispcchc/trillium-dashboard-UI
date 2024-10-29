@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 
 @Component({
@@ -6,15 +6,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.css']
 })
-export class TabsComponent implements OnInit {
-  selectedTab: string = 'board';
-  userRole: string | null | undefined;
-
-  ngOnInit(): void {
-    this.userRole = localStorage.getItem('role');
-  }
-  
-  selectTab(tab: string): void {
-    this.selectedTab = tab;
-  }
+export class TabsComponent {
+  @Input() selectedTab!: string;
 }
