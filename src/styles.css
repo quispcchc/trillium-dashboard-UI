@@ -10,6 +10,11 @@ body {
   padding: 0;
   height: 100%;
   font-family: 'Roboto', Arial, sans-serif;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
 }
 
 body {
