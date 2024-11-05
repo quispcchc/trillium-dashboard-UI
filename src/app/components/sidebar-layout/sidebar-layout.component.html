@@ -1,0 +1,22 @@
+<div class="layout">
+  <div class="sidebar" #sidebar>
+    <ul class="sidebar__nav">
+      <li
+        *ngFor="let btn of navList"
+        class="sidebar__item"
+        [class.active]="btn.name === activeNav"
+      >
+        <button
+          (click)="btn.action(); scrollUp();"
+          class="sidebar__btn"
+          [class.active]="btn.name === activeNav"
+        >
+          {{ btn.label }}
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+</div>

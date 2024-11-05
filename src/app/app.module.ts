@@ -23,6 +23,7 @@ import { ManagementComponent } from './components/management/management.componen
 import { DataEntryComponent } from './components/data-entry/data-entry.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SidebarLayoutComponent } from './components/sidebar-layout/sidebar-layout.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     ManagementComponent,
     DataEntryComponent,
     AdminComponent,
-    ProfileComponent
+    ProfileComponent,
+    SidebarLayoutComponent
   ],
   imports: [
     BrowserModule,
