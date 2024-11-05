@@ -1,59 +1,8 @@
-.admin-container {
-    display: flex;
-    flex-grow: 1;
-    overflow: hidden;
-}
-
-.admin-sidebar {
-    width: 250px;
-    height: calc(100vh - 60px);
-    background: #f1f1f1;
-    border-right: 1px solid #ccc;
-    padding: 10px;
-    transition: width 0.3s;
-    overflow-y: auto;
-}
-
-.admin-sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.admin-sidebar li {
-    cursor: pointer;
-    padding: 10px;
-    transition: background 0.3s;
-}
-
-.admin-sidebar li:hover {
-    background: #e9ecef;
-}
-
 .admin-content {
-    flex-grow: 1;
     padding: 20px;
     background: #ffffff;
     overflow-y: auto;
     height: calc(100vh - 60px);
-}
-
-
-@media (max-width: 768px) {
-    .admin-container {
-        flex-direction: column;
-    }
-
-    .admin-sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #ccc;
-        height: auto;
-    }
-
-    .admin-content {
-        padding: 10px;
-        height: calc(100vh - 60px);
-    }
 }
 
 .table-container {
@@ -112,12 +61,6 @@ td:last-child {
     color: #888;
 }
 
-.admin-sidebar li.active {
-    background: #05589B;
-    font-weight: bold;
-    color: white;
-}
-
 .modal {
     display: flex;
     justify-content: center;
@@ -125,7 +68,7 @@ td:last-child {
     position: fixed;
     z-index: 1000;
     left: 0;
-    top: 0;
+    top: -1.875rem;
     width: 100%;
     height: 100%;
     overflow: auto;
@@ -312,7 +255,7 @@ button:disabled {
 .form-group select option {
     padding: 10px;
 }
-  
+
 .loading-logs {
     text-align: center;
     color: #007bff;
@@ -326,4 +269,10 @@ button:disabled {
 .icon-container span {
     cursor: pointer;
     margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    .admin-content {
+        padding: 10px;
+    }
 }

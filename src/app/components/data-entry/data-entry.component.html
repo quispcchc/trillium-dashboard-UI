@@ -1,19 +1,4 @@
-<div class="data-container">
-    <nav class="data-sidebar" [class.collapsed]="isSidebarCollapsed">
-        <ul>
-            <li [class.active]="currentFormAction === 'accreditation'" (click)="setCurrentForm('accreditation')">Accreditation</li>
-            <li [class.active]="currentFormAction === 'css'" (click)="setCurrentForm('css')">Comprehensive Support System</li>
-            <li [class.active]="currentFormAction === 'msaa'" (click)="setCurrentForm('msaa')">MSAA</li>
-            <li [class.active]="currentFormAction === 'sftpos'" (click)="setCurrentForm('sftpos')">Subcontracting for the Provision of Services - MSAA</li>
-            <li [class.active]="currentFormAction === 'qi'" (click)="setCurrentForm('qi')">Quality Improvement</li>
-            <li [class.active]="currentFormAction === 'faa'" (click)="setCurrentForm('faa')">Finance & Administration</li>
-            <li [class.active]="currentFormAction === 'hpac'" (click)="setCurrentForm('hpac')">Healthy Parenting and Childhood</li>
-            <li [class.active]="currentFormAction === 'atphc'" (click)="setCurrentForm('atphc')">Access to Primary Health Care</li>
-            <li [class.active]="currentFormAction === 'yeae'" (click)="setCurrentForm('yeae')">Youth Education & Empowerment</li>
-            <li [class.active]="currentFormAction === 'cc'" (click)="setCurrentForm('cc')">Cross-Cutting</li>
-            <li [class.active]="currentFormAction === 'dcr'" (click)="setCurrentForm('dcr')">Department/Category Restructure</li>
-        </ul>
-    </nav>
+<app-sidebar-layout [navList]="navList" [activeNav]="currentFormAction">
     <div class="data-content">
         <ng-container *ngIf="currentFormAction === 'accreditation'">
             <iframe
@@ -71,4 +56,4 @@
             width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
         </ng-container>
     </div>
-</div>
+</app-sidebar-layout>

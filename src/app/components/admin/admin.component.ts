@@ -25,12 +25,30 @@ export class AdminComponent implements OnInit  {
   loadingLogs: boolean = false;
   logs: any[] = [];
   userName: string | null | undefined;
+  navList!: {name: string, label: string, action: () => void }[];
 
   constructor(private userService: UserService, public notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.manageUsers();
     this.userName = localStorage.getItem('first_name');
+
+    this.navList = [
+      {
+        name: 'manageUsers',
+        label: 'Manage Users',
+        action: () => {
+          this.manageUsers();
+        }
+      },
+      {
+        name: 'auditLogs',
+        label: 'Audit Logs',
+        action: () => {
+          this.auditLogs();
+        }
+      }
+    ]
   }
 
   filterUsers() {
