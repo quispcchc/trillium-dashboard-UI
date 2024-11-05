@@ -11,7 +11,7 @@ body {
   height: 100%;
   font-family: 'Roboto', Arial, sans-serif;
   scrollbar-width: none;
-  &::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     display: none;
   }
   -ms-overflow-style: none;
