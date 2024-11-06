@@ -27,6 +27,13 @@ export class DataEntryComponent implements OnInit {
         }
       },
       {
+        name: 'msaa',
+        label: 'MSAA',
+        action: () => {
+          this.setCurrentForm('msaa');
+        }
+      }, 
+      {
         name: 'sftpos',
         label: 'Subcontracting for the Provision of Services - MSAA',
         action: () => {
@@ -81,7 +88,78 @@ export class DataEntryComponent implements OnInit {
         action: () => {
           this.setCurrentForm('dcr');
         }
+      },
+      {
+        name: 'fs',
+        label: 'Food Security',
+        action: () => {
+          this.setCurrentForm('fs');
+        }
+      },
+      {
+        name: 'aasss',
+        label: 'Annual All Staff Satisfaction Survey',
+        action: () => {
+          this.setCurrentForm('aasss');
+        }
+      },
+      {
+        name: 'cd',
+        label: 'Community Development',
+        action: () => {
+          this.setCurrentForm('cd');
+        }
+      },
+      {
+        name:'ces',
+        label:'Client Experience Survey',
+        action:() => {
+          this.setCurrentForm('ces');
+        }
+      },
+      {
+        name:'cr',
+        label:'Complaints Report',
+        action:() => {
+          this.setCurrentForm('cr');
+        }
+      },
+      {
+        name:'fls',
+        label:'French Language Services',
+        action:() => {
+          this.setCurrentForm('fls');
+        }
+      },
+      {
+        name:'hr',
+        label:'Human Resources',
+        action:() => {
+          this.setCurrentForm('hr');
+        }
+      },
+      {
+        name:'inmr',
+        label:'Incident & Near Miss Reports',
+        action:() => {
+          this.setCurrentForm('inmr');
+        }
+      },
+      {
+        name:'por',
+        label:'Privacy Officers Report',
+        action:() => {
+          this.setCurrentForm('por');
+        }
+      },
+      {
+        name:'sp',
+        label:'Strategic Plans',
+        action:() => {
+          this.setCurrentForm('sp');
+        }
       }
+      
     ]
   }
 
