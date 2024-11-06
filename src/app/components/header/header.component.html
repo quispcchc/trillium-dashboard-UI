@@ -15,8 +15,8 @@
       <div class="mobile-menu__nav" [class.active]="selectedTab === 'qca'" (click)="switchTab('qca', true)">
         <button>QCA</button>
       </div>
-      <div class="mobile-menu__nav" [class.active]="selectedTab === 'management'" (click)="switchTab('management', true)">
-        <button>Management</button>
+      <div class="mobile-menu__nav" [class.active]="selectedTab === 'op'" (click)="switchTab('op', true)">
+        <button>Operational Plan</button>
       </div>
       <div class="mobile-menu__nav" [class.active]="selectedTab === 'dataentry'" (click)="switchTab('dataentry', true)">
         <button>Data Entry</button>
@@ -41,19 +41,19 @@
 
   <div class="header__tabs">
 
-    <button class="header__btn" [class.active]="selectedTab === 'board'" (click)="switchTab('board')">
+    <button class="header__btn" *ngIf="userRole === 'Admin' || userRole === 'Board'" [class.active]="selectedTab === 'board'" (click)="switchTab('board')">
       <img src="board-icon.svg" class="" alt="Board Tab Icon"/>
       <span>Board of Directors</span>
     </button>
 
-    <button class="header__btn" [class.active]="selectedTab === 'qca'" (click)="switchTab('qca')">
+    <button class="header__btn" *ngIf="userRole === 'Admin' || userRole === 'QCA'" [class.active]="selectedTab === 'qca'" (click)="switchTab('qca')">
       <img src="qca-icon.svg" class="" alt="QCA Tab Icon"/>
       <span>QCA</span>
     </button>
 
-    <button class="header__btn" [class.active]="selectedTab === 'management'" (click)="switchTab('management')">
-      <img src="management-icon.svg" class="" alt="Management Tab Icon"/>
-      <span>Management</span>
+    <button class="header__btn" *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'op'" (click)="switchTab('op')">
+      <img src="op-icon.svg" class="" alt="Operational plan Tab Icon"/>
+      <span>Operational Plan</span>
     </button>
     <button class="header__btn" [class.active]="selectedTab === 'dataentry'" (click)="switchTab('dataentry')">
       <img src="data-entry-icon.svg" class="" alt="Data Entry Tab Icon"/>

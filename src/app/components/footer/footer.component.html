@@ -26,7 +26,7 @@
                 <p class="footer__bold footer__nav-heading">Navigation</p>
                 <button (click)="switchTab('board')">Board of Directors</button>
                 <button (click)="switchTab('qca')">QCA</button>
-                <button (click)="switchTab('management')">Management</button>
+                <button (click)="switchTab('op')">Operational Plan</button>
                 <button (click)="switchTab('dataentry')">Data Entry</button>
                 <button *ngIf="userRole === 'Admin'" (click)="switchTab('admin')">Admin</button>
             </div>
