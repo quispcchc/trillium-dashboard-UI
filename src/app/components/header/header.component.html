@@ -55,7 +55,7 @@
       <img src="op-icon.svg" class="" alt="Operational plan Tab Icon"/>
       <span>Operational Plan</span>
     </button>
-    <button class="header__btn" [class.active]="selectedTab === 'dataentry'" (click)="switchTab('dataentry')">
+    <button class="header__btn" *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'dataentry'" (click)="switchTab('dataentry')">
       <img src="data-entry-icon.svg" class="" alt="Data Entry Tab Icon"/>
       <span>Data Entry</span>
     </button>
