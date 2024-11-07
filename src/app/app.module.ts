@@ -24,6 +24,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SidebarLayoutComponent } from './components/sidebar-layout/sidebar-layout.component';
 import { OperationalPlanComponent } from './components/operational-plan/operational-plan.component';
+import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { OperationalPlanComponent } from './components/operational-plan/operatio
     AdminComponent,
     ProfileComponent,
     SidebarLayoutComponent,
-    OperationalPlanComponent
+    OperationalPlanComponent,
+    ComingSoonComponent
   ],
   imports: [
     BrowserModule,
