@@ -156,7 +156,6 @@
   @media screen and (min-width: 1400px) {
     .header__tabs {
       gap: 1rem;
-      width: 60%;
     }
   }
 

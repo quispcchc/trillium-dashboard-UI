@@ -9,20 +9,22 @@
       <div class="mobile-menu__close">
         <img src="close-icon.svg" class="" alt="mobile menu close btn" (click)="setMenu(false)"/>
       </div>
-      <div class="mobile-menu__nav" [class.active]="selectedTab === 'board'" (click)="switchTab('board', true)">
+      <div class="mobile-menu__nav" *ngIf="userRole === 'Admin' || userRole === 'Board'" [class.active]="selectedTab === 'board'" (click)="switchTab('board', true)">
         <button>Board of Directors</button>
       </div>
-      <div class="mobile-menu__nav" [class.active]="selectedTab === 'qca'" (click)="switchTab('qca', true)">
+      <div class="mobile-menu__nav" *ngIf="userRole === 'Admin' || userRole === 'QCA'" [class.active]="selectedTab === 'qca'" (click)="switchTab('qca', true)">
         <button>QCA</button>
       </div>
-      <div class="mobile-menu__nav" [class.active]="selectedTab === 'op'" (click)="switchTab('op', true)">
+      <div class="mobile-menu__nav" *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'op'" (click)="switchTab('op', true)">
         <button>Operational Plan</button>
       </div>
-      <div class="mobile-menu__nav" [class.active]="selectedTab === 'dataentry'" (click)="switchTab('dataentry', true)">
+      <div class="mobile-menu__nav" *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'ib'" (click)="switchTab('ib', true)">
+        <button>Impact Blueprint</button>
+      </div>
+      <div class="mobile-menu__nav" *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'dataentry'" (click)="switchTab('dataentry', true)">
         <button>Data Entry</button>
       </div>
-    
-      <div class="mobile-menu__nav" [class.active]="selectedTab === 'admin'" *ngIf="userRole === 'Admin'" (click)="switchTab('admin', true)">
+      <div class="mobile-menu__nav" *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'admin'"  (click)="switchTab('admin', true)">
         <button>Admin</button>
       </div>
     </div>
@@ -55,6 +57,12 @@
       <img src="op-icon.svg" class="" alt="Operational plan Tab Icon"/>
       <span>Operational Plan</span>
     </button>
+
+    <button class="header__btn" *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'ib'" (click)="switchTab('ib')">
+      <img src="impact-icon.svg" class="" alt="Impact Blueprint Tab Icon"/>
+      <span>Impact Blueprint</span>
+    </button>
+
     <button class="header__btn" *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'dataentry'" (click)="switchTab('dataentry')">
       <img src="data-entry-icon.svg" class="" alt="Data Entry Tab Icon"/>
       <span>Data Entry</span>
