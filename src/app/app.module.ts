@@ -24,6 +24,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SidebarLayoutComponent } from './components/sidebar-layout/sidebar-layout.component';
 import { OperationalPlanComponent } from './components/operational-plan/operational-plan.component';
+import { ImpactBlueprintComponent } from './components/impact-blueprint/impact-blueprint.component';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 
 
@@ -45,6 +46,7 @@ import { ComingSoonComponent } from './components/coming-soon/coming-soon.compon
     ProfileComponent,
     SidebarLayoutComponent,
     OperationalPlanComponent,
+    ImpactBlueprintComponent,
     ComingSoonComponent
   ],
   imports: [

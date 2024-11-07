@@ -9,6 +9,9 @@
     <ng-container *ngIf="selectedTab === 'op'">
       <app-operational-plan></app-operational-plan>
     </ng-container>
+    <ng-container *ngIf="selectedTab === 'ib'">
+      <app-impact-blueprint></app-impact-blueprint>
+    </ng-container>
     <ng-container *ngIf="selectedTab === 'dataentry'">
       <app-data-entry></app-data-entry>
     </ng-container>
