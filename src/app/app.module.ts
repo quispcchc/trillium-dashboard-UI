@@ -19,11 +19,11 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { BoardComponent } from './components/board/board.component';
 import { QcaComponent } from './components/qca/qca.component';
-import { ManagementComponent } from './components/management/management.component';
 import { DataEntryComponent } from './components/data-entry/data-entry.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SidebarLayoutComponent } from './components/sidebar-layout/sidebar-layout.component';
+import { OperationalPlanComponent } from './components/operational-plan/operational-plan.component';
 
 
 @NgModule({
@@ -39,11 +39,11 @@ import { SidebarLayoutComponent } from './components/sidebar-layout/sidebar-layo
     ConfirmationModalComponent,
     BoardComponent,
     QcaComponent,
-    ManagementComponent,
     DataEntryComponent,
     AdminComponent,
     ProfileComponent,
-    SidebarLayoutComponent
+    SidebarLayoutComponent,
+    OperationalPlanComponent
   ],
   imports: [
     BrowserModule,
