@@ -10,7 +10,6 @@ import { AuthService } from '../../services/auth/auth.service';
 export class ForgotPasswordComponent implements OnInit {
   resetPasswordForm!: FormGroup;
   message: string | null = null;
-  router: any;
   isSuccess: boolean = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService) { }
@@ -34,7 +33,4 @@ export class ForgotPasswordComponent implements OnInit {
     }
   }
 
-  goToLogin() {
-    this.router.navigate(['/login']);
-  }
 }
