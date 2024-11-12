@@ -26,6 +26,7 @@ import { SidebarLayoutComponent } from './components/sidebar-layout/sidebar-layo
 import { OperationalPlanComponent } from './components/operational-plan/operational-plan.component';
 import { ImpactBlueprintComponent } from './components/impact-blueprint/impact-blueprint.component';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
+import { HomeLayoutComponent } from './components/home-layout/home-layout.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { ComingSoonComponent } from './components/coming-soon/coming-soon.compon
     SidebarLayoutComponent,
     OperationalPlanComponent,
     ImpactBlueprintComponent,
-    ComingSoonComponent
+    ComingSoonComponent,
+    HomeLayoutComponent
   ],
   imports: [
     BrowserModule,
