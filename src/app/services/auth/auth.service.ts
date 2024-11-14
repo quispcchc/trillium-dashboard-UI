@@ -12,14 +12,14 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private API_URL = environment.apiUrl;
 
-  private loginUrl = `${this.API_URL}/login`;  // Backend login endpoint
-  private resetPasswordUrl = `${this.API_URL}/reset-password`;  // Backend password reset request endpoint
+  private loginUrl = `${this.API_URL}/login`;
+  private resetPasswordUrl = `${this.API_URL}/reset-password`;
   private resetPasswordWithTokenUrl = `${this.API_URL}/reset-password`;
 
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) { }
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post<{ token: string, userName: string, userRole: string, userEmail: string }>(this.loginUrl, { username, password })
+    return this.http.post<{ token: string, userName: string, userRole: string, userEmail: string, accessibleRoles: string, accessibleForms: string }>(this.loginUrl, { username, password })
       .pipe(
         map(response => {
           if (isPlatformBrowser(this.platformId)) {
@@ -27,6 +27,8 @@ export class AuthService {
             localStorage.setItem('first_name', response.userName);
             localStorage.setItem('role', response.userRole);
             localStorage.setItem('email', response.userEmail);
+            localStorage.setItem('accessible_roles', response.accessibleRoles);
+            localStorage.setItem('accessible_forms', response.accessibleForms);
           }
           return true;
         }),

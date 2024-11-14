@@ -31,12 +31,13 @@
           <table>
             <thead>
               <tr>
-                <th>ID</th>
-                <th (click)="sort('name')">Name</th>
-                <th (click)="sort('email')">Email</th>
-                <th (click)="sort('role')">Role</th>
-                <th (click)="sort('department')">Department</th>
-                <th (click)="sort('title')">Job Title</th>
+                <th style="width: 1%;">ID</th>
+                <th style="width: 10%;" (click)="sort('name')">Name</th>
+                <th style="width: 20%;" (click)="sort('email')">Email</th>
+                <th style="width: 15%;">Access to Dashboard</th>
+                <th style="width: 20%;">Access to Forms</th>
+                <th style="width: 13%;" (click)="sort('department')">Department</th>
+                <th style="width: 13%;" (click)="sort('title')">Job Title</th>
                 <th></th>
               </tr>
             </thead>
@@ -46,12 +47,21 @@
           <table>
             <tbody>
               <tr *ngFor="let user of filteredUsers">
-                <td>{{ user.user_id }}</td>
-                <td>{{ user.first_name }} {{ user.last_name }}</td>
-                <td>{{ user.mail }}</td>
-                <td>{{ user.role }}</td>
-                <td>{{ user.department }}</td>
-                <td>{{ user.job_title }}</td>
+                <td style="width: 1%;">{{ user.user_id }}</td>
+                <td style="width: 10%;">{{ user.first_name }} {{ user.last_name }}</td>
+                <td style="width: 20%;">{{ user.mail }}</td>
+                <td style="width: 15%;">
+                  <ul>
+                    <li *ngFor="let role of user.accessible_roles">{{ role }}</li>
+                  </ul>
+                </td>
+                <td style="width: 20%;">
+                  <ul>
+                    <li *ngFor="let form of user.accessible_forms">{{ form }}</li>
+                  </ul>
+                </td>
+                <td style="width: 13%;">{{ user.department }}</td>
+                <td style="width: 13%;">{{ user.job_title }}</td>
                 <td>
                   <div class="icon-container">
                     <span (click)="updateUser(user)" title="Update User">
@@ -123,90 +133,113 @@
         </div>
         <div class="modal-body">
           <form (ngSubmit)="createUser()">
-            <div class="form-group">
-              <label for="firstName">First Name</label>
-              <input
-                type="text"
-                id="firstName"
-                [(ngModel)]="newUser.firstName"
-                (ngModelChange)="isUserFormValid()"
-                name="firstName"
-                required
-              />
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  [(ngModel)]="newUser.firstName"
+                  (ngModelChange)="isUserFormValid()"
+                  name="firstName"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  [(ngModel)]="newUser.lastName"
+                  (ngModelChange)="isUserFormValid()"
+                  name="lastName"
+                  required
+                />
+              </div>
+            </div>
+    
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  [(ngModel)]="newUser.email"
+                  (ngModelChange)="isUserFormValid()"
+                  name="email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="department">Department</label>
+                <input
+                  type="text"
+                  id="department"
+                  [(ngModel)]="newUser.department"
+                  (ngModelChange)="isUserFormValid()"
+                  name="department"
+                  required
+                />
+              </div>
+            </div>
+    
+            <div class="form-row">
+              <div class="form-group">
+                <label for="jobTitle">Job Title</label>
+                <input
+                  type="text"
+                  id="jobTitle"
+                  [(ngModel)]="newUser.jobTitle"
+                  (ngModelChange)="isUserFormValid()"
+                  name="jobTitle"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                  type="text"
+                  id="password"
+                  [(ngModel)]="newUser.password"
+                  (ngModelChange)="isUserFormValid()"
+                  name="password"
+                  required
+                />
+              </div>
             </div>
             <div class="form-group">
-              <label for="lastName">Last Name</label>
-              <input
-                type="text"
-                id="lastName"
-                [(ngModel)]="newUser.lastName"
-                (ngModelChange)="isUserFormValid()"
-                name="lastName"
-                required
-              />
+              <label>Access to Dashboard</label>
+              <div class="roles-container">
+                <div *ngFor="let role of availableRoles" class="role-checkbox">
+                  <input
+                    type="checkbox"
+                    [id]="role"
+                    [value]="role"
+                    [checked]="newUser.roles.includes(role)"
+                    (change)="onRoleChange(role)"
+                  />
+                  <label [for]="role">{{ role }}</label>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                [(ngModel)]="newUser.email"
-                (ngModelChange)="isUserFormValid()"
-                name="email"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="role">Role</label>
-              <select
-                id="role"
-                [(ngModel)]="newUser.role"
-                (ngModelChange)="isUserFormValid()"
-                name="role"
-                required
-              >
-                <option value="" disabled>Select role</option>
-                <option value="Admin">Admin</option>
-                <option value="Board">Board</option>
-                <option value="Management">Management</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="department">Department</label>
-              <input
-                type="text"
-                id="department"
-                [(ngModel)]="newUser.department"
-                (ngModelChange)="isUserFormValid()"
-                name="department"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="department">Job Title</label>
-              <input
-                type="text"
-                id="title"
-                [(ngModel)]="newUser.jobTitle"
-                (ngModelChange)="isUserFormValid()"
-                name="jobTitle"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input
-                type="text"
-                id="password"
-                [(ngModel)]="newUser.password"
-                (ngModelChange)="isUserFormValid()"
-                name="password"
-                required
-              />
+           <div class="form-group">
+              <label>Access to Forms</label>
+              <div class="roles-container">
+                <div *ngFor="let form of availableForms" class="role-checkbox">
+                  <input
+                    type="checkbox"
+                    [id]="form"
+                    [value]="form"
+                    [checked]="newUser.forms.includes(form)"
+                    (change)="onFormChange(form)"
+                  />
+                  <label [for]="form">{{ form }}</label>
+                </div>
+              </div>
             </div>
           </form>
         </div>
-
+    
         <div class="modal-footer">
           <button
             class="create-button"
@@ -219,6 +252,7 @@
         </div>
       </div>
     </div>
+    
     <!-- Edit User Modal -->
     <div class="modal" *ngIf="isEditModalOpen">
       <div class="modal-content">

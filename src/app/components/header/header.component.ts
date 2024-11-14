@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   userName: string | null | undefined;
   userRole: string | null | undefined;
   userEmail: string | null | undefined;
+  accessibleRoles: string  | null | undefined;
 
   menuOpen: boolean = false;
   fadeOut: boolean = false;
@@ -22,6 +23,12 @@ export class HeaderComponent implements OnInit {
     this.userName = localStorage.getItem('first_name');
     this.userRole = localStorage.getItem('role');
     this.userEmail = localStorage.getItem('email');
+    this.accessibleRoles = localStorage.getItem('accessible_roles');
+  }
+
+  isRoleAccessible(role: string): boolean {
+    const accessibleRolesArray = this.accessibleRoles ? this.accessibleRoles.split(',') : [];
+    return accessibleRolesArray.includes(role);
   }
 
   logout(): void {

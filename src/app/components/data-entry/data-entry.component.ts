@@ -8,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class DataEntryComponent implements OnInit {
   currentFormAction: string = 'accreditation';
   isSidebarCollapsed: boolean = false;
+  accessibleForms: string  | null | undefined;
   navList!: { name: string, label: string, action: () => void }[];
 
   ngOnInit(): void {
+
+    this.accessibleForms = localStorage.getItem('accessible_forms');
+
     this.navList = [
       {
         name: 'accreditation',
@@ -162,6 +166,11 @@ export class DataEntryComponent implements OnInit {
       
     ]
   }
+
+  isFormAccessible(form: string): boolean {
+    const accessibleFormsArray = this.accessibleForms ? this.accessibleForms.split(',').map(form => form.trim()) : [];
+    return accessibleFormsArray.includes(form.trim());
+  }  
 
   setCurrentForm(action: string): void {
     this.currentFormAction = action;

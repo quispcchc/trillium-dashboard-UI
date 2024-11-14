@@ -24,12 +24,12 @@
         <div class="footer__nav">
             <div class="footer__tabs">
                 <p class="footer__bold footer__nav-heading">Navigation</p>
-                <button *ngIf="userRole === 'Admin' || userRole === 'Board'" (click)="switchTab('board')">Board of Directors</button>
-                <button *ngIf="userRole === 'Admin' || userRole === 'QCA'" (click)="switchTab('qca')">QCA</button>
-                <button *ngIf="userRole === 'Admin'" (click)="switchTab('op')">Operational Plan</button>
-                <button *ngIf="userRole === 'Admin'" (click)="switchTab('ib')">Impact Blueprint</button>
-                <button *ngIf="userRole === 'Admin'" (click)="switchTab('dataentry')">Data Entry</button>
-                <button *ngIf="userRole === 'Admin'" (click)="switchTab('admin')">Admin</button>
+                <button *ngIf="isRoleAccessible('Board')" (click)="switchTab('board')">Board of Directors</button>
+                <button *ngIf="isRoleAccessible('QCA')" (click)="switchTab('qca')">QCA</button>
+                <button *ngIf="isRoleAccessible('Operational Plan')" (click)="switchTab('op')">Operational Plan</button>
+                <button *ngIf="isRoleAccessible('Impact Blueprint')" (click)="switchTab('ib')">Impact Blueprint</button>
+                <button *ngIf="isRoleAccessible('Data Entry')" (click)="switchTab('dataentry')">Data Entry</button>
+                <button *ngIf="isRoleAccessible('Admin')" (click)="switchTab('admin')">Admin</button>
             </div>
             <div class="footer__user">
                 <p class="footer__bold footer__nav-heading">User</p>

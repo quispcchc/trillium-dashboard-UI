@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { NotificationService } from '../../services/notification.service';
 
@@ -7,7 +7,7 @@ import { NotificationService } from '../../services/notification.service';
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
 })
-export class AdminComponent implements OnInit  {
+export class AdminComponent implements OnInit {
 
   users: any[] = [];
   filteredUsers: any[] = [];
@@ -15,7 +15,13 @@ export class AdminComponent implements OnInit  {
   isModalOpen: boolean = false;
   currentAdminAction: string = 'manageUsers';
   currentFormAction: string = 'accreditation';
-  newUser = { firstName: '', lastName: '', email: '', role: '', department: '', jobTitle: '', password: '' };
+  availableForms = ['Accreditation', 'Comprehensive Support System', 'MSAA', 'Subcontracting for the Provision of Services', 
+    'Quality Improvement', 'Finance & Administration', 'Healthy Parenting and Childhood', 'Access to Primary Health Care',
+    'Youth Education & Empowerment', 'Cross-Cutting', 'Department/Category Restructure', 'Food Security', 'Annual All Staff Satisfaction Survey',
+    'Community Development', 'Client Experience Survey', 'Complaints Report', 'French Language Services', 'Human Resources', 
+    'Incident & Near Miss Reports', 'Privacy Officers Report', 'Strategic Plans'];
+  availableRoles = ['Admin', 'Board', 'QCA', 'Operational Plan', 'Impact Blueprint', 'Data Entry'];
+  newUser = { firstName: '', lastName: '', email: '', roles: [] as string[], forms: [] as string[], department: '', jobTitle: '', password: '' };
   searchTerm: string = '';
   sortDirection: 'asc' | 'desc' = 'asc';
   isDeleteModalOpen: boolean = false;
@@ -25,13 +31,15 @@ export class AdminComponent implements OnInit  {
   loadingLogs: boolean = false;
   logs: any[] = [];
   userName: string | null | undefined;
-  navList!: {name: string, label: string, action: () => void }[];
+  navList!: { name: string, label: string, action: () => void }[];
 
   constructor(private userService: UserService, public notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.manageUsers();
     this.userName = localStorage.getItem('first_name');
+    this.newUser.roles = [];
+    this.newUser.forms = [];
 
     this.navList = [
       {
@@ -82,7 +90,8 @@ export class AdminComponent implements OnInit  {
       first_name: this.newUser.firstName,
       last_name: this.newUser.lastName,
       mail: this.newUser.email,
-      role: this.newUser.role,
+      roles: this.newUser.roles,
+      forms: this.newUser.forms,
       department: this.newUser.department,
       job_title: this.newUser.jobTitle,
       password: this.newUser.password,
@@ -93,7 +102,7 @@ export class AdminComponent implements OnInit  {
       next: (data) => {
         this.users.push(data);
         this.filteredUsers.push(data);
-        this.newUser = { firstName: '', lastName: '', email: '', role: '', department: '', jobTitle: '', password: '' };
+        this.newUser = { firstName: '', lastName: '', email: '', roles: [], forms: [], department: '', jobTitle: '', password: '' };
         this.closeModal();
         this.notificationService.show('User created successfully!');
       },
@@ -119,7 +128,7 @@ export class AdminComponent implements OnInit  {
 
   deleteUser(user: any) {
 
-    user.updated_by =  this.userName;
+    user.updated_by = this.userName;
     this.userService.deleteUser(user).subscribe({
       next: () => {
         this.users = this.users.filter(usr => usr.user_id !== user.user_id);
@@ -199,8 +208,6 @@ export class AdminComponent implements OnInit  {
         return direction * a.department.localeCompare(b.department);
       } else if (column === 'title') {
         return direction * a.job_title.localeCompare(b.job_title);
-      } else if (column === 'role') {
-        return direction * a.role.localeCompare(b.role);
       }
       return 0;
     });
@@ -209,7 +216,7 @@ export class AdminComponent implements OnInit  {
 
   openModal() {
     this.isModalOpen = true;
-    this.newUser = { firstName: '', lastName: '', email: '', role: '', department: '', jobTitle: '', password: '' };
+    this.newUser = { firstName: '', lastName: '', email: '', roles: [], forms: [], department: '', jobTitle: '', password: '' };
   }
 
   closeModal() {
@@ -220,12 +227,36 @@ export class AdminComponent implements OnInit  {
     return this.selectedUser && this.selectedUser.department.trim() !== '' && this.selectedUser.job_title.trim() !== '';
   }
 
+  onRoleChange(role: string) {
+    if (this.newUser.roles.includes(role)) {
+      const index = this.newUser.roles.indexOf(role);
+      if (index !== -1) {
+        this.newUser.roles.splice(index, 1);
+      }
+    } else {
+      this.newUser.roles.push(role);
+    }
+  }
+
+  onFormChange(form: string) {
+    if (this.newUser.forms.includes(form)) {
+      const index = this.newUser.forms.indexOf(form);
+      if (index !== -1) {
+        this.newUser.forms.splice(index, 1);
+      }
+    } else {
+      this.newUser.forms.push(form);
+    }
+  }
+
   isUserFormValid(): boolean {
     return this.newUser.firstName.trim() !== '' &&
       this.newUser.lastName.trim() !== '' &&
       this.newUser.email.trim() !== '' &&
       this.newUser.department.trim() !== '' &&
       this.newUser.jobTitle.trim() !== '' &&
-      this.newUser.password.trim() !== '';
+      this.newUser.password.trim() !== '' &&
+      this.newUser.roles.length > 0 &&
+      this.newUser.forms.length > 0;
   }
 }
