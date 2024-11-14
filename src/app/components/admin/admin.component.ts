@@ -15,7 +15,7 @@ export class AdminComponent implements OnInit {
   isModalOpen: boolean = false;
   currentAdminAction: string = 'manageUsers';
   currentFormAction: string = 'accreditation';
-  availableForms = ['Accreditation', 'Comprehensive Support System', 'MSAA', 'Subcontracting for the Provision of Services', 
+  availableForms = ['Accreditation', 'Comprehensive Support System', 'MSAA', 'Subcontracting for the Provision of Services - MSAA', 
     'Quality Improvement', 'Finance & Administration', 'Healthy Parenting and Childhood', 'Access to Primary Health Care',
     'Youth Education & Empowerment', 'Cross-Cutting', 'Department/Category Restructure', 'Food Security', 'Annual All Staff Satisfaction Survey',
     'Community Development', 'Client Experience Survey', 'Complaints Report', 'French Language Services', 'Human Resources', 
