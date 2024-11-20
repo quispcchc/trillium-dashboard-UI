@@ -1,5 +1,10 @@
 <div class="tabs-container">
   <div class="tab-content">
+    <ng-container *ngIf="selectedTab === ''">
+      <div class="tab-no-content">
+        <p>No dashboards available</p>
+      </div>
+    </ng-container>
     <ng-container *ngIf="selectedTab === 'board'">
       <app-board></app-board>
     </ng-container>
