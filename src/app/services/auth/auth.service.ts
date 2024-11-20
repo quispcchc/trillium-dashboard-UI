@@ -19,7 +19,7 @@ export class AuthService {
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) { }
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post<{ token: string, userName: string, userRole: string, userEmail: string, accessibleRoles: string, accessibleForms: string }>(this.loginUrl, { username, password })
+    return this.http.post<{ token: string, userName: string, userRole: string, userEmail: string, accessibleTabs: string, accessibleForms: string }>(this.loginUrl, { username, password })
       .pipe(
         map(response => {
           if (isPlatformBrowser(this.platformId)) {
@@ -27,7 +27,7 @@ export class AuthService {
             localStorage.setItem('first_name', response.userName);
             localStorage.setItem('role', response.userRole);
             localStorage.setItem('email', response.userEmail);
-            localStorage.setItem('accessible_roles', response.accessibleRoles);
+            localStorage.setItem('accessible_tabs', response.accessibleTabs);
             localStorage.setItem('accessible_forms', response.accessibleForms);
           }
           return true;
@@ -39,6 +39,11 @@ export class AuthService {
   logout(): void {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem('authToken');
+      localStorage.removeItem('first_name');
+      localStorage.removeItem('role');
+      localStorage.removeItem('email');
+      localStorage.removeItem('accessible_tabs');
+      localStorage.removeItem('accessible_forms');
     }
   }
 
