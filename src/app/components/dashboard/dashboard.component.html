@@ -1,5 +1,5 @@
-<app-header [selectedTab]="selectedTab" (changeTab)="changeTab($event)" (logoutUser)="logout()"></app-header>
+<app-header [selectedTab]="selectedTab" (logoutUser)="logout()" [tabList]="tabList"></app-header>
 <div class="main-container">
   <app-tabs [selectedTab]="selectedTab"></app-tabs>
 </div>
-<app-footer (changeTab)="changeTab($event)" (logoutUser)="logout()"></app-footer>
+<app-footer [tabList]="tabList" (logoutUser)="logout()"></app-footer>
