@@ -2,7 +2,7 @@
   <div class="sidebar" #sidebar>
     <ul class="sidebar__nav">
       <li
-        *ngFor="let btn of filteredNavList"
+        *ngFor="let btn of navList"
         class="sidebar__item"
         [class.active]="btn.name === activeNav"
       >
