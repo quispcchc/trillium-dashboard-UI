@@ -1,28 +1,15 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
-export class FooterComponent implements OnInit{
-
-  @Output() changeTab = new EventEmitter<string>();
+export class FooterComponent {
+  @Input() tabList!: { name: string, label: string, img: string, action: () => void }[] | undefined;
   @Output() logoutUser = new EventEmitter<void>();
 
-  accessibleRoles: string  | null | undefined;
-
-  ngOnInit(): void {
-    this.accessibleRoles = localStorage.getItem('accessible_roles');
-  }
-
-  isRoleAccessible(role: string): boolean {
-    const accessibleRolesArray = this.accessibleRoles ? this.accessibleRoles.split(',') : [];
-    return accessibleRolesArray.includes(role);
-  }
-
-  switchTab(name: string): void {
-    this.changeTab.emit(name);
+  scrollUp(): void {
     window.scroll({
       top: 0,
       behavior: 'smooth'
