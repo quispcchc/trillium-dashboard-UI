@@ -10,6 +10,16 @@
     border: none;
 }
 
+.form-no-content {
+    padding: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tab-no-content > p {
+    color: #0A050A;
+}
+
 @media (max-width: 768px) {
     .data-content {
         padding: 10px;

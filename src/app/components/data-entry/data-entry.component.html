@@ -1,109 +1,16 @@
-<app-sidebar-layout [navList]="navList" [activeNav]="currentFormAction">
+<app-sidebar-layout [navList]="formList" [activeNav]="currentFormAction">
     <div class="data-content">
-        <ng-container *ngIf="isFormAccessible('Accreditation') && currentFormAction === 'accreditation'">
-            <iframe
-                src="https://forms.office.com/r/nBBSDa0AUY"
+        <div *ngIf="currentFormAction === ''">
+            <div class="form-no-content">
+                <p>No forms available</p>
+            </div>
+        </div>
+        <div *ngFor="let form of formList" >
+            <ng-container *ngIf="isFormAccessible(form.label) && currentFormAction === form.name">
+                <iframe
+                [src]="form.url"
                 width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Comprehensive Support System') && currentFormAction === 'css'">
-            <iframe
-                src="https://forms.office.com/r/mSHF3TjCP6"
-                width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('MSAA') && currentFormAction === 'msaa'">
-            <iframe
-                src="https://forms.office.com/r/H57KJ5f1Xq"
-                width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Subcontracting for the Provision of Services - MSAA') && currentFormAction === 'sftpos'">
-            <iframe
-            src="https://forms.office.com/r/ZhSE3vJACU"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Quality Improvement') && currentFormAction === 'qi'">
-            <iframe
-            src="https://forms.office.com/r/Vs9kuYR8Z3"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Finance & Administration') && currentFormAction === 'faa'">
-            <iframe
-            src="https://forms.office.com/r/rsve1Haswt"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Healthy Parenting and Childhood') && currentFormAction === 'hpac'">
-            <iframe
-            src="https://forms.office.com/r/STFWTnfmEA"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Access to Primary Health Care') && currentFormAction === 'atphc'">
-            <iframe
-            src="https://forms.office.com/r/DDMDyGv9xm"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Youth Education & Empowerment') && currentFormAction === 'yeae'">
-            <iframe
-            src="https://forms.office.com/r/UmddC1r87Z"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Cross-Cutting') && currentFormAction === 'cc'">
-            <iframe
-            src="https://forms.office.com/r/rmdHyyMuht"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Department/Category Restructure') && currentFormAction === 'dcr'">
-            <iframe
-            src="https://forms.office.com/r/zEBhnJNd4g"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Food Security') && currentFormAction === 'fs'">
-            <iframe
-            src="https://forms.office.com/r/dbDmRZC2Sb"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Annual All Staff Satisfaction Survey') && currentFormAction === 'aasss'">
-            <iframe
-            src="https://forms.office.com/r/k20n8ypHPn"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Community Development') && currentFormAction === 'cd'">
-            <iframe
-            src="https://forms.office.com/r/Dgk3akZDkY"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Client Experience Survey') && currentFormAction === 'ces'">
-            <iframe
-            src="https://forms.office.com/r/fH5aKs4Z8C"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Complaints Report') && currentFormAction === 'cr'">
-            <iframe
-            src="https://forms.office.com/r/LnLup411XP"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('French Language Services') && currentFormAction === 'fls'">
-            <iframe
-            src="https://forms.office.com/r/ikX1u534Jw"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Human Resources') && currentFormAction === 'hr'">
-            <iframe
-            src="https://forms.office.com/r/XWqfydG816"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Incident & Near Miss Reports') && currentFormAction === 'inmr'">
-            <iframe
-            src="https://forms.office.com/r/rVZFYtLJ44"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Privacy Officers Report') && currentFormAction === 'por'">
-            <iframe
-            src="https://forms.office.com/r/sUtPtPUUPK"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
-        <ng-container *ngIf="isFormAccessible('Strategic Plans') && currentFormAction === 'sp'">
-            <iframe
-            src="https://forms.office.com/r/NLfsK7TRw5"
-            width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
-        </ng-container>
+            </ng-container>
+        </div>
     </div>
 </app-sidebar-layout>
