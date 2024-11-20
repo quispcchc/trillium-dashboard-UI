@@ -52,7 +52,7 @@
                 <td style="width: 20%;">{{ user.mail }}</td>
                 <td style="width: 15%;">
                   <ul>
-                    <li *ngFor="let role of user.accessible_roles">{{ role }}</li>
+                    <li *ngFor="let tab of user.accessible_tabs">{{ tab }}</li>
                   </ul>
                 </td>
                 <td style="width: 20%;">
@@ -210,19 +210,20 @@
             <div class="form-group">
               <label>Access to Dashboard</label>
               <div class="roles-container">
-                <div *ngFor="let role of availableRoles" class="role-checkbox">
+                <div *ngFor="let tab of availableTabs" class="role-checkbox">
                   <input
                     type="checkbox"
-                    [id]="role"
-                    [value]="role"
-                    [checked]="newUser.roles.includes(role)"
-                    (change)="onRoleChange(role)"
+                    [id]="tab"
+                    [value]="tab"
+                    [disabled]="tab !== 'Admin' && newUser.admin"
+                    [checked]="newUser.accessible_tabs.includes(tab)"
+                    (change)="onTabChange(tab, $event)"
                   />
-                  <label [for]="role">{{ role }}</label>
+                  <label [for]="tab">{{ tab }}</label>
                 </div>
               </div>
             </div>
-           <div class="form-group">
+          <div class="form-group">
               <label>Access to Forms</label>
               <div class="roles-container">
                 <div *ngFor="let form of availableForms" class="role-checkbox">
@@ -230,8 +231,9 @@
                     type="checkbox"
                     [id]="form"
                     [value]="form"
-                    [checked]="newUser.forms.includes(form)"
-                    (change)="onFormChange(form)"
+                    [disabled]="newUser.admin"
+                    [checked]="newUser.accessible_forms.includes(form)"
+                    (change)="onFormChange(form, $event)"
                   />
                   <label [for]="form">{{ form }}</label>
                 </div>
@@ -254,7 +256,7 @@
     </div>
     
     <!-- Edit User Modal -->
-    <div class="modal" *ngIf="isEditModalOpen">
+    <div class="modal edit-modal" *ngIf="isEditModalOpen">
       <div class="modal-content">
         <span class="close" (click)="closeEditModal()">&times;</span>
         <div class="modal-header">
@@ -262,26 +264,29 @@
         </div>
         <div class="modal-body">
           <form (ngSubmit)="updateUserData()">
-            <div class="form-group">
-              <label for="editFirstName">First Name</label>
-              <input
-                type="text"
-                id="editFirstName"
-                [(ngModel)]="selectedUser.first_name"
-                name="firstName"
-                disabled
-              />
+            <div class="form-row">
+              <div class="form-group">
+                <label for="editFirstName">First Name</label>
+                <input
+                  type="text"
+                  id="editFirstName"
+                  [(ngModel)]="selectedUser.first_name"
+                  name="firstName"
+                  disabled
+                />
+              </div>
+              <div class="form-group">
+                <label for="editLastName">Last Name</label>
+                <input
+                  type="text"
+                  id="editLastName"
+                  [(ngModel)]="selectedUser.last_name"
+                  name="lastName"
+                  disabled
+                />
+              </div>
             </div>
-            <div class="form-group">
-              <label for="editLastName">Last Name</label>
-              <input
-                type="text"
-                id="editLastName"
-                [(ngModel)]="selectedUser.last_name"
-                name="lastName"
-                disabled
-              />
-            </div>
+            <div class="form-row">
             <div class="form-group">
               <label for="editEmail">Email</label>
               <input
@@ -307,6 +312,8 @@
                 <option value="Management">Management</option>
               </select>
             </div>
+            </div>
+            <div class="form-row">
             <div class="form-group">
               <label for="editDepartment">Department</label>
               <input
@@ -327,6 +334,41 @@
                 required
               />
             </div>
+          </div>
+          <div class="form-group">
+            <label>Access to Dashboard</label>
+            <div class="roles-container">
+              <div *ngFor="let tab of availableTabs" class="role-checkbox">
+                <input
+                  type="checkbox"
+                  [id]="tab"
+                  name="tabCheckbox"
+                  [disabled]="tab !== 'Admin' && selectedUser.admin"
+                  [value]="tab"
+                  [checked]="selectedUser.accessible_tabs?.includes(tab)"
+                  (change)="onTabUpdate(tab, $event)"
+                />
+                <label [for]="tab">{{ tab }}</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Access to Forms</label>
+            <div class="roles-container">
+              <div *ngFor="let form of availableForms" class="role-checkbox forms-ch">
+                <input
+                  type="checkbox"
+                  name="formCheckbox"
+                  [disabled]="selectedUser.admin"
+                  [id]="form"
+                  [value]="form"
+                  [checked]="selectedUser.accessible_forms?.includes(form)"
+                  (change)="onFormUpdate(form, $event)"
+                />
+                <label [for]="form">{{ form }}</label>
+              </div>
+            </div>
+          </div>
           </form>
         </div>
 

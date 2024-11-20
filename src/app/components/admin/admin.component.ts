@@ -14,14 +14,13 @@ export class AdminComponent implements OnInit {
   loading: boolean = false;
   isModalOpen: boolean = false;
   currentAdminAction: string = 'manageUsers';
-  currentFormAction: string = 'accreditation';
-  availableForms = ['Accreditation', 'Comprehensive Support System', 'MSAA', 'Subcontracting for the Provision of Services - MSAA', 
-    'Quality Improvement', 'Finance & Administration', 'Healthy Parenting and Childhood', 'Access to Primary Health Care',
-    'Youth Education & Empowerment', 'Cross-Cutting', 'Department/Category Restructure', 'Food Security', 'Annual All Staff Satisfaction Survey',
-    'Community Development', 'Client Experience Survey', 'Complaints Report', 'French Language Services', 'Human Resources', 
-    'Incident & Near Miss Reports', 'Privacy Officers Report', 'Strategic Plans'];
-  availableRoles = ['Admin', 'Board', 'QCA', 'Operational Plan', 'Impact Blueprint', 'Data Entry'];
-  newUser = { firstName: '', lastName: '', email: '', roles: [] as string[], forms: [] as string[], department: '', jobTitle: '', password: '' };
+  availableForms = ['Community Development', 'Comprehensive Support System - Parent Child and Youth Services',
+    'Comprehensive Support System - Client Feedback Surveys', 'Comprehensive Support System - Assertive Community Treatment', 'Comprehensive Support System - Health Promotion and Counselling (Ahmet)',
+    'Comprehensive Support System - Health Promotion and Counselling (Omar)', 'Finance & Administration', 'Finance Annual Statement', 'Food Security', 'Emergency Food Cupboard',
+    'Healthy Parenting and Childhood', 'Cross-Cutting (Healthy Parenting and Childhood)', 'Youth Education & Empowerment', 'Subcontracting for the Provision of Services - MSAA', 'MSAA',
+    'Quality Improvement', 'Client Experience Survey', 'Complaints Report', 'French Language Services', 'Human Resources', 'Incident & Near Miss Reports', "Privacy Officer's Report", 'Strategic Plans']
+  availableTabs = ['Admin', 'Board', 'QCA', 'Operational Plan', 'Impact Blueprint', 'Data Entry'];
+  newUser = { firstName: '', lastName: '', email: '', accessible_tabs: [] as string[], accessible_forms: [] as string[], department: '', jobTitle: '', password: '', admin: false };
   searchTerm: string = '';
   sortDirection: 'asc' | 'desc' = 'asc';
   isDeleteModalOpen: boolean = false;
@@ -38,8 +37,8 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.manageUsers();
     this.userName = localStorage.getItem('first_name');
-    this.newUser.roles = [];
-    this.newUser.forms = [];
+    this.newUser.accessible_tabs = [];
+    this.newUser.accessible_forms = [];
 
     this.navList = [
       {
@@ -90,8 +89,8 @@ export class AdminComponent implements OnInit {
       first_name: this.newUser.firstName,
       last_name: this.newUser.lastName,
       mail: this.newUser.email,
-      roles: this.newUser.roles,
-      forms: this.newUser.forms,
+      tabs: this.newUser.accessible_tabs,
+      forms: this.newUser.accessible_forms,
       department: this.newUser.department,
       job_title: this.newUser.jobTitle,
       password: this.newUser.password,
@@ -102,7 +101,7 @@ export class AdminComponent implements OnInit {
       next: (data) => {
         this.users.push(data);
         this.filteredUsers.push(data);
-        this.newUser = { firstName: '', lastName: '', email: '', roles: [], forms: [], department: '', jobTitle: '', password: '' };
+        this.newUser = { firstName: '', lastName: '', email: '', accessible_tabs: [], accessible_forms: [], department: '', jobTitle: '', password: '', admin: false };
         this.closeModal();
         this.notificationService.show('User created successfully!');
       },
@@ -143,7 +142,8 @@ export class AdminComponent implements OnInit {
   }
 
   updateUser(user: any) {
-    this.selectedUser = { ...user };
+    this.selectedUser = JSON.parse(JSON.stringify(user));
+    this.selectedUser.admin = this.selectedUser.accessible_tabs.includes('Admin');
     this.isEditModalOpen = true;
   }
 
@@ -158,7 +158,9 @@ export class AdminComponent implements OnInit {
       role: this.selectedUser.role,
       department: this.selectedUser.department,
       job_title: this.selectedUser.job_title,
-      updated_by: this.userName
+      updated_by: this.userName,
+      accessible_tabs: this.selectedUser.accessible_tabs,
+      accessible_forms: this.selectedUser.accessible_forms
     };
 
     this.userService.updateUser(updatedUserData).subscribe({
@@ -216,7 +218,7 @@ export class AdminComponent implements OnInit {
 
   openModal() {
     this.isModalOpen = true;
-    this.newUser = { firstName: '', lastName: '', email: '', roles: [], forms: [], department: '', jobTitle: '', password: '' };
+    this.newUser = { firstName: '', lastName: '', email: '', accessible_tabs: [], accessible_forms: [], department: '', jobTitle: '', password: '', admin: false };
   }
 
   closeModal() {
@@ -227,26 +229,68 @@ export class AdminComponent implements OnInit {
     return this.selectedUser && this.selectedUser.department.trim() !== '' && this.selectedUser.job_title.trim() !== '';
   }
 
-  onRoleChange(role: string) {
-    if (this.newUser.roles.includes(role)) {
-      const index = this.newUser.roles.indexOf(role);
-      if (index !== -1) {
-        this.newUser.roles.splice(index, 1);
-      }
+  onTabChange(tab: string, e: Event) {
+    const checkbox = (e.target as HTMLInputElement);
+    if (checkbox.checked && tab === 'Admin') {
+      this.newUser.accessible_tabs = [...this.availableTabs];
+      this.newUser.accessible_forms = [...this.availableForms];
+      this.newUser.admin = true;
     } else {
-      this.newUser.roles.push(role);
+      this.newUser.admin = false;
+      if (checkbox.checked) {
+        this.newUser.accessible_tabs.push(tab);
+      } else {
+        const index = this.newUser.accessible_tabs.indexOf(tab);
+        if (index !== -1) {
+          this.newUser.accessible_tabs.splice(index, 1);
+        }
+      }
     }
   }
 
-  onFormChange(form: string) {
-    if (this.newUser.forms.includes(form)) {
-      const index = this.newUser.forms.indexOf(form);
-      if (index !== -1) {
-        this.newUser.forms.splice(index, 1);
-      }
+  onFormChange(form: string, e: Event) {
+    const checkbox = (e.target as HTMLInputElement);
+    if (checkbox.checked) {
+      this.newUser.accessible_forms.push(form);
     } else {
-      this.newUser.forms.push(form);
+      const index = this.newUser.accessible_forms.indexOf(form);
+      if (index !== -1) {
+        this.newUser.accessible_forms.splice(index, 1);
+      }
     }
+  }
+
+  onTabUpdate(tab: string, e: Event) {
+    const checkbox = (e.target as HTMLInputElement);
+    if (checkbox.checked && tab === 'Admin') {
+      this.selectedUser.accessible_tabs = [...this.availableTabs];
+      this.selectedUser.accessible_forms = [...this.availableForms];
+      this.selectedUser.admin = true;
+    } else {
+      this.selectedUser.admin = false;
+      if (checkbox.checked) {
+        this.selectedUser.accessible_tabs.push(tab);
+      } else {
+        const index = this.selectedUser.accessible_tabs.indexOf(tab);
+        if (index !== -1) {
+          this.selectedUser.accessible_tabs.splice(index, 1);
+        }
+      }
+    }
+  }
+
+  onFormUpdate(form: string, e: Event) {
+    const checkbox = (e.target as HTMLInputElement);
+
+    if (checkbox.checked) {
+      this.selectedUser.accessible_forms.push(form);
+    } else {
+      const index = this.selectedUser.accessible_forms.indexOf(form);
+      if (index !== -1) {
+        this.selectedUser.accessible_forms.splice(index, 1);
+      }
+    }
+  
   }
 
   isUserFormValid(): boolean {
@@ -256,7 +300,7 @@ export class AdminComponent implements OnInit {
       this.newUser.department.trim() !== '' &&
       this.newUser.jobTitle.trim() !== '' &&
       this.newUser.password.trim() !== '' &&
-      this.newUser.roles.length > 0 &&
-      this.newUser.forms.length > 0;
+      this.newUser.accessible_tabs.length > 0 &&
+      this.newUser.accessible_forms.length > 0;
   }
 }
