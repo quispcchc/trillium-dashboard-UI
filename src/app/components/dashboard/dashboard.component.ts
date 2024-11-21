@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '@services/auth/auth.service';
 
@@ -69,14 +68,14 @@ export class DashboardComponent implements OnInit {
           this.changeTab('admin');
         }
       }
-    ]
+    ];
     this.accessibleTabs = localStorage.getItem('accessible_tabs');
     const accessibleTabsArray: string[] = this.accessibleTabs ? this.accessibleTabs.split(',') : [];
 
-    const accessibleTabsObj: {[index: string]:any} = {}
+    const accessibleTabsObj: {[index: string]:any} = {};
 
     accessibleTabsArray.forEach((tab) => {
-      accessibleTabsObj[tab] = tab
+      accessibleTabsObj[tab] = tab;
     })
 
     this.tabList = tabs.filter((tab) => {
@@ -86,7 +85,7 @@ export class DashboardComponent implements OnInit {
       return tab.label in accessibleTabsObj;
     });
 
-    this.selectedTab = this.tabList[0]?.name || ''
+    this.selectedTab = this.tabList[0]?.name || '';
 
   }
 
