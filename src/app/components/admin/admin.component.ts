@@ -143,7 +143,7 @@ export class AdminComponent implements OnInit {
 
   updateUser(user: any) {
     this.selectedUser = JSON.parse(JSON.stringify(user));
-    this.selectedUser.admin = this.selectedUser.accessible_tabs.includes('Admin');
+    this.selectedUser.admin = this.selectedUser.accessible_tabs?.includes('Admin') || false;
     this.isEditModalOpen = true;
   }
 
