@@ -209,8 +209,8 @@
             </div>
             <div class="form-group">
               <label>Access to Dashboard</label>
-              <div class="roles-container">
-                <div *ngFor="let tab of availableTabs" class="role-checkbox">
+              <div class="tabs-container">
+                <div *ngFor="let tab of availableTabs" class="tab-checkbox">
                   <input
                     type="checkbox"
                     [id]="tab"
@@ -225,8 +225,8 @@
             </div>
           <div class="form-group">
               <label>Access to Forms</label>
-              <div class="roles-container">
-                <div *ngFor="let form of availableForms" class="role-checkbox">
+              <div class="forms-container">
+                <div *ngFor="let form of availableForms" class="form-checkbox">
                   <input
                     type="checkbox"
                     [id]="form"
@@ -337,8 +337,8 @@
           </div>
           <div class="form-group">
             <label>Access to Dashboard</label>
-            <div class="roles-container">
-              <div *ngFor="let tab of availableTabs" class="role-checkbox">
+            <div class="tabs-container">
+              <div *ngFor="let tab of availableTabs" class="tab-checkbox">
                 <input
                   type="checkbox"
                   [id]="tab"
@@ -354,8 +354,8 @@
           </div>
           <div class="form-group">
             <label>Access to Forms</label>
-            <div class="roles-container">
-              <div *ngFor="let form of availableForms" class="role-checkbox forms-ch">
+            <div class="forms-container">
+              <div *ngFor="let form of availableForms" class="form-checkbox forms-ch">
                 <input
                   type="checkbox"
                   name="formCheckbox"
