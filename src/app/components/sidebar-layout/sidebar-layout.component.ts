@@ -6,16 +6,22 @@ import { Component, Input,OnInit, ViewChild, ElementRef } from '@angular/core';
   styleUrl: './sidebar-layout.component.css'
 })
 export class SidebarLayoutComponent implements OnInit{
-  @Input() navList!: { name: string, label: string, action: () => void }[] | undefined;
+  @Input() navList!: { name: string, label: string, action: () => void }[];
   @Input() activeNav!: string;
   @ViewChild('sidebar') sidebar!: ElementRef;
+  @Input() shouldFilterTabs!: boolean;
   accessibleForms: string  | null | undefined;
   filteredNavList: { name: string, label: string, action: () => void }[] = [];
 
   ngOnInit(): void {
-    this.accessibleForms = localStorage.getItem('accessible_forms');
-    if (this.navList) {
-      this.filteredNavList = this.navList.filter(btn => this.isFormAccessible(btn.label));
+    console.log("filter or not:", this.shouldFilterTabs);
+    if (this.shouldFilterTabs) {
+      this.accessibleForms = localStorage.getItem('accessible_forms');
+      if (this.navList) {
+        this.filteredNavList = this.navList.filter(btn => this.isFormAccessible(btn.label));
+      }
+    } else {
+      this.filteredNavList = this.navList;
     }
   }
 

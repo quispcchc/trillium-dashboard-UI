@@ -1,4 +1,4 @@
-<app-sidebar-layout [navList]="navList" [activeNav]="currentFormAction">
+<app-sidebar-layout [navList]="navList" [activeNav]="currentFormAction" [shouldFilterTabs]="shouldFilterTabs">
     <div class="data-content">
         <ng-container *ngIf="isFormAccessible('Accreditation') && currentFormAction === 'accreditation'">
             <iframe

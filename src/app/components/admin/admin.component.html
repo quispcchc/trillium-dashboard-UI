@@ -1,4 +1,4 @@
-<app-sidebar-layout [navList]="navList" [activeNav]="currentAdminAction">
+<app-sidebar-layout [navList]="navList" [activeNav]="currentAdminAction" [shouldFilterTabs]="shouldFilterTabs">
   <app-confirmation-modal
     *ngIf="isDeleteModalOpen"
     [message]="'Are you sure you want to delete this user?'"
@@ -52,7 +52,7 @@
                 <td style="width: 20%;">{{ user.mail }}</td>
                 <td style="width: 15%;">
                   <ul>
-                    <li *ngFor="let role of user.accessible_roles">{{ role }}</li>
+                    <li *ngFor="let tab of user.accessible_tabs">{{ tab }}</li>
                   </ul>
                 </td>
                 <td style="width: 20%;">
@@ -209,22 +209,22 @@
             </div>
             <div class="form-group">
               <label>Access to Dashboard</label>
-              <div class="roles-container">
-                <div *ngFor="let role of availableRoles" class="role-checkbox">
+              <div class="tabs-container">
+                <div *ngFor="let tab of availableTabs" class="role-checkbox">
                   <input
                     type="checkbox"
-                    [id]="role"
-                    [value]="role"
-                    [checked]="newUser.roles.includes(role)"
-                    (change)="onRoleChange(role)"
+                    [id]="tab"
+                    [value]="tab"
+                    [checked]="newUser.tabs.includes(tab)"
+                    (change)="onTabChange(tab)"
                   />
-                  <label [for]="role">{{ role }}</label>
+                  <label [for]="tab">{{ tab }}</label>
                 </div>
               </div>
             </div>
            <div class="form-group">
               <label>Access to Forms</label>
-              <div class="roles-container">
+              <div class="tabs-container">
                 <div *ngFor="let form of availableForms" class="role-checkbox">
                   <input
                     type="checkbox"

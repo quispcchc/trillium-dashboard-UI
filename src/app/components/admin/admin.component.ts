@@ -20,8 +20,8 @@ export class AdminComponent implements OnInit {
     'Youth Education & Empowerment', 'Cross-Cutting', 'Department/Category Restructure', 'Food Security', 'Annual All Staff Satisfaction Survey',
     'Community Development', 'Client Experience Survey', 'Complaints Report', 'French Language Services', 'Human Resources', 
     'Incident & Near Miss Reports', 'Privacy Officers Report', 'Strategic Plans'];
-  availableRoles = ['Admin', 'Board', 'QCA', 'Operational Plan', 'Impact Blueprint', 'Data Entry'];
-  newUser = { firstName: '', lastName: '', email: '', roles: [] as string[], forms: [] as string[], department: '', jobTitle: '', password: '' };
+  availableTabs = ['Admin', 'Board', 'QCA', 'Operational Plan', 'Impact Blueprint', 'Data Entry'];
+  newUser = { firstName: '', lastName: '', email: '', tabs: [] as string[], forms: [] as string[], department: '', jobTitle: '', password: '' };
   searchTerm: string = '';
   sortDirection: 'asc' | 'desc' = 'asc';
   isDeleteModalOpen: boolean = false;
@@ -31,14 +31,15 @@ export class AdminComponent implements OnInit {
   loadingLogs: boolean = false;
   logs: any[] = [];
   userName: string | null | undefined;
-  navList!: { name: string, label: string, action: () => void }[];
+  navList: { name: string, label: string, action: () => void }[] = [];
+  shouldFilterTabs:boolean = false;
 
   constructor(private userService: UserService, public notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.manageUsers();
     this.userName = localStorage.getItem('first_name');
-    this.newUser.roles = [];
+    this.newUser.tabs = [];
     this.newUser.forms = [];
 
     this.navList = [
@@ -90,7 +91,7 @@ export class AdminComponent implements OnInit {
       first_name: this.newUser.firstName,
       last_name: this.newUser.lastName,
       mail: this.newUser.email,
-      roles: this.newUser.roles,
+      tabs: this.newUser.tabs,
       forms: this.newUser.forms,
       department: this.newUser.department,
       job_title: this.newUser.jobTitle,
@@ -102,7 +103,7 @@ export class AdminComponent implements OnInit {
       next: (data) => {
         this.users.push(data);
         this.filteredUsers.push(data);
-        this.newUser = { firstName: '', lastName: '', email: '', roles: [], forms: [], department: '', jobTitle: '', password: '' };
+        this.newUser = { firstName: '', lastName: '', email: '', tabs: [], forms: [], department: '', jobTitle: '', password: '' };
         this.closeModal();
         this.notificationService.show('User created successfully!');
       },
@@ -216,7 +217,7 @@ export class AdminComponent implements OnInit {
 
   openModal() {
     this.isModalOpen = true;
-    this.newUser = { firstName: '', lastName: '', email: '', roles: [], forms: [], department: '', jobTitle: '', password: '' };
+    this.newUser = { firstName: '', lastName: '', email: '', tabs: [], forms: [], department: '', jobTitle: '', password: '' };
   }
 
   closeModal() {
@@ -227,14 +228,14 @@ export class AdminComponent implements OnInit {
     return this.selectedUser && this.selectedUser.department.trim() !== '' && this.selectedUser.job_title.trim() !== '';
   }
 
-  onRoleChange(role: string) {
-    if (this.newUser.roles.includes(role)) {
-      const index = this.newUser.roles.indexOf(role);
+  onTabChange(tab: string) {
+    if (this.newUser.tabs.includes(tab)) {
+      const index = this.newUser.tabs.indexOf(tab);
       if (index !== -1) {
-        this.newUser.roles.splice(index, 1);
+        this.newUser.tabs.splice(index, 1);
       }
     } else {
-      this.newUser.roles.push(role);
+      this.newUser.tabs.push(tab);
     }
   }
 
@@ -256,7 +257,7 @@ export class AdminComponent implements OnInit {
       this.newUser.department.trim() !== '' &&
       this.newUser.jobTitle.trim() !== '' &&
       this.newUser.password.trim() !== '' &&
-      this.newUser.roles.length > 0 &&
+      this.newUser.tabs.length > 0 &&
       this.newUser.forms.length > 0;
   }
 }

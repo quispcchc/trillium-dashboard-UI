@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class DataEntryComponent implements OnInit {
   currentFormAction: string = 'accreditation';
   isSidebarCollapsed: boolean = false;
+  shouldFilterTabs: boolean = true;
   accessibleForms: string  | null | undefined;
-  navList!: { name: string, label: string, action: () => void }[];
+  navList: { name: string, label: string, action: () => void }[] = [];
 
   ngOnInit(): void {
 

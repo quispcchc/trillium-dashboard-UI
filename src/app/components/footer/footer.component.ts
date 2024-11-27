@@ -10,15 +10,15 @@ export class FooterComponent implements OnInit{
   @Output() changeTab = new EventEmitter<string>();
   @Output() logoutUser = new EventEmitter<void>();
 
-  accessibleRoles: string  | null | undefined;
+  accessibleTabs: string  | null | undefined;
 
   ngOnInit(): void {
-    this.accessibleRoles = localStorage.getItem('accessible_roles');
+    this.accessibleTabs = localStorage.getItem('accessible_tabs');
   }
 
   isRoleAccessible(role: string): boolean {
-    const accessibleRolesArray = this.accessibleRoles ? this.accessibleRoles.split(',') : [];
-    return accessibleRolesArray.includes(role);
+    const accessibleTabsArray = this.accessibleTabs ? this.accessibleTabs.split(',') : [];
+    return accessibleTabsArray.includes(role);
   }
 
   switchTab(name: string): void {

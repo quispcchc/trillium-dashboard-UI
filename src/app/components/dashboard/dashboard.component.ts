@@ -24,6 +24,8 @@ export class DashboardComponent implements OnInit {
     localStorage.removeItem('first_name');
     localStorage.removeItem('role');
     localStorage.removeItem('email');
+    localStorage.removeItem('accessible_tabs');
+    localStorage.removeItem('accessible_forms');
     this.router.navigate(['/login']);
   }
 
