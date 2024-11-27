@@ -9,23 +9,8 @@
       <div class="mobile-menu__close">
         <img src="close-icon.svg" class="" alt="mobile menu close btn" (click)="setMenu(false)"/>
       </div>
-      <div class="mobile-menu__nav" *ngIf="userRole === 'Admin' || userRole === 'Board'" [class.active]="selectedTab === 'board'" (click)="switchTab('board', true)">
-        <button>Board of Directors</button>
-      </div>
-      <div class="mobile-menu__nav" *ngIf="userRole === 'Admin' || userRole === 'QCA'" [class.active]="selectedTab === 'qca'" (click)="switchTab('qca', true)">
-        <button>QCA</button>
-      </div>
-      <div class="mobile-menu__nav" *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'op'" (click)="switchTab('op', true)">
-        <button>Operational Plan</button>
-      </div>
-      <div class="mobile-menu__nav" *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'ib'" (click)="switchTab('ib', true)">
-        <button>Impact Blueprint</button>
-      </div>
-      <div class="mobile-menu__nav" *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'dataentry'" (click)="switchTab('dataentry', true)">
-        <button>Data Entry</button>
-      </div>
-      <div class="mobile-menu__nav" *ngIf="userRole === 'Admin'" [class.active]="selectedTab === 'admin'"  (click)="switchTab('admin', true)">
-        <button>Admin</button>
+      <div class="mobile-menu__nav" *ngFor="let tab of tabList" [class.active]="selectedTab === tab.name" (click)="tab.action(); setMenu(false)">
+        <button>{{ tab.label }}</button>
       </div>
     </div>
   </div>
@@ -43,33 +28,9 @@
 
   <div class="header__tabs">
 
-    <button class="header__btn" *ngIf="isRoleAccessible('Board')" [class.active]="selectedTab === 'board'" (click)="switchTab('board')">
-      <img src="board-icon.svg" class="" alt="Board Tab Icon"/>
-      <span>Board of Directors</span>
-    </button>
-
-    <button class="header__btn" *ngIf="isRoleAccessible('QCA')" [class.active]="selectedTab === 'qca'" (click)="switchTab('qca')">
-      <img src="qca-icon.svg" class="" alt="QCA Tab Icon"/>
-      <span>QCA</span>
-    </button>
-
-    <button class="header__btn" *ngIf="isRoleAccessible('Operational Plan')" [class.active]="selectedTab === 'op'" (click)="switchTab('op')">
-      <img src="op-icon.svg" class="" alt="Operational plan Tab Icon"/>
-      <span>Operational Plan</span>
-    </button>
-
-    <button class="header__btn" *ngIf="isRoleAccessible('Impact Blueprint')" [class.active]="selectedTab === 'ib'" (click)="switchTab('ib')">
-      <img src="impact-icon.svg" class="" alt="Impact Blueprint Tab Icon"/>
-      <span>Impact Blueprint</span>
-    </button>
-
-    <button class="header__btn" *ngIf="isRoleAccessible('Data Entry')" [class.active]="selectedTab === 'dataentry'" (click)="switchTab('dataentry')">
-      <img src="data-entry-icon.svg" class="" alt="Data Entry Tab Icon"/>
-      <span>Data Entry</span>
-    </button>
-    <button class="header__btn" *ngIf="isRoleAccessible('Admin')" [class.active]="selectedTab === 'admin'" (click)="switchTab('admin')">
-      <img src="admin-icon.svg" class="" alt="Admin Tab Icon"/>
-      <span>Admin</span>
+    <button class="header__btn" *ngFor="let tab of tabList" [class.active]="selectedTab === tab.name" (click)="tab.action()" >
+      <img [src]="tab.img" class="" [alt]="tab.label + ' Tab Icon'"/>
+      <span>{{tab.label}}</span>
     </button>
 
   </div>

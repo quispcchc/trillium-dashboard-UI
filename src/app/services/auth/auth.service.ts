@@ -39,6 +39,11 @@ export class AuthService {
   logout(): void {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem('authToken');
+      localStorage.removeItem('first_name');
+      localStorage.removeItem('role');
+      localStorage.removeItem('email');
+      localStorage.removeItem('accessible_tabs');
+      localStorage.removeItem('accessible_forms');
     }
   }
 

@@ -7,13 +7,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Input() selectedTab!: string;
-  @Output() changeTab = new EventEmitter<string>();
+  @Input() tabList!: { name: string, label: string, img: string, action: () => void }[] | undefined;
   @Output() logoutUser = new EventEmitter<void>();
 
   userName: string | null | undefined;
   userRole: string | null | undefined;
   userEmail: string | null | undefined;
-  accessibleTabs: string  | null | undefined;
 
   menuOpen: boolean = false;
   fadeOut: boolean = false;
@@ -23,24 +22,10 @@ export class HeaderComponent implements OnInit {
     this.userName = localStorage.getItem('first_name');
     this.userRole = localStorage.getItem('role');
     this.userEmail = localStorage.getItem('email');
-    this.accessibleTabs = localStorage.getItem('accessible_tabs');
-  }
-
-  isRoleAccessible(role: string): boolean {
-    const accessibleTabsArray = this.accessibleTabs ? this.accessibleTabs.split(',') : [];
-    return accessibleTabsArray.includes(role);
   }
 
   logout(): void {
     this.logoutUser.emit();
-  }
-
-  switchTab(name: string, mobile:boolean = false): void {
-    this.changeTab.emit(name);
-
-    if (mobile) {
-      this.menuOpen = false;
-    }
   }
 
   setMenu(state: boolean) {

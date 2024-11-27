@@ -53,7 +53,7 @@
 
   .layout > .sidebar {
     width: 25%;
-    height: calc(100vh - 6rem);
+    height: auto;
   }
 
   .layout > .content {
