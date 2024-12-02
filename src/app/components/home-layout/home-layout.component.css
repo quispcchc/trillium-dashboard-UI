@@ -17,10 +17,29 @@
   width: 100%;
   background: #f2f2f2;
   border-radius: 1rem;
+  position: relative;
+}
+
+.team-btn-container {
+  padding: 1rem;
+  position: absolute;
+  right: 5%;
+}
+
+.team-btn {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  border: 1px solid #767676;
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  background-color: #1C79F2;
+  color: #FFFFFF;
+  cursor: pointer;
 }
 
 .home-layout__body {
-  height: 80%;
+  height: 78%;
   width: 100%;
   color: #0A050A;
   display: flex;
@@ -102,6 +121,10 @@
     height: 100%;
   }
 
+  .home-layout__body {
+    height: 80%;
+  }
+
   .home-layout__body > div {
     width: 80%;
   }
@@ -116,6 +139,10 @@
   .home-layout__content {
     width: 50%;
     padding: 1rem 2rem;
+  }
+
+  .team-btn-container {
+    padding: 0;
   }
 
   .home-layout__header > h3 {

@@ -4,6 +4,12 @@
   </div>
 
   <div class="home-layout__content">
+    <div class="team-btn-container" *ngIf="homePage">
+      <button class="team-btn" (click)="openTeamModal.emit()">
+        <img src="people-outline-icon.svg" alt="People Icon"/>
+        <span>Our Team</span>
+      </button>
+    </div>
     <div class="home-layout__body">
       <div>
         <div class="home-layout__header">
