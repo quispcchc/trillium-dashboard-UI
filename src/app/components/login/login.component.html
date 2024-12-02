@@ -1,46 +1,50 @@
-<app-home-layout heading="Welcome" [instructions]="['Enter your email and password to continue.']">
-    <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="input-group">
-            <label for="email">Email</label>
-            <input id="email" formControlName="email" type="text" placeholder="Enter your Email"
-                autocomplete="off"
-                [ngClass]="email && email.value !== '' && email.invalid ? 'error-border' : ''"/>
-            <div *ngIf="email && email?.value !== '' && email.invalid && (email.dirty || email.touched)"
-            class="error-message">
-                <p *ngIf="email.errors?.['required']">Email is required.</p>
-                <p *ngIf="email?.errors?.['email']">Invalid email address.</p>
+<ng-container>
+    <app-home-layout heading="Welcome" [instructions]="['Enter your email and password to continue.']" [homePage]="true" (openTeamModal)="openTeamModal()">
+        <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input id="email" formControlName="email" type="text" placeholder="Enter your Email"
+                    autocomplete="off"
+                    [ngClass]="email && email.value !== '' && email.invalid ? 'error-border' : ''"/>
+                <div *ngIf="email && email?.value !== '' && email.invalid && (email.dirty || email.touched)"
+                class="error-message">
+                    <p *ngIf="email.errors?.['required']">Email is required.</p>
+                    <p *ngIf="email?.errors?.['email']">Invalid email address.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="input-group">
-            <label for="password">Password</label>
-            <input id="password" formControlName="password" type="password" placeholder="Enter your Password"
-                autocomplete="off"
-                [ngClass]="password && password.value !== '' && password.invalid ? 'error-border': ''"/>
-            <div *ngIf="password && password.value !== '' && password.invalid && (password.dirty || password.touched)"
-            class="error-message">
-                <p *ngIf="password.errors?.['required']">Password is required.</p>
-                <p *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</p>
-                <p *ngIf="password?.errors?.['pattern']">
-                    Password must contain at least one special character, one
-                    uppercase letter, one lowercase letter, and one number.
-                </p>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input id="password" formControlName="password" type="password" placeholder="Enter your Password"
+                    autocomplete="off"
+                    [ngClass]="password && password.value !== '' && password.invalid ? 'error-border': ''"/>
+                <div *ngIf="password && password.value !== '' && password.invalid && (password.dirty || password.touched)"
+                class="error-message">
+                    <p *ngIf="password.errors?.['required']">Password is required.</p>
+                    <p *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</p>
+                    <p *ngIf="password?.errors?.['pattern']">
+                        Password must contain at least one special character, one
+                        uppercase letter, one lowercase letter, and one number.
+                    </p>
+                </div>
             </div>
-        </div>
 
-        <div *ngIf="errorMessage" class="error-message alert">
-            {{ errorMessage }}
-        </div>
+            <div *ngIf="errorMessage" class="error-message alert">
+                {{ errorMessage }}
+            </div>
 
-        <div class="login__actions">
-            <button class="login__btn" type="submit"
-                [disabled]="loginForm.invalid || errorMessage">
-                Login
-            </button>
-            <button class="forgot-password-btn" type="button"
-            (click)="resetPassword()">
-                Forgot Password
-            </button>
-        </div>
-    </form>
-</app-home-layout>
+            <div class="login__actions">
+                <button class="login__btn" type="submit"
+                    [disabled]="loginForm.invalid || errorMessage">
+                    Login
+                </button>
+                <button class="forgot-password-btn" type="button"
+                (click)="resetPassword()">
+                    Forgot Password
+                </button>
+            </div>
+        </form>
+    </app-home-layout>
+
+    <app-team-modal [modalOpen]="teamModalOpen" (closeModal)="closeTeamModal()"></app-team-modal>
+</ng-container>

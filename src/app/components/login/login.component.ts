@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
     loginForm!: FormGroup;
     errorMessage: string | null = null;
+    teamModalOpen: boolean = false;
 
     constructor(private fb: FormBuilder,
         private authService: AuthService,
@@ -63,4 +64,13 @@ export class LoginComponent implements OnInit {
     resetPassword() {
         this.router.navigate(['/forgot-password']);
     }
+
+    openTeamModal() {
+        this.teamModalOpen = true;
+    }
+
+    closeTeamModal() {
+        this.teamModalOpen = false;
+    }
+
 }
