@@ -1,0 +1,163 @@
+.team-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadein .2s ease-in-out forwards;
+}
+
+.team-modal-overlay.close {
+  animation: fadeout .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+
+.team-modal-content {
+  background-color: #ffffff;
+  height: 90%;
+  width: 85%;
+  border-radius: 1rem;
+  position: relative;
+  padding: 3rem 2rem 2rem 2rem;
+  color: #0A050A;
+  animation: blowUpModal .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+
+.team-modal-content.close {
+  animation: closeModal .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+
+.close-btn {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 3%;
+  right: 5%;
+  cursor: pointer;
+}
+
+.team__header {
+  text-align: center;
+}
+
+.team__header > h3 {
+  font-size: 2rem;
+}
+
+.team__header > p {
+  margin: 0.3rem 0;
+}
+
+.team__list-container {
+  height: 85%;
+  overflow: scroll;
+  margin: 1.5rem 0;
+  display: flex;
+  row-gap: 3rem;
+  column-gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+  justify-content: space-between;
+}
+
+.team__member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  width: 100%;
+}
+
+.team__member-img {
+  width: 6.25rem;
+  height: 6.25rem;
+  background-color: #757575;
+  border-radius: 50%;
+}
+
+.team__member-img > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.team__member-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  word-break: break-all;
+}
+
+.team__member-title, .team__member-link {
+  font-size: 0.8rem;
+}
+
+.team__member-link {
+  color: #1C79F2;
+}
+
+@media screen and (min-width: 575px) {
+  .team__member {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .team-modal-content {
+    padding-block: 4rem;
+  }
+
+  .close-btn {
+    right: 3%;
+  }
+
+  .team__member {
+    width: 30%;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+  
+}
+
+@keyframes blowUpModal {
+  0% {
+    transform:scale(0);
+  }
+  100% {
+    transform:scale(1);
+  }
+}
+
+@keyframes closeModal {
+  0% {
+    transform:scale(1);
+    opacity:1;
+  }
+  100% {
+    transform:scale(0);
+    opacity:0;
+  }
+}

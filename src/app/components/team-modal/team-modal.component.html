@@ -1,0 +1,19 @@
+<div class="team-modal-overlay" *ngIf="modalOpen" [ngClass]="modalClosed ? 'close' : ''" (click)="onOverlayClick($event)">
+  <div class="team-modal-content" [ngClass]="modalClosed ? 'close' : ''">
+    <button class="close-btn" (click)="closeTeamModal()"><img src="close-icon2.svg" alt="close modal icon"/></button>
+    <div class="team__header">
+      <h3>Our Team</h3>
+      <p>Meet the people behind the platform</p>
+    </div>
+    <div class="team__list-container">
+      <div class="team__member">
+        <div class="team__member-img">
+          <img src="" alt=""/>
+        </div>
+        <p class="team__member-name">Full Name</p>
+        <p class="team__member-title">Full Title</p>
+        <a class="team__member-link" href="">Linkedin Link</a>
+      </div>
+    </div>
+  </div>
+</div>

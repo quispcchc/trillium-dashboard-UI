@@ -27,6 +27,7 @@ import { OperationalPlanComponent } from './components/operational-plan/operatio
 import { ImpactBlueprintComponent } from './components/impact-blueprint/impact-blueprint.component';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 import { HomeLayoutComponent } from './components/home-layout/home-layout.component';
+import { TeamModalComponent } from './components/team-modal/team-modal.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { HomeLayoutComponent } from './components/home-layout/home-layout.compon
     OperationalPlanComponent,
     ImpactBlueprintComponent,
     ComingSoonComponent,
-    HomeLayoutComponent
+    HomeLayoutComponent,
+    TeamModalComponent
   ],
   imports: [
     BrowserModule,
