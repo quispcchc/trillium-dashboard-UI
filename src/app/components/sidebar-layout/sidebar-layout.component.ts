@@ -9,6 +9,11 @@ export class SidebarLayoutComponent {
   @Input() navList!: { name: string, label: string, action: () => void }[] | undefined;
   @Input() activeNav!: string;
   @ViewChild('sidebar') sidebar!: ElementRef;
+  sidebarOpen: boolean;
+
+  constructor(){
+    this.sidebarOpen = JSON.parse(localStorage.getItem('sidebarOpen') || 'true');
+  }
 
   scrollUp() {
     if (window.matchMedia('(max-width: 767px)').matches){
@@ -17,5 +22,15 @@ export class SidebarLayoutComponent {
         behavior: 'smooth'
       })
     }
+  }
+
+  openSidebar() {
+    this.sidebarOpen = true;
+    localStorage.setItem('sidebarOpen', JSON.stringify(true));
+  }
+
+  closeSidebar() {
+    this.sidebarOpen = false;
+    localStorage.setItem('sidebarOpen', JSON.stringify(false));
   }
 }
