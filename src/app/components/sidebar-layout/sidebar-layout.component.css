@@ -2,6 +2,7 @@
   width: 100%;
   height: calc(100vh - 3.75rem);
   flex-grow: 1;
+  scroll-behavior: smooth;
 }
 
 .layout > .sidebar {
@@ -26,7 +27,7 @@
   color: #f2f2f2;
   border: none;
   margin: 0.5rem 0;
-  padding: 0.6rem 1rem;
+  padding: 0.6rem 2rem;
   cursor: pointer;
   border-radius: 5rem;
   transition: background-color .2s ease-in;
@@ -35,6 +36,15 @@
 
 .sidebar__btn.active, .sidebar__btn:hover {
   background-color: #1C79F2;
+}
+
+.sidebar__toggle {
+  display: none;
+}
+
+.sidebar__open, .sidebar__close {
+  background-color: transparent;
+  border: none;
 }
 
 @media screen and (max-width: 767px) {
@@ -51,13 +61,43 @@
     display: flex;
   }
 
+  .sidebar__toggle {
+    display: block;
+    margin: 0.3rem 0;
+  }
+
+  .sidebar__open, .sidebar__close {
+    cursor: pointer;
+  }
+
   .layout > .sidebar {
     width: 25%;
     height: auto;
+    transition: all .2s ease-in;
+  }
+
+  .layout > .sidebar.close {
+    width: 5%;
+    background-color: transparent;
+    overflow: hidden;
+  }
+
+  .sidebar__nav {
+    animation: fadein .4s ease-in-out .2s forwards;
+    opacity: 0;
+  }
+
+  .sidebar__nav.sidebar-close {
+    display: none;
   }
 
   .layout > .content {
     width: 75%;
+    transition: width .8s linear;
+  }
+
+  .layout > .content.sidebar-close {
+    width: 95%;
   }
 
 }
@@ -71,6 +111,28 @@
 
   .layout > .content {
     width: 83%;
+  }
+
+  .layout > .sidebar.close {
+    width: 3%;
+  }
+
+  .layout > .content.sidebar-close {
+    width: 97%;
+  }
+
+  .sidebar__btn {
+    padding: 0.6rem 1.3rem;
+  }
+
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 
 }

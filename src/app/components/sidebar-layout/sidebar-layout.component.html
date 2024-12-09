@@ -1,22 +1,30 @@
 <div class="layout">
-  <div class="sidebar" #sidebar>
-    <ul class="sidebar__nav">
-      <li
-        *ngFor="let btn of navList"
-        class="sidebar__item"
-        [class.active]="btn.name === activeNav"
-      >
-        <button
-          (click)="btn.action(); scrollUp();"
-          class="sidebar__btn"
+    <div class="sidebar" #sidebar [ngClass]="sidebarOpen ? '' : 'close'">
+      <div class="sidebar__toggle">
+        <button class="sidebar__open" *ngIf="!sidebarOpen" (click)="openSidebar()">
+          <img src="sidebar_toggle_blue.svg" alt="open sidebar icon"/>
+        </button>
+        <button class="sidebar__close" *ngIf="sidebarOpen" (click)="closeSidebar()">
+          <img src="sidebar_toggle.svg" class="sidebar__close-icon" alt="close sidebar icon"/>
+        </button>
+      </div>
+      <ul class="sidebar__nav" [ngClass]="sidebarOpen ? '' : 'sidebar-close'">
+        <li
+          *ngFor="let btn of navList"
+          class="sidebar__item"
           [class.active]="btn.name === activeNav"
         >
-          {{ btn.label }}
-        </button>
-      </li>
-    </ul>
-  </div>
-  <div class="content">
+          <button
+            (click)="btn.action(); scrollUp();"
+            class="sidebar__btn"
+            [class.active]="btn.name === activeNav"
+          >
+            {{ btn.label }}
+          </button>
+        </li>
+      </ul>
+    </div>
+  <div class="content" [ngClass]="sidebarOpen ? '' : 'sidebar-close'">
     <ng-content></ng-content>
   </div>
 </div>
