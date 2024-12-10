@@ -6,13 +6,13 @@
       <p>Meet the people behind the platform</p>
     </div>
     <div class="team__list-container">
-      <div class="team__member">
-        <div class="team__member-img">
-          <img src="" alt=""/>
+      <div class="team__member" *ngFor="let member of teamList">
+        <div class="team__member-img" >
+          <img [src]="member.img" alt="" *ngIf="member.imgAvailable"/>
         </div>
-        <p class="team__member-name">Full Name</p>
-        <p class="team__member-title">Full Title</p>
-        <a class="team__member-link" href="">Linkedin Link</a>
+        <p class="team__member-name">{{ member.name }}</p>
+        <p class="team__member-title">{{ member.title }}</p>
+        <a class="team__member-link" [href]="member.linkedIn" target="_blank">Linkedin Link</a>
       </div>
     </div>
   </div>
