@@ -58,6 +58,13 @@ export class TeamModalComponent implements OnInit {
         linkedIn: 'https://www.linkedin.com/in/anastasiia-zuikova'
       },
       {
+        name: 'MD OLI Ahad Khan',
+        title: 'UI/UX Designer',
+        img: 'team/Ahad.png',
+        imgAvailable: true,
+        linkedIn: 'https://www.linkedin.com/in/ahadkhan082'
+      },
+      {
         name: 'Sindhura Movva',
         title: 'Full Stack Web Developer',
         img: 'team/Sindhura.png',
