@@ -30,6 +30,13 @@ export class TeamModalComponent implements OnInit {
         linkedIn: 'http://www.linkedin.com/in/kaoutar-fairouzane-6a149a37'
       },
       {
+        name: 'Michel Hidalgo Delbeau',
+        title: 'Project Manager',
+        img: 'team/Michel.png',
+        imgAvailable: true,
+        linkedIn: 'https://www.linkedin.com/in/michel-hidalgo-delbeau/'
+      },
+      {
         name: 'Mariam El Haiba',
         title: 'Project Manager',
         img: 'team/Mariam_ElHaiba.png',
