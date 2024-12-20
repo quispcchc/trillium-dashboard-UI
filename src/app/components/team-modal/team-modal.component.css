@@ -22,7 +22,7 @@
   width: 85%;
   border-radius: 1rem;
   position: relative;
-  padding: 3rem 2rem 2rem 2rem;
+  padding: 3rem 2rem 5rem 2rem;
   color: #0A050A;
   animation: blowUpModal .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 }

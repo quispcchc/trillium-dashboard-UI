@@ -10,9 +10,9 @@
         <span>Our Team</span>
       </button>
     </div>
-    <div class="home-layout__body">
+    <div class="home-layout__body" [ngClass]="{'home-page': homePage}">
       <div>
-        <div class="home-layout__header">
+        <div class="home-layout__header" [ngClass]="{'home-page': homePage}">
           <div class="logo">
             <img src="logo.svg" alt="app logo" />
           </div>

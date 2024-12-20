@@ -32,7 +32,7 @@
   align-items: center;
   border: 1px solid #767676;
   border-radius: 2rem;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.6rem;
   background-color: #1C79F2;
   color: #FFFFFF;
   cursor: pointer;
@@ -54,6 +54,10 @@
 
 .home-layout__header {
   text-align: center;
+}
+
+.home-layout__header.home-page {
+  margin-top: 5rem;
 }
 
 .home-layout__header > h3 {
@@ -98,6 +102,11 @@
   width: 100%;
 }
 
+@media screen and (min-width: 375px) {
+  .home-layout__header.home-page {
+    margin-top: 3rem;
+  }
+}
 
 @media screen and (min-width: 475px) {
   .home-layout__footer-logo {
@@ -125,8 +134,16 @@
     height: 80%;
   }
 
+  .home-layout__body.home-page {
+    padding: 1rem;
+  }
+
   .home-layout__body > div {
     width: 80%;
+  }
+
+  .home-layout__body.home-page > div {
+    width: 90%;
   }
 
   .home-layout__bg img {
@@ -160,8 +177,16 @@
 }
 
 @media screen and (min-width: 1280px) {
+  .team-btn {
+    padding: 0.5rem 1rem;
+  }
+
   .home-layout__body {
     height: 75%;
+  }
+
+  .home-layout__body.home-page {
+    padding: 2rem;
   }
 
   .home-layout__body > div {
@@ -172,6 +197,10 @@
     height: 25%;
   }
 
+  .home-layout__header.home-page {
+    margin-top: 0;
+  }
+  
   .home-layout__header > h3 {
     font-size: 2.7rem;
   }
