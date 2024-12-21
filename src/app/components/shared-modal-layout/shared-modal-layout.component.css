@@ -1,0 +1,143 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadein .2s ease-in-out forwards;
+}
+
+.modal-overlay.close {
+  animation: fadeout .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  height: 70%;
+  width: 80%;
+  border-radius: 1rem;
+  position: relative;
+  padding: 1.5rem 1rem 3rem 1rem;
+  color: #0A050A;
+  animation: blowUpModal .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+
+.modal-content.small-modal {
+  height: fit-content;
+  padding: 1.5rem 1rem;
+}
+
+.modal-content.close {
+  animation: closeModal .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+
+.close-btn {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  cursor: pointer;
+}
+
+.close-btn-img {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.heading-container {
+  padding: 1rem 0 0.5rem 0;
+}
+
+.heading {
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+}
+
+@media screen and (min-width: 475px) {
+  .modal-content.small-modal {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 575px) {
+  .modal-content.small-modal {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .close-btn {
+    right: 3%;
+  }
+
+  .heading-container {
+    padding: 0.5rem 0 0.5rem 0;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .modal-content {
+    padding: 2rem 2rem 3rem 2rem;
+  }
+
+  .modal-content.small-modal{
+    padding: 2rem;
+  }
+
+}
+
+@media screen and (min-width: 992px) {
+  .modal-content.small-modal {
+    width: 40%;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+  
+}
+
+@keyframes blowUpModal {
+  0% {
+    transform:scale(0);
+  }
+  100% {
+    transform:scale(1);
+  }
+}
+
+@keyframes closeModal {
+  0% {
+    transform:scale(1);
+    opacity:1;
+  }
+  100% {
+    transform:scale(0);
+    opacity:0;
+  }
+}
