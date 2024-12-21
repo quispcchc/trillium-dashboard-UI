@@ -1,0 +1,81 @@
+<ng-container>
+  <section>
+    <div *ngIf="loading">Loading users...</div>
+    <div class="actions-container">
+      <input class="search__input" type="text" placeholder="Search users by Name or Email" 
+      [(ngModel)]="searchTerm" (input)="filterUsers()"/>
+      <button class="create-user-btn" (click)="openUserForm('add')" *ngIf="!usersError">
+        <img src="add-icon.svg" alt="add icon"/>
+        <span>Create User</span>
+      </button>
+    </div>
+    <section class="users-container" *ngIf="!loading">
+      <table class="users">
+        <tr class="users__header">
+          <th class="users__heading--serial">S/N</th>
+          <th class="users__heading--name" (click)="sort('name')">Name</th>
+          <th class="users__heading--email" (click)="sort('email')">Email</th>
+          <th class="users__heading--dept" (click)="sort('department')">Department</th>
+          <th class="users__heading--title" (click)="sort('title')">Job Title</th>
+          <th class="users__heading--dashboard">Dashboard Access</th>
+          <th class="users__heading--forms">Forms</th>
+          <th class="users__heading--actions"></th>
+        </tr>
+        <tr class="user" *ngFor="let user of filteredUsers; let i = index">
+          <td class="user__serial">
+            <span>{{i + 1}}</span>
+          </td>
+          <td class="user__name">
+            <span>
+              <span class="user__name-label" [ngClass]="tag_colors[i % tag_colors.length]">{{user?.first_name[0].toUpperCase()}}</span>
+              <span>{{user?.first_name}} {{user?.last_name}}</span>
+            </span>
+          </td>
+          <td class="user__email"><span [ngClass]="tag_colors[i % tag_colors.length]">{{user?.mail}}</span></td>
+          <td class="user__dept"><span [ngClass]="tag_colors[i % tag_colors.length]">{{user?.department}}</span></td>
+          <td class="user__title">{{user?.job_title}}</td>
+          <td class="user__dashboard">
+            <span class="user__dashboard-item" *ngFor="let tab of user?.accessible_tabs">
+              <span class="user__dashboard-tag" [ngClass]="tag_colors[i % tag_colors.length]"></span>
+              <span class="user__dashboard-name">{{tab}}</span>
+            </span>
+          </td>
+          <td class="user__forms"><button (click)="openFormsModal(user?.first_name, user?.accessible_forms, tag_colors[i % tag_colors.length])">View</button></td>
+          <td class="user__actions">
+            <button class="user__actions-edit" (click)="openUserForm('edit', user)"><img src="edit-icon.svg" alt="edit user icon"/><span>Edit</span></button>
+            <button class="user__actions-delete" (click)="openDeleteUserModal(user)"><img src="delete-icon.svg" alt="delete user icon"/><span>Delete</span></button>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <div class="no-users" *ngIf="!loading && filteredUsers.length === 0">
+      No users found.
+    </div>
+  </section>
+
+  <app-accessible-forms-modal [modalOpen]="formsModal.open" (closeModal)="closeFormsModal()"
+    [forms]="formsModal.forms" [user_name]="formsModal.user_name" [bullet_color]="formsModal.bullet_color">
+  </app-accessible-forms-modal>
+  
+  <app-user-form-modal [modalOpen]="userFormModal.open" (closeModal)="closeUserForm()"
+    [mode]="userFormModal.mode" [userData]="userFormModal.userData" [userList]="filteredUsers"
+    (showNotification)="displayNotification($event)" *ngIf="userFormModal.open">
+  </app-user-form-modal>
+
+  <app-shared-modal-layout [smallModal]="true" [modalOpen]="deleteUserModal.open"
+  (closeModal)="closeDeleteUserModal()" 
+  [heading]="'Delete User (' + deleteUserModal.user?.first_name + ' ' + deleteUserModal.user?.last_name + ') '">
+
+    <div class="delete-modal">
+      <p>Are you sure you want to delete this user?</p>
+
+      <div class="delete-modal__actions">
+        <button class="delete-modal__btn-delete" (click)="deleteUser(deleteUserModal.user)">Delete</button>
+        <button class="delete-modal__btn-cancel" (click)="closeDeleteUserModal()">Cancel</button>
+      </div>
+    </div>
+
+  </app-shared-modal-layout>
+
+</ng-container>
