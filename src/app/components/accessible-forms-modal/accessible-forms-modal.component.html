@@ -1,0 +1,26 @@
+<app-shared-modal-layout [modalOpen]="modalOpen" (closeModal)="dismissModal()" [heading]="'Forms Accessible for ' + user_name">
+
+  <div *ngIf="!forms?.length">
+    <p class="no-forms-text">No forms</p>
+  </div>
+
+  <div class="forms__container" *ngIf="forms?.length">
+    <div>
+      <div class="form" *ngFor="let form of forms.slice(0, getHalfLength(forms.length))">
+        <span class="form__bullet" [ngClass]="bullet_color"></span>
+        <span class="form__name">{{form}}</span>
+      </div>
+    </div>
+
+    <div class="right-border">
+    </div>
+
+    <div>
+      <div class="form"  *ngFor="let form of forms.slice(getHalfLength(forms.length), forms.length)">
+        <span class="form__bullet" [ngClass]="bullet_color"></span>
+        <span class="form__name">{{form}}</span>
+      </div>
+    </div>
+
+  </div>
+</app-shared-modal-layout>
