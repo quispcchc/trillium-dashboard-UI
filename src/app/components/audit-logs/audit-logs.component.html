@@ -1,0 +1,35 @@
+<section class="audit-logs-section">
+  <h2>Audit Logs</h2>
+  <p class="logs__loading" *ngIf="loading">Loading logs...</p>
+  <section class="logs-container">
+    <table class="logs">
+      <tr class="logs__header">
+        <th class="logs__heading--serial">S/N</th>
+        <th class="logs__heading--name">Performed By</th>
+        <th class="logs__heading--details">Details</th>
+        <th class="logs__heading--date">Date</th>
+      </tr>
+      <tr class="log" *ngFor="let log of logs; let i = index">
+        <td class="log__serial">
+          <span>{{i + 1}}</span>
+        </td>
+        <td class="log__name">
+          <span>
+            <span class="log__name-label" [ngClass]="tag_colors[i % tag_colors.length]">{{log?.performed_by[0].toUpperCase()}}</span>
+            <span>{{log?.performed_by}}</span>
+          </span>
+        </td>
+        <td class="log__details">
+          <span [ngClass]="tag_colors[i % tag_colors.length]">
+            {{log?.details}}
+          </span>
+        </td>
+        <td class="log__date">
+          <span [ngClass]="tag_colors[i % tag_colors.length]">
+            {{ log?.created_date | date : "medium" }}
+          </span>
+        </td>
+      </tr>
+    </table>
+  </section>
+</section>

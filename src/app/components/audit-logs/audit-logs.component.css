@@ -1,0 +1,134 @@
+.audit-logs-section {
+  padding-block: 1rem;
+}
+
+.audit-logs-section > h2, .logs__loading {
+  color: #1C1B1F;
+}
+
+.logs-container {
+  width: 100%;
+  margin-top: 1.5rem;  
+}
+
+.logs {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 42rem;
+  overflow-x: scroll;
+  color: #1C1B1F;
+}
+
+.logs__header {
+  background-color: #C8E0FF;
+  width: 100%;
+}
+
+.logs__header > th {
+  font-weight: 500;
+  padding: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.logs__header > th, .log > td {
+  text-align: left;
+}
+
+.logs__header > th:not(:last-child), .log > td:not(:last-child) {
+  border-right: 1px solid #E3E2E2;
+}
+
+.log:not(:last-child) {
+  border-bottom: 1px solid #E3E2E2;
+}
+
+.logs__heading--serial {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  width: 5%;
+}
+
+.logs__heading--name, .logs__heading--date {
+  width: 25%;
+}
+
+.logs__heading--details {
+  width: 45%;
+}
+
+.logs__heading--date {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.log {
+  vertical-align: top;
+  width: 100%;
+}
+
+.log > td {
+  padding: 0.8rem;
+  font-size: 0.875rem;
+}
+
+.log__serial > span {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.log__name-label {
+  border-radius: 0.625rem;
+  padding: 0.375rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* .log__details > span.blue, */
+.log__name-label.blue {
+  background-color: #D1E5FF;
+}
+
+/* .log__details > span.pink, */
+.log__name-label.pink {
+  background-color: #FFEBEF;
+}
+
+/* .log__details > span.purple,  */
+.log__name-label.purple {
+  background-color: #F1E7FF;
+}
+
+.log__name > span, .log__details > span, .log__date > span {
+  border-radius: 0.625rem;
+  padding: 0.5rem;
+  width: fit-content;
+}
+
+.log__name > span {
+  display: flex;
+  gap: 0.3rem;
+  background-color: #F6F6F6;
+  align-items: center;
+}
+
+.log__details > span, .log__date > span {
+  display: inline-block;
+}
+
+.log__date > span.blue, .log__details > span.blue {
+  border: 1px solid #D1E5FF;
+}
+
+.log__date > span.pink, .log__details > span.pink {
+  border: 1px solid #FFEBEF;
+}
+
+.log__date > span.purple, .log__details > span.purple {
+  border: 1px solid #F1E7FF;
+}
+
+@media screen and (min-width: 768px) {
+  .logs__header > th {
+    font-size: 1rem;
+  }
+}
