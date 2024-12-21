@@ -1,0 +1,152 @@
+<app-shared-modal-layout [modalOpen]="modalOpen" (closeModal)="dismissModal()" [heading]="(mode === 'edit' ? 'Edit' : 'Add') + ' User'">
+  <form class="user-form" [formGroup]="userForm" (ngSubmit)="mode === 'edit' ? updateUser() : createUser()">
+    <div class="user-form__details">
+      <div class="user-form__input">
+        <label class="input-label" for="first_name">
+          First Name
+        </label>
+        <input type="text" name="first_name" formControlName="first_name" id="first_name" 
+        [ngClass]="first_name && first_name.invalid && (first_name.dirty || first_name.touched) ? 'error-border' : ''"/>
+        <div *ngIf="first_name && first_name.invalid && (first_name.dirty || first_name.touched)" 
+        class="error-message">
+          <p *ngIf="first_name.errors?.['required']">This field is required</p>
+        </div>
+      </div>
+
+      <div class="user-form__input">
+        <label class="input-label" for="last_name">
+          Last Name
+        </label>
+        <input type="text" name="last_name" id="last_name" formControlName="last_name"
+        [ngClass]="last_name && last_name.invalid && (last_name.dirty || last_name.touched) ? 'error-border' : ''"/>
+        <div *ngIf="last_name && last_name.invalid && (last_name.dirty || last_name.touched)" 
+        class="error-message">
+          <p *ngIf="last_name.errors?.['required']">This field is required</p>
+        </div>
+      </div>
+
+      <div class="user-form__input">
+        <label class="input-label" for="email">
+          Email
+        </label>
+        <input type="text" name="email" id="email" formControlName="email"
+        [ngClass]="email && email.invalid && (email.dirty || email.touched) ? 'error-border' : ''"/>
+        <div *ngIf="email && email.invalid && (email.dirty || email.touched)" 
+        class="error-message">
+          <p *ngIf="email.errors?.['required']">This field is required</p>
+          <p *ngIf="email?.errors?.['email']">Invalid email address.</p>
+        </div>
+      </div>
+
+      <div class="user-form__input">
+        <label class="input-label" for="role">
+          Role
+        </label>
+        <select id="role" formControlName="role"
+          name="role">
+          <option value="" disabled>Select role</option>
+          <option value="Admin">Admin</option>
+          <option value="Board">Board</option>
+          <option value="Management">Management</option>
+        </select>
+      </div>
+
+      <div class="user-form__input">
+        <label class="input-label" for="department">
+          Department
+        </label>
+        <input type="text" name="department" id="department" formControlName="department"
+        [ngClass]="department && department.invalid && (department.dirty || department.touched) ? 'error-border' : ''"
+        />
+        <div *ngIf="department && department.invalid && (department.dirty || department.touched)" 
+        class="error-message">
+          <p *ngIf="department.errors?.['required']">This field is required</p>
+        </div>
+      </div>
+
+      <div class="user-form__input">
+        <label class="input-label" for="job_title">
+          Job Title
+        </label>
+        <input type="text" name="job_title" id="job_title" formControlName="job_title"
+        [ngClass]="job_title && job_title.invalid && (job_title.dirty || job_title.touched) ? 'error-border' : ''"/>
+        <div *ngIf="job_title && job_title.invalid && (job_title.dirty || job_title.touched)" 
+        class="error-message">
+          <p *ngIf="job_title.errors?.['required']">This field is required</p>
+        </div>
+      </div>
+
+      <div class="user-form__input" *ngIf="mode === 'add'">
+        <label class="input-label" for="password">
+          Password
+        </label>
+        <div class="password-container">
+          <input [type]="passwordVisible ? 'text' : 'password'" name="password" id="password"
+          formControlName="password"
+          [ngClass]="password && password.invalid && (password.dirty || password.touched) ? 'error-border' : ''"/>
+          <i class="fa-regular fa-eye" *ngIf="!passwordVisible" (click)="passwordVisible = true"></i>
+          <i class="fa-regular fa-eye-slash" *ngIf="passwordVisible" (click)="passwordVisible = false"></i>
+        </div>
+        <div *ngIf="password && password.invalid && (password.dirty || password.touched)" 
+        class="error-message">
+          <p *ngIf="password.errors?.['required']">This field is required</p>
+          <p *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</p>
+          <p *ngIf="password?.errors?.['pattern']">
+              Password must contain at least one special character, one
+              uppercase letter, one lowercase letter, and one number.
+          </p>
+        </div>
+      </div>
+
+      <div class="user-form__input" *ngIf="mode === 'add'">
+        <label class="input-label" for="confirmPassword">
+          Confirm Password
+        </label>
+        <div class="password-container">
+          <input [type]="confirmPasswordVisible ? 'text' : 'password'" name="confirmPassword" id="confirmPassword"
+          formControlName="confirm_password"
+          [ngClass]="confirm_password && confirm_password.invalid && (confirm_password.dirty || confirm_password.touched) ? 'error-border' : ''"/>
+          <i class="fa-regular fa-eye" *ngIf="!confirmPasswordVisible" (click)="confirmPasswordVisible = true"></i>
+          <i class="fa-regular fa-eye-slash" *ngIf="confirmPasswordVisible" (click)="confirmPasswordVisible = false"></i>
+        </div>
+        <div *ngIf="confirm_password && confirm_password.invalid && (confirm_password.dirty || confirm_password.touched)" 
+        class="error-message">
+          <p *ngIf="confirm_password.errors?.['required']">This field is required</p>
+          <p *ngIf="confirm_password.errors?.['passwordMismatch']">Passwords don't match</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-form__tabs">
+      <h5>Dashboard Access</h5>
+      <div>
+        <div class="user-form__checkbox" *ngFor="let tab of availableTabs">
+          <input type="checkbox" name="tabCheckbox" [id]="tab"
+          [disabled]="tab !== 'Admin' && isUserAdmin"
+          [checked]="accessible_tabs ? accessible_tabs.includes(tab) : false"
+          (change)="onTabChange(tab, $event)"/>
+          <label [for]="tab">{{tab}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-form__forms">
+      <h5>Access to Forms</h5>
+      <div>
+        <div class="user-form__checkbox" *ngFor="let form of availableForms">
+          <input type="checkbox" name="formCheckbox" [id]="form"
+          [disabled]="isUserAdmin"
+          [checked]="accessible_forms ? accessible_forms.includes(form) : false"
+          (change)="onFormChange(form, $event)"/>
+          <label [for]="form">{{form}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-form__actions">
+      <button class="user-form__action-btn" type="submit" [disabled]="userForm.invalid || accessible_tabs.length === 0">{{mode === 'edit' ? 'Update' : 'Create'}}</button>
+      <button class="user-form__cancel-btn" type="button" (click)="cancel()">Cancel</button>
+    </div>
+
+  </form>
+</app-shared-modal-layout>
