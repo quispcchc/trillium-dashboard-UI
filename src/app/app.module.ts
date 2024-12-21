@@ -28,6 +28,11 @@ import { ImpactBlueprintComponent } from './components/impact-blueprint/impact-b
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 import { HomeLayoutComponent } from './components/home-layout/home-layout.component';
 import { TeamModalComponent } from './components/team-modal/team-modal.component';
+import { UsersComponent } from './components/users/users.component';
+import { AccessibleFormsModalComponent } from './components/accessible-forms-modal/accessible-forms-modal.component';
+import { SharedModalLayoutComponent } from './components/shared-modal-layout/shared-modal-layout.component';
+import { UserFormModalComponent } from './components/user-form-modal/user-form-modal.component';
+import { AuditLogsComponent } from './components/audit-logs/audit-logs.component';
 
 
 @NgModule({
@@ -51,7 +56,12 @@ import { TeamModalComponent } from './components/team-modal/team-modal.component
     ImpactBlueprintComponent,
     ComingSoonComponent,
     HomeLayoutComponent,
-    TeamModalComponent
+    TeamModalComponent,
+    UsersComponent,
+    AccessibleFormsModalComponent,
+    SharedModalLayoutComponent,
+    UserFormModalComponent,
+    AuditLogsComponent
   ],
   imports: [
     BrowserModule,
