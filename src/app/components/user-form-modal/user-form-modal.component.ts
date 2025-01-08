@@ -51,6 +51,7 @@ export class UserFormModalComponent implements OnInit{
     this.userName = localStorage.getItem('first_name');
   };
 
+  // Initialize form with empty or pre filled data depending on mode - add/edit
   initializeForm(mode: string | null) {
     if (mode === 'add') {
       this.userForm = this.fb.group({
@@ -122,6 +123,7 @@ export class UserFormModalComponent implements OnInit{
     this.closeModal.emit();
   };
 
+  // Validator to check if password and confirmPassword match
   confirmPasswordValidator(control: FormControl) {
     const confirmPasswordInput = control?.value;
     const password = this.password?.value;
@@ -133,6 +135,7 @@ export class UserFormModalComponent implements OnInit{
     }
   };
 
+  // Create user
   createUser() {
     if (this.userForm.valid) {
       const newUser = {
@@ -162,6 +165,7 @@ export class UserFormModalComponent implements OnInit{
     }
   };
 
+  // Update user
   updateUser() {
     if (this.isFormUpdated()) {
       const updatedUserData = {
@@ -191,6 +195,7 @@ export class UserFormModalComponent implements OnInit{
     }
   };
 
+  // Function to check if form is updated
   isFormUpdated(): boolean {
 
     const fieldsToCompare = [
@@ -221,6 +226,7 @@ export class UserFormModalComponent implements OnInit{
     this.closeModal.emit();
   };
 
+  // Function to update the accessible_tabs array on tab change
   onTabChange(tab: string, e: Event) {
     const checkbox = (e.target as HTMLInputElement);
 
@@ -241,6 +247,7 @@ export class UserFormModalComponent implements OnInit{
     }
   };
 
+  // Function to update the accessible_forms array on form change
   onFormChange(form: string, e: Event) {
     const checkbox = (e.target as HTMLInputElement);
     if (checkbox.checked) {

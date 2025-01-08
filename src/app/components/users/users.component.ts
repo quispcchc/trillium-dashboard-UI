@@ -63,6 +63,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  // search users by name or email
   filterUsers() {
     const term = this.searchTerm.toLowerCase();
     this.filteredUsers = this.users.filter(user =>
@@ -72,6 +73,7 @@ export class UsersComponent implements OnInit {
     );
   }
 
+  // sort users by column
   sort(column: string) {
     const direction = this.sortDirection === 'asc' ? 1 : -1;
 
@@ -92,6 +94,7 @@ export class UsersComponent implements OnInit {
     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
   }
 
+  // open accessible forms modal
   openFormsModal(name: string, forms: string[], bullet_color: string) {
     this.formsModal =  {
       open: true,
@@ -101,6 +104,7 @@ export class UsersComponent implements OnInit {
     }
   };
 
+  // close accessible forms modal
   closeFormsModal() {
     this.formsModal =  {
       open: false,
@@ -110,6 +114,7 @@ export class UsersComponent implements OnInit {
     }
   };
 
+  // open user add/edit form
   openUserForm(mode: 'add' | 'edit' | null, user?: User) {
   
     this.userFormModal = {
@@ -130,6 +135,7 @@ export class UsersComponent implements OnInit {
     }
   };
 
+  // close user add/edit form
   closeUserForm() {
     this.userFormModal = {
       open: false,
@@ -138,10 +144,12 @@ export class UsersComponent implements OnInit {
     }
   };
 
+  // display notification
   displayNotification(data: {message: string, status?: 'error' | 'success' | null}) {
     this.showNotification.emit({ message: data.message, status: data.status})
   };
 
+  // open delete user modal
   openDeleteUserModal(user: User) {
     this.deleteUserModal = {
       open: true,
@@ -149,6 +157,7 @@ export class UsersComponent implements OnInit {
     };
   };
 
+  // close delete user modal
   closeDeleteUserModal() {
     this.deleteUserModal = {
       open: false,
@@ -156,6 +165,7 @@ export class UsersComponent implements OnInit {
     };
   };
 
+  // delete user
   deleteUser(user: any) {
     user.updated_by = this.userName;
     this.userService.deleteUser(user).subscribe({
