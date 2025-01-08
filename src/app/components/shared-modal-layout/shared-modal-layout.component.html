@@ -1,6 +1,6 @@
 <div class="modal-overlay" *ngIf="modalOpen" [ngClass]="modalClosed ? 'close' : ''" (click)="onOverlayClick($event)">
   <div class="modal-content" [ngClass]="{'close': modalClosed, 'small-modal': smallModal}">
-    <button class="close-btn" (click)="dismissModal()"><img src="close-icon2.svg" class="close-btn-img" alt="close modal icon"/></button>
+    <button class="close-btn" [ngClass]="{'small-modal': smallModal}" (click)="dismissModal()"><img src="close-icon2.svg" class="close-btn-img" alt="close modal icon"/></button>
     <div class="heading-container">
       <h3 class="heading">{{ heading }}</h3>
     </div>

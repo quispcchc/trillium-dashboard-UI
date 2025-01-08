@@ -22,14 +22,14 @@
   width: 80%;
   border-radius: 1rem;
   position: relative;
-  padding: 1.5rem 1rem 3rem 1rem;
+  padding: 1.5rem 1.5rem 3rem 1.5rem;
   color: #0A050A;
   animation: blowUpModal .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 }
 
 .modal-content.small-modal {
   height: fit-content;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem;
 }
 
 .modal-content.close {
@@ -43,6 +43,10 @@
   top: 5%;
   right: 5%;
   cursor: pointer;
+}
+
+.close-btn.small-modal {
+  top: 10%;
 }
 
 .close-btn-img {
