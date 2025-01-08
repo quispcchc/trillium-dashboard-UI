@@ -1,5 +1,6 @@
 .audit-logs-section {
   padding-block: 1rem;
+  height: 100%;
 }
 
 .audit-logs-section > h2, .logs__loading {

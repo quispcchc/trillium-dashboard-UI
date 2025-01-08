@@ -2,7 +2,7 @@
   padding: 0.7rem;
   background: #ffffff;
   overflow-y: auto;
-  height: calc(100vh - 3.75rem);
+  height: 100%;
   margin: 0.55rem;
 }
 

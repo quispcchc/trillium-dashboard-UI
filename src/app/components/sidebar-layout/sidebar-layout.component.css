@@ -12,6 +12,10 @@
   height: 8rem;
 }
 
+.layout > .content {
+  overflow: scroll;
+}
+
 .sidebar__item {
   list-style: none;
   order: 2;
@@ -102,6 +106,24 @@
 
 }
 
+@media screen and (min-height: 750px) {
+  .layout {
+    height: calc(100vh - 7rem);
+  }
+}
+
+@media screen and (min-height: 950px) {
+  .layout {
+    height: calc(100vh - 9rem);
+  }
+}
+
+@media screen and (min-height: 1200px) {
+  .layout {
+    height: calc(100vh - 11.3rem);
+  }
+}
+
 @media screen and (min-width: 1280px) {
 
   .layout > .sidebar {
@@ -125,6 +147,12 @@
     padding: 0.6rem 1.3rem;
   }
 
+}
+
+@media screen and (min-height: 1350px) {
+  .layout {
+    height: calc(100vh - 13rem);
+  }
 }
 
 @keyframes fadein {

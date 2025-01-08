@@ -97,6 +97,11 @@
   width: 18%;
 }
 
+.users__heading--name, .users__heading--email,
+.users__heading--dept, .users__heading--title {
+  cursor: pointer;
+}
+
 .users__heading--actions, .users__heading--serial {
   width: 5%;
 }
@@ -335,6 +340,8 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
-  
+@media screen and (min-width: 1500px) {
+  .search__input {
+    padding-left: 5%;
+  }
 }
