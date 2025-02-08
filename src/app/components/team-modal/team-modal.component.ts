@@ -81,7 +81,7 @@ export class TeamModalComponent implements OnInit {
       {
         name: 'Elo Idiodi',
         title: 'Full Stack Web Developer',
-        img: 'team/Elo.jpeg',
+        img: 'team/Elo.png',
         imgAvailable: true,
         linkedIn: 'https://www.linkedin.com/in/elo-idiodi'
       },
