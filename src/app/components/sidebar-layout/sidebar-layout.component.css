@@ -88,7 +88,6 @@
 
   .sidebar__nav {
     animation: fadein .4s ease-in-out .2s forwards;
-    opacity: 0;
   }
 
   .sidebar__nav.sidebar-close {
