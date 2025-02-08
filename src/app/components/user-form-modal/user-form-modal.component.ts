@@ -41,7 +41,7 @@ export class UserFormModalComponent implements OnInit{
     'Subcontracting for the Provision of Services - MSAA', 'MSAA', 'Quality Improvement',
     'Client Experience Survey', 'Complaints Report', 'French Language Services', 'Human Resources',
     'Incident & Near Miss Reports', "Privacy Officer's Report", 'Strategic Plans'];
-  availableTabs = ['Admin', 'Board', 'QCA', 'Operational Plan', 'Impact Blueprint', 'Data Entry'];
+  availableTabs = ['Admin', 'Executive Overview', 'PHC', 'QCA', 'Operational Plan', 'Impact Blueprint', 'Data Entry'];
 
   constructor(private fb: FormBuilder, private authService: AuthService, private userService: UserService,
     private notificationService: NotificationService) {}

@@ -21,11 +21,19 @@ export class DashboardComponent implements OnInit {
   loadTabs(): void {
     const tabs = [
       {
-        name: 'board',
-        label: 'Board of Directors',
-        img: 'board-icon.svg',
+        name: 'eo',
+        label: 'Executive Overview',
+        img: 'eo-icon.svg',
         action: () => {
-          this.changeTab('board');
+          this.changeTab('eo');
+        }
+      },
+      {
+        name: 'phc',
+        label: 'PHC',
+        img: 'qca-icon.svg',
+        action: () => {
+          this.changeTab('phc');
         }
       },
       {
@@ -79,8 +87,8 @@ export class DashboardComponent implements OnInit {
     })
 
     this.tabList = tabs.filter((tab) => {
-      if (tab.label === 'Board of Directors') {
-        return 'Board' in accessibleTabsObj;
+      if (tab.label === 'Executive Overview') {
+        return 'Executive Overview' in accessibleTabsObj;
       }
       return tab.label in accessibleTabsObj;
     });

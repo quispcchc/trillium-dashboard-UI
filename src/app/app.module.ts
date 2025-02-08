@@ -33,6 +33,7 @@ import { AccessibleFormsModalComponent } from './components/accessible-forms-mod
 import { SharedModalLayoutComponent } from './components/shared-modal-layout/shared-modal-layout.component';
 import { UserFormModalComponent } from './components/user-form-modal/user-form-modal.component';
 import { AuditLogsComponent } from './components/audit-logs/audit-logs.component';
+import { PhcComponent } from './components/phc/phc.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { AuditLogsComponent } from './components/audit-logs/audit-logs.component
     AccessibleFormsModalComponent,
     SharedModalLayoutComponent,
     UserFormModalComponent,
-    AuditLogsComponent
+    AuditLogsComponent,
+    PhcComponent
   ],
   imports: [
     BrowserModule,

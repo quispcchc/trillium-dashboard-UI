@@ -5,8 +5,11 @@
         <p>No dashboards available</p>
       </div>
     </ng-container>
-    <ng-container *ngIf="selectedTab === 'board'">
+    <ng-container *ngIf="selectedTab === 'eo'">
       <app-board></app-board>
+    </ng-container>
+    <ng-container *ngIf="selectedTab === 'phc'">
+      <app-phc></app-phc>
     </ng-container>
     <ng-container *ngIf="selectedTab === 'qca'">
       <app-qca></app-qca>
