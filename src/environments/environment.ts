@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://trillium-dashboard.nn.r.appspot.com'
+    apiUrl: 'https://dashboards.carlingtonchc.com'
 };
