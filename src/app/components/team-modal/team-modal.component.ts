@@ -44,25 +44,11 @@ export class TeamModalComponent implements OnInit {
         linkedIn: 'https://www.linkedin.com/in/mariamelhaiba'
       },
       {
-        name: 'Amine Reguieg',
-        title: 'Project Manager',
-        img: 'team/Amine.png',
-        imgAvailable: true,
-        linkedIn: 'https://www.linkedin.com/in/amine-reguieg'
-      },
-      {
         name: 'Samia Bouhaddou',
         title: 'Data Engineer',
         img: 'team/Samia.png',
         imgAvailable: true,
         linkedIn: 'https://www.linkedin.com/in/samia-bouhaddou-9b7331176'
-      },
-      {
-        name: 'Anastasia Zuikova',
-        title: 'Data Scientist',
-        img: 'team/Anastasiia.png',
-        imgAvailable: true,
-        linkedIn: 'https://www.linkedin.com/in/anastasiia-zuikova'
       },
       {
         name: 'MD OLI Ahad Khan',
@@ -72,8 +58,22 @@ export class TeamModalComponent implements OnInit {
         linkedIn: 'https://www.linkedin.com/in/ahadkhan082'
       },
       {
+        name: 'Anastasiia Zuikova',
+        title: 'Data Scientist',
+        img: 'team/Anastasiia.png',
+        imgAvailable: true,
+        linkedIn: 'https://www.linkedin.com/in/anastasiia-zuikova'
+      },
+      {
+        name: 'Amine Reguieg',
+        title: 'Project Manager',
+        img: 'team/Amine.png',
+        imgAvailable: true,
+        linkedIn: 'https://www.linkedin.com/in/amine-reguieg'
+      },
+      {
         name: 'Sindhura Movva',
-        title: 'Full Stack Web Developer',
+        title: 'Full Stack Developer',
         img: 'team/Sindhura.png',
         imgAvailable: true,
         linkedIn: 'https://www.linkedin.com/in/sindhura-movva-52012b2a8'
@@ -107,7 +107,7 @@ export class TeamModalComponent implements OnInit {
         linkedIn: 'https://www.linkedin.com/in/anaramirezl'
       },
       {
-        name: 'Mariam Jeda',
+        name: 'Mariam Sanni',
         title: 'UI/UX Designer',
         img: 'team/Mariam.png',
         imgAvailable: true,

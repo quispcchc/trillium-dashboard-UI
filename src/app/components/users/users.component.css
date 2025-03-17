@@ -290,6 +290,11 @@
   cursor: pointer;
 }
 
+.user__actions > button img {
+  width: 70%;
+  object-fit: contain;
+}
+
 .no-users {
   text-align: center;
   color: #0A050A;
