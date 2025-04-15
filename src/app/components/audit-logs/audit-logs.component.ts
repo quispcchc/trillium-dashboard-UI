@@ -16,10 +16,6 @@ export class AuditLogsComponent implements OnInit {
 
   constructor(private userService: UserService){}
 
-  // showNotification(data: {message: string, status?: 'error' | 'success' | null}) {
-  //   this.notificationService.show(data.message, data.status);
-  // }
-
   ngOnInit(): void {
     this.loading = true;
 
@@ -35,5 +31,4 @@ export class AuditLogsComponent implements OnInit {
       }
     });
   }
-
 }

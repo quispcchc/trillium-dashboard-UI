@@ -54,7 +54,6 @@ export class AuthService {
     return false;
   }
 
-  // Request password reset link
   requestPasswordReset(email: string): Observable<{ success: boolean }> {
     return this.http.post<{ success: boolean }>(this.resetPasswordUrl, { email })
       .pipe(
@@ -62,7 +61,6 @@ export class AuthService {
       );
   }
 
-  // Reset password with the provided token
   resetPasswordWithToken(token: string, newPassword: string): Observable<{ message: string }> {
     return this.http.post<{ message: string }>(`${this.resetPasswordWithTokenUrl}/${token}`, { password: newPassword })
       .pipe(
@@ -70,7 +68,6 @@ export class AuthService {
       );
   }
 
-  // Validate password
   passwordValidator(control: FormControl) {
     const passwordInput = control?.value;
     const errorObj = { 

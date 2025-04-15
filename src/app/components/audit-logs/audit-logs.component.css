@@ -84,17 +84,14 @@
   font-size: 0.875rem;
 }
 
-/* .log__details > span.blue, */
 .log__name-label.blue {
   background-color: #D1E5FF;
 }
 
-/* .log__details > span.pink, */
 .log__name-label.pink {
   background-color: #FFEBEF;
 }
 
-/* .log__details > span.purple,  */
 .log__name-label.purple {
   background-color: #F1E7FF;
 }

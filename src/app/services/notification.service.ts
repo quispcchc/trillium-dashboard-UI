@@ -10,7 +10,7 @@ export class NotificationService {
   show(message: string, status: 'success' | 'error' | null = 'success'): void {
     this.message = message;
     this.status = status;
-    setTimeout(() => this.clear(), 3000); // Clear message after 3 seconds
+    setTimeout(() => this.clear(), 3000);
   }
 
   clear(): void {

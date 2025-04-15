@@ -54,7 +54,6 @@
 }
 
 .user-form__input > input.error-border, .password-container > input.error-border {
-  /* border: 1.5px solid #B3261E; */
   border: 1.5px solid #FF0022;
   outline: 0;
 }
