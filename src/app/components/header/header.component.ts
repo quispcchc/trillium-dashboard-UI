@@ -11,7 +11,6 @@ export class HeaderComponent implements OnInit {
   @Output() logoutUser = new EventEmitter<void>();
 
   userName: string | null | undefined;
-  userRole: string | null | undefined;
   userEmail: string | null | undefined;
 
   menuOpen: boolean = false;
@@ -20,7 +19,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.userName = localStorage.getItem('first_name');
-    this.userRole = localStorage.getItem('role');
     this.userEmail = localStorage.getItem('email');
   }
 

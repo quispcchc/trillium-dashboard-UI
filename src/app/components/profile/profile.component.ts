@@ -11,7 +11,6 @@ export class ProfileComponent {
   @Output() logoutUser = new EventEmitter<void>();
   @Input() name!: string | null | undefined;
   @Input() email!: string | null | undefined;
-  @Input() role!: string | null | undefined;
 
   constructor(private router: Router) {}
 

@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserService } from '../../services/user.service';
 
 type User = { user_id: number, first_name: string,
-  last_name: string, mail: string, role: string, accessible_tabs: string[],
+  last_name: string, mail: string, accessible_tabs: string[],
   accessible_forms: string[], department: string, job_title: string,
   admin: boolean }
 

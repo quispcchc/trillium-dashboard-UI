@@ -38,7 +38,7 @@
   <div class="header__user">
     <button (click)="showProfile = true"><img src="user-icon.svg" class="" alt="user icon"/></button>
     <app-profile *ngIf="showProfile" (close)="showProfile = false" (logoutUser)="logout()"
-    [name]="userName" [email]="userEmail" [role]="userRole">
+    [name]="userName" [email]="userEmail">
     </app-profile>
   </div>
 

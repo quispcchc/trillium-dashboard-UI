@@ -4,8 +4,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { UserService } from '../../services/user.service';
 import { NotificationService } from '../../services/notification.service';
 
-type User = { user_id: number, first_name: string, last_name: string, mail: string,
-  role: string, accessible_tabs: string[], accessible_forms: string[], department: string,
+type User = { user_id: number, first_name: string, last_name: string, mail: string, accessible_tabs: string[], accessible_forms: string[], department: string,
   job_title: string, admin: boolean };
 
 @Component({
@@ -61,7 +60,6 @@ export class UserFormModalComponent implements OnInit{
         confirm_password: ['', [Validators.required, Validators.minLength(6),
           this.confirmPasswordValidator.bind(this)]],
         email: ['', [Validators.required, Validators.email]],
-        role: [''],
         department: ['', Validators.required],
         job_title: ['', Validators.required],
       })
@@ -75,7 +73,6 @@ export class UserFormModalComponent implements OnInit{
         first_name: [{value: this.userData?.first_name, disabled: true}],
         last_name: [{value: this.userData?.last_name, disabled: true}],
         email: [{value: this.userData?.mail, disabled: true}],
-        role: [this.userData?.role],
         department: [this.userData?.department, Validators.required],
         job_title: [this.userData?.job_title, Validators.required]
       })
@@ -104,10 +101,6 @@ export class UserFormModalComponent implements OnInit{
 
   get confirm_password() {
     return this.userForm?.get('confirm_password');
-  };
-
-  get role() {
-    return this.userForm?.get('role');
   };
 
   get department() {
@@ -139,7 +132,6 @@ export class UserFormModalComponent implements OnInit{
         first_name: this.first_name?.value,
         last_name: this.last_name?.value, 
         mail: this.email?.value,
-        role: this.role?.value,
         tabs: this.accessible_tabs,
         forms: this.accessible_forms,
         department: this.department?.value,
@@ -166,7 +158,6 @@ export class UserFormModalComponent implements OnInit{
     if (this.isFormUpdated()) {
       const updatedUserData = {
         user_id: this.userData?.user_id,
-        role: this.role?.value,
         department: this.department?.value,
         job_title: this.job_title?.value,
         updated_by: this.userName,
@@ -194,7 +185,6 @@ export class UserFormModalComponent implements OnInit{
   isFormUpdated(): boolean {
 
     const fieldsToCompare = [
-      { formValue: this.role?.value, userData: this.userData?.role}, 
       { formValue: this.department?.value, userData: this.userData?.department},
       { formValue: this.job_title?.value, userData: this.userData?.job_title}
     ];

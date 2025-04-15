@@ -9,10 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 export class TabsComponent implements OnInit {
   @Input() selectedTab!: string;
-  userRole: string | null | undefined;
 
   ngOnInit(): void {
-    this.userRole = localStorage.getItem('role');
   }
   
   selectTab(tab: string): void {
