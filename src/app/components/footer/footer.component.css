@@ -67,6 +67,17 @@
     margin: 1rem 0;
 }
 
+.chc__link {
+    color: #1C79F2;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+        color: #0B448E;
+    }
+}
+
 @media screen and (min-width: 768px) {
     .footer__details {
         display: flex;
