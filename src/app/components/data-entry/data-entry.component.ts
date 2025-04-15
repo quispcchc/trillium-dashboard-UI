@@ -22,54 +22,6 @@ export class DataEntryComponent implements OnInit {
 
   filteredFormList() {
     const forms = [
-      // {
-      //   name: 'aphca',
-      //   label: 'Access to Primary Health Care - ACT',
-      //   url: 'https://forms.office.com/r/XH1tTmBwhA',
-      //   action: () => {
-      //     this.setCurrentForm('aphca');
-      //   }
-      // },
-      // {
-      //   name: 'aphcp',
-      //   label: 'Access to Primary Health Care - PHC',
-      //   url: 'https://forms.office.com/r/DDMDyGv9xm',
-      //   action: () => {
-      //     this.setCurrentForm('aphcp');
-      //   }
-      // },
-      // {
-      //   name: 'aphcpc',
-      //   label: 'Access to Primary Health Care - PHC (by clinician/provider)',
-      //   url: 'https://forms.office.com/r/Ms250Li0Fd',
-      //   action: () => {
-      //     this.setCurrentForm('aphcpc');
-      //   }
-      // },
-      // {
-      //   name: 'aa',
-      //   label: "Accreditation - Ahmet",
-      //   url: this.sanitizer.bypassSecurityTrustResourceUrl(''),
-      //   action: () => {
-      //     this.setCurrentForm('aa');
-      //   }
-      // },
-      // {
-      //   name: 'ap',
-      //   label: "Accreditation - PCYS",
-      //   url: this.sanitizer.bypassSecurityTrustResourceUrl(''),
-      //   action: () => {
-      //     this.setCurrentForm('ap');
-      //   }
-      // },
-      // {
-      //   name: 'aph',
-      //   label: "Accreditation - PHC",
-      //   url: this.sanitizer.bypassSecurityTrustResourceUrl(''),
-      //   action: () => {
-      //     this.setCurrentForm('aph');
-      //   }
-      // },
       {
         name: 'cd',
         label: "Community Development",

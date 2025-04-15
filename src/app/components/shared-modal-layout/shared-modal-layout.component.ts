@@ -14,12 +14,6 @@ export class SharedModalLayoutComponent {
 
   modalClosed: boolean = false;
 
-  onOverlayClick(event: MouseEvent): void {
-    if (event.target === event.currentTarget) {
-      this.dismissModal();
-    }
-  }
-
   dismissModal() {
     this.modalClosed = true;
 
