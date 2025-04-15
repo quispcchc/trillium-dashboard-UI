@@ -42,8 +42,8 @@
           </td>
           <td class="user__forms"><button (click)="openFormsModal(user?.first_name, user?.accessible_forms, tag_colors[i % tag_colors.length])">View</button></td>
           <td class="user__actions">
-            <button class="user__actions-edit" (click)="openUserForm('edit', user)"><img src="edit-icon.svg" alt="edit user icon"/><span>Edit</span></button>
-            <button class="user__actions-delete" (click)="openDeleteUserModal(user)"><img src="delete-icon.svg" alt="delete user icon"/><span>Delete</span></button>
+            <button class="user__actions-edit" (click)="openUserForm('edit', user)">Edit</button>
+            <button class="user__actions-delete" (click)="openDeleteUserModal(user)">Delete</button>
           </td>
         </tr>
       </table>
