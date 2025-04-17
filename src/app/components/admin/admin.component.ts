@@ -25,6 +25,13 @@ export class AdminComponent implements OnInit {
         }
       },
       {
+        name: 'manageDashboards',
+        label: 'Manage Dashboards',
+        action: () => {
+          this.currentAdminAction = 'manageDashboards';
+        }
+      },
+      {
         name: 'auditLogs',
         label: 'Audit Logs',
         action: () => {

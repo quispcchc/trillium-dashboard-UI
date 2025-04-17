@@ -9,6 +9,10 @@
       <app-users (showNotification)="showNotification($event)"></app-users>
     </div>
 
+    <div *ngIf="currentAdminAction === 'manageDashboards'">
+      <app-manage-dashboards (showNotification)="showNotification($event)"></app-manage-dashboards>
+    </div>
+
     <div *ngIf="currentAdminAction === 'auditLogs'">
       <app-audit-logs (showNotification)="showNotification($event)"></app-audit-logs>
     </div>

@@ -1,0 +1,249 @@
+.actions-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-block: 0.5rem;
+}
+
+.search__input {
+    border: 1px solid #D9D9D9;
+    border-radius: 0.5rem;
+    width: 30%;
+    min-width: 16rem;
+    height: 2.8rem;
+    padding: 1rem 1rem 1rem 3rem;
+    background-color: transparent;
+    background-image: url('src/assets/images/search-icon.svg');
+    background-position: 5% center;
+    background-repeat: no-repeat;
+}
+
+.search__input:focus {
+    outline: none;
+    border: 1.5px solid #1C1B1F;
+}
+
+.search__input::placeholder {
+    color: #0A050A;
+}
+
+.create-dashboard-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background-color: #0B448E;
+    border: 1px solid #2C2C2C;
+    border-radius: 0.5rem;
+    color: #FFFFFF;
+    padding: 1rem;
+    font-size: 0.9rem;
+    height: 2.7rem;
+    cursor: pointer;
+}
+
+.dashboard-container {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.dashboards {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 42rem;
+    overflow-x: scroll;
+    color: #1C1B1F;
+}
+
+.dashboards__header {
+    background-color: #C8E0FF;
+    width: 100%;
+}
+
+.dashboards__header>th {
+    font-weight: 600;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.dashboards__header>th,
+.dashboard>td {
+    text-align: left;
+}
+
+.dashboards__header>th:not(:last-child),
+.dashboard>td:not(:last-child) {
+    border-right: 1px solid #E3E2E2;
+}
+
+.dashboard:not(:last-child) {
+    border-bottom: 1px solid #E3E2E2;
+}
+
+.dashboards__heading--serial {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.dashboards__heading--actions {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.dashboards__heading--email {
+    min-width: 8rem;
+}
+
+.dashboards__heading--label,
+.dashboards__heading--link {
+    width: 18%;
+}
+
+.dashboards__heading--label,
+.dashboards__heading--link,
+.dashboards__heading--order {
+    cursor: pointer;
+}
+
+.dashboards__heading--actions,
+.dashboards__heading--serial {
+    width: 5%;
+}
+
+.dashboards__heading--order {
+    width: 10%;
+}
+
+.dashboard {
+    vertical-align: top;
+    width: 100%;
+}
+
+.dashboard>td {
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
+    font-size: 0.875rem;
+}
+
+.dashboard__serial,
+.dashboard__label {
+    padding-top: 1.5rem;
+}
+
+.dashboard__label {
+    word-break: break-all;
+}
+
+.dashboard__serial,
+.dashboard__label,
+.dashboard__order {
+    padding-bottom: 0.5rem;
+}
+
+.dashboard__actions,
+.dashboard__link {
+    padding-block: 0.5rem;
+}
+
+.dashboard__order {
+    padding-top: 0.8rem;
+}
+
+.dashboard__serial>span {
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard__label>span {
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.dashboard__link>span {
+    padding: 0.8rem 0.5rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+}
+
+.dashboard__actions,
+.dashboard__actions>button {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard__actions {
+    gap: 1.5rem;
+}
+
+.dashboard__actions>button {
+    background-color: transparent;
+    border: 1px solid #0B448E;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #0B448E;
+}
+
+.dashboard__actions button:hover {
+    background-color: #0B448E;
+    color: #ffffff;
+}
+
+.no-dashboards {
+    text-align: center;
+    color: #0A050A;
+    font-size: xx-large;
+    margin-top: 15%;
+}
+
+.delete-modal {
+    color: #0A050A;
+    padding-block: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    text-align: center;
+}
+
+.delete-modal>p {
+    font-size: 1rem;
+}
+
+.delete-modal__actions {
+    padding-top: 2rem;
+    display: flex;
+    column-gap: 20%;
+    row-gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.delete-modal__actions>button {
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.4rem;
+}
+
+.delete-modal__btn-delete {
+    background-color: #B3261E;
+    color: #FFFFFF;
+    border: 1px solid #2C2C2C;
+}
+
+.delete-modal__btn-cancel {
+    border: 1px solid #767676;
+    background-color: #E3E3E3;
+}
+
+@media screen and (min-width: 768px) {
+    .dashboards__header>th {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .search__input {
+        padding-left: 5%;
+    }
+}

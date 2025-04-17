@@ -34,6 +34,7 @@ import { SharedModalLayoutComponent } from './components/shared-modal-layout/sha
 import { UserFormModalComponent } from './components/user-form-modal/user-form-modal.component';
 import { AuditLogsComponent } from './components/audit-logs/audit-logs.component';
 import { PhcComponent } from './components/phc/phc.component';
+import { ManageDashboardsComponent } from './components/manage-dashboards/manage-dashboards.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { PhcComponent } from './components/phc/phc.component';
     SharedModalLayoutComponent,
     UserFormModalComponent,
     AuditLogsComponent,
-    PhcComponent
+    PhcComponent,
+    ManageDashboardsComponent
   ],
   imports: [
     BrowserModule,

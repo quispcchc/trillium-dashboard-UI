@@ -1,0 +1,54 @@
+<ng-container>
+    <section>
+      <div *ngIf="loading">Loading dashboards...</div>
+      <div class="actions-container">
+        <input class="search__input" type="text" placeholder="Search dashboards by Name or Label" 
+        [(ngModel)]="searchTerm" (input)="filterDashboards()"/>
+        <button class="create-dashboard-btn" *ngIf="!dashboardsError">
+          <img src="add-icon.svg" alt="add icon"/>
+          <span>Add Dashboard</span>
+        </button>
+      </div>
+      <section class="dashboard-container" *ngIf="!loading">
+        <table class="dashboards">
+          <tr class="dashboards__header">
+            <th class="dashboards__heading--serial">S/N</th>
+            <th class="dashboards__heading--label">Label</th>
+            <th class="dashboards__heading--link">PowerBi URL</th>
+            <th class="dashboards__heading--order">Tab Order</th>
+            <th class="dashboards__heading--actions"></th>
+          </tr>
+          <tr class="dashboard" *ngFor="let dashboard of filteredDashboards; let i = index">
+            <td class="dashboard__serial">
+              <span>{{i + 1}}</span>
+            </td>
+            <td class="dashboard__label">{{dashboard?.label}}</td>
+            <td class="dashboard__link">
+                <ng-container *ngIf="dashboard?.power_bi_url; else noLink">
+                    <a 
+                      [href]="dashboard.power_bi_url" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      [title]="dashboard.power_bi_url">
+                      Power BI Link
+                    </a>
+                  </ng-container>
+                  <ng-template #noLink>
+                    <span class="no-link">No Power BI Link</span>
+                  </ng-template>
+            </td>
+            <td class="dashboard__order">{{dashboard?.tab_order}}</td>
+            <td class="dashboard__actions">
+              <button class="dashboard__actions-edit">Edit</button>
+              <button class="dashboard__actions-delete">Delete</button>
+            </td>
+          </tr>
+        </table>
+      </section>
+  
+      <div class="no-dashboards" *ngIf="!loading && filteredDashboards.length === 0">
+        No dashboards found.
+      </div>
+    </section>
+  
+  </ng-container>
